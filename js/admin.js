@@ -181,55 +181,29 @@ async function uploadImageToGitHub(imageData, filename) {
     }
 }
 
-// Speichern
+// Speichere Konfiguration als Datei
 window.saveConfig = async function() {
-    const token = sessionStorage.getItem('githubToken');
-    if (!token) {
-        showNotification('Bitte loggen Sie sich erneut ein', 'error');
-        return;
-    }
-
     try {
-        // Zuerst die aktuelle Version der Datei abrufen
-        const getResponse = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
-            headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json'
-            }
-        });
-
-        if (!getResponse.ok) {
-            throw new Error('Konnte die aktuelle Konfiguration nicht abrufen');
-        }
-
-        const currentData = await getResponse.json();
-        const sha = currentData.sha;
-
-        // Dann die Datei aktualisieren
-        const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Update config.json',
-                content: btoa(JSON.stringify(config, null, 2)),
-                sha: sha
-            })
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('GitHub API Fehler:', errorData);
-            throw new Error(errorData.message || 'Fehler beim Speichern');
-        }
-
-        showNotification('Konfiguration erfolgreich gespeichert!', 'success');
+        // Erstelle Blob mit der Konfiguration
+        const configBlob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+        
+        // Erstelle Download-Link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(configBlob);
+        downloadLink.download = 'config.json';
+        
+        // Füge Link zum Dokument hinzu und klicke ihn
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        
+        // Aufräumen
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(downloadLink.href);
+        
+        showNotification('Konfiguration wurde heruntergeladen', 'success');
     } catch (error) {
         console.error('Speicherfehler:', error);
-        showNotification(`Fehler beim Speichern: ${error.message}`, 'error');
+        showNotification('Fehler beim Herunterladen der Konfiguration', 'error');
     }
 }
 
