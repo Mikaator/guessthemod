@@ -5,16 +5,21 @@ let config = {
 
 // Mod Management
 function addNewMod() {
-    const modName = prompt('Name des neuen Mods:');
-    if (modName) {
-        const newMod = {
-            id: Date.now(),
-            name: modName
-        };
-        config.mods.push(newMod);
-        updateModList();
-        showNotification('Mod erfolgreich hinzugefügt!', 'success');
+    const modName = document.getElementById('newModName').value.trim();
+    if (!modName) {
+        showNotification('Bitte geben Sie einen Namen ein', 'error');
+        return;
     }
+
+    const newMod = {
+        id: Date.now(),
+        name: modName
+    };
+    config.mods.push(newMod);
+    document.getElementById('newModName').value = '';
+    updateModList();
+    updateModSelect();
+    showNotification('Mod erfolgreich hinzugefügt!', 'success');
 }
 
 function updateModList() {
@@ -27,49 +32,66 @@ function updateModList() {
     `).join('');
 }
 
+function updateModSelect() {
+    const modSelect = document.getElementById('modSelect');
+    modSelect.innerHTML = `
+        <option value="">Mod auswählen</option>
+        ${config.mods.map(mod => `<option value="${mod.id}">${mod.name}</option>`).join('')}
+    `;
+}
+
 function updateModName(id, newName) {
     const mod = config.mods.find(m => m.id === id);
     if (mod) {
         mod.name = newName;
+        updateModSelect();
         showNotification('Mod erfolgreich aktualisiert!', 'success');
     }
 }
 
 function deleteMod(id) {
-    if (confirm('Sind Sie sicher, dass Sie diesen Mod löschen möchten?')) {
+    if (confirm('Sind Sie sicher, dass Sie diesen Mod löschen möchten? Alle zugehörigen Tipps werden ebenfalls gelöscht.')) {
         config.mods = config.mods.filter(m => m.id !== id);
+        config.hints = config.hints.filter(h => h.modId !== id);
         updateModList();
-        showNotification('Mod erfolgreich gelöscht!', 'success');
+        updateModSelect();
+        updateHintList();
+        showNotification('Mod und zugehörige Tipps erfolgreich gelöscht!', 'success');
     }
 }
 
 // Hint Management
 function addNewHint() {
-    const modSelect = document.createElement('div');
-    modSelect.innerHTML = `
-        <select id="modSelect">
-            ${config.mods.map(mod => `<option value="${mod.id}">${mod.name}</option>`).join('')}
-        </select>
-    `;
-
-    const question = prompt('Frage für den Tipp:');
-    if (!question) return;
-
-    const answer = prompt('Antwort (Text oder Bild-URL):');
-    if (!answer) return;
-
-    const design = prompt('Design (1-6):');
-    if (!design || design < 1 || design > 6) return;
-
     const modId = parseInt(document.getElementById('modSelect').value);
-    
+    const question = document.getElementById('hintQuestion').value.trim();
+    const answer = document.getElementById('hintAnswer').value.trim();
+    const design = parseInt(document.getElementById('hintDesign').value);
+
+    if (!modId) {
+        showNotification('Bitte wählen Sie einen Mod aus', 'error');
+        return;
+    }
+    if (!question) {
+        showNotification('Bitte geben Sie eine Frage ein', 'error');
+        return;
+    }
+    if (!answer) {
+        showNotification('Bitte geben Sie eine Antwort ein', 'error');
+        return;
+    }
+
     config.hints.push({
         id: Date.now(),
         modId,
         question,
         answer,
-        design: parseInt(design)
+        design
     });
+
+    // Formular zurücksetzen
+    document.getElementById('hintQuestion').value = '';
+    document.getElementById('hintAnswer').value = '';
+    document.getElementById('hintDesign').value = '1';
 
     updateHintList();
     showNotification('Tipp erfolgreich hinzugefügt!', 'success');
@@ -82,8 +104,9 @@ function updateHintList() {
         return `
             <div class="hint-item" data-id="${hint.id}">
                 <div class="hint-preview design-${hint.design}">
-                    <p>Frage: ${hint.question}</p>
-                    <p>Mod: ${mod ? mod.name : 'Unbekannt'}</p>
+                    <p><strong>Mod:</strong> ${mod ? mod.name : 'Unbekannt'}</p>
+                    <p><strong>Frage:</strong> ${hint.question}</p>
+                    <p><strong>Antwort:</strong> ${hint.answer}</p>
                 </div>
                 <button onclick="deleteHint(${hint.id})" class="delete-button">Löschen</button>
             </div>
@@ -153,5 +176,6 @@ function showNotification(message, type) {
 // Initialisiere Listen
 window.onload = function() {
     updateModList();
+    updateModSelect();
     updateHintList();
 }; 

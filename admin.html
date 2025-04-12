@@ -17,28 +17,51 @@
     <div id="adminContainer" class="admin-container" style="display: none;">
         <h1>Guess the Mod - Admin Panel</h1>
         
-        <section class="mod-management">
-            <h2>Mod Management</h2>
-            <div class="mod-list" id="modList">
-                <!-- Mods werden hier dynamisch eingefügt -->
-            </div>
-            <button onclick="addNewMod()">Neuer Mod</button>
-        </section>
+        <div class="admin-grid">
+            <!-- Mod Management -->
+            <section class="mod-management">
+                <h2>Mod Management</h2>
+                <div class="mod-form">
+                    <input type="text" id="newModName" placeholder="Name des neuen Mods">
+                    <button onclick="addNewMod()">Mod hinzufügen</button>
+                </div>
+                <div class="mod-list" id="modList">
+                    <!-- Mods werden hier dynamisch eingefügt -->
+                </div>
+            </section>
 
-        <section class="hint-management">
-            <h2>Tipp Management</h2>
-            <div class="hint-list" id="hintList">
-                <!-- Tipps werden hier dynamisch eingefügt -->
-            </div>
-            <button onclick="addNewHint()">Neuer Tipp</button>
-        </section>
+            <!-- Hint Management -->
+            <section class="hint-management">
+                <h2>Tipp Management</h2>
+                <div class="hint-form">
+                    <select id="modSelect">
+                        <option value="">Mod auswählen</option>
+                    </select>
+                    <input type="text" id="hintQuestion" placeholder="Frage">
+                    <input type="text" id="hintAnswer" placeholder="Antwort (Text oder Bild-URL)">
+                    <select id="hintDesign">
+                        <option value="1">🟩 Neon Glow</option>
+                        <option value="2">📦 Cardboard</option>
+                        <option value="3">📜 Old Scroll</option>
+                        <option value="4">💎 Crystal Frame</option>
+                        <option value="5">🧪 Sci-Fi Panel</option>
+                        <option value="6">📸 Polaroid Frame</option>
+                    </select>
+                    <button onclick="addNewHint()">Tipp hinzufügen</button>
+                </div>
+                <div class="hint-list" id="hintList">
+                    <!-- Tipps werden hier dynamisch eingefügt -->
+                </div>
+            </section>
 
-        <section class="preview">
-            <h2>Live Vorschau</h2>
-            <div id="previewContainer">
-                <!-- Vorschau wird hier dynamisch eingefügt -->
-            </div>
-        </section>
+            <!-- Preview -->
+            <section class="preview">
+                <h2>Live Vorschau</h2>
+                <div id="previewContainer">
+                    <!-- Vorschau wird hier dynamisch eingefügt -->
+                </div>
+            </section>
+        </div>
 
         <button onclick="saveConfig()" class="save-button">Konfiguration speichern</button>
     </div>
