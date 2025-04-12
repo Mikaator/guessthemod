@@ -4,7 +4,7 @@ let config = {
 };
 
 // Mod Management
-function addNewMod() {
+window.addNewMod = function() {
     const modName = document.getElementById('newModName').value.trim();
     if (!modName) {
         showNotification('Bitte geben Sie einen Namen ein', 'error');
@@ -40,7 +40,7 @@ function updateModSelect() {
     `;
 }
 
-function updateModName(id, newName) {
+window.updateModName = function(id, newName) {
     const mod = config.mods.find(m => m.id === id);
     if (mod) {
         mod.name = newName;
@@ -49,7 +49,7 @@ function updateModName(id, newName) {
     }
 }
 
-function deleteMod(id) {
+window.deleteMod = function(id) {
     if (confirm('Sind Sie sicher, dass Sie diesen Mod löschen möchten? Alle zugehörigen Tipps werden ebenfalls gelöscht.')) {
         config.mods = config.mods.filter(m => m.id !== id);
         config.hints = config.hints.filter(h => h.modId !== id);
@@ -61,7 +61,7 @@ function deleteMod(id) {
 }
 
 // Hint Management
-async function addNewHint() {
+window.addNewHint = async function() {
     const modId = parseInt(document.getElementById('modSelect').value);
     const question = document.getElementById('hintQuestion').value.trim();
     const answer = document.getElementById('hintAnswer').value.trim();
@@ -127,7 +127,7 @@ function updateHintList() {
     }).join('');
 }
 
-function deleteHint(id) {
+window.deleteHint = function(id) {
     if (confirm('Sind Sie sicher, dass Sie diesen Tipp löschen möchten?')) {
         config.hints = config.hints.filter(h => h.id !== id);
         updateHintList();
@@ -135,8 +135,54 @@ function deleteHint(id) {
     }
 }
 
+// Bild-Upload Funktionen
+window.handleImageUpload = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Vorschau">`;
+        document.getElementById('hintAnswer').value = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+async function uploadImageToGitHub(imageData, filename) {
+    const token = sessionStorage.getItem('githubToken');
+    if (!token) {
+        showNotification('Bitte loggen Sie sich erneut ein', 'error');
+        return null;
+    }
+
+    try {
+        const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/assets/img/${filename}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: `Upload image: ${filename}`,
+                content: imageData.split(',')[1] // Entferne den Data-URL-Teil
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Fehler beim Hochladen des Bildes');
+        }
+
+        const data = await response.json();
+        return data.content.download_url;
+    } catch (error) {
+        showNotification(`Fehler beim Hochladen: ${error.message}`, 'error');
+        return null;
+    }
+}
+
 // Speichern
-async function saveConfig() {
+window.saveConfig = async function() {
     const token = sessionStorage.getItem('githubToken');
     if (!token) {
         showNotification('Bitte loggen Sie sich erneut ein', 'error');
@@ -194,50 +240,4 @@ function initializeAdmin() {
 }
 
 // Initialisiere Admin beim Laden
-window.addEventListener('load', initializeAdmin);
-
-// Bild-Upload Funktionen
-async function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const imagePreview = document.getElementById('imagePreview');
-        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Vorschau">`;
-        document.getElementById('hintAnswer').value = e.target.result;
-    };
-    reader.readAsDataURL(file);
-}
-
-async function uploadImageToGitHub(imageData, filename) {
-    const token = sessionStorage.getItem('githubToken');
-    if (!token) {
-        showNotification('Bitte loggen Sie sich erneut ein', 'error');
-        return null;
-    }
-
-    try {
-        const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/assets/img/${filename}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: `Upload image: ${filename}`,
-                content: imageData.split(',')[1] // Entferne den Data-URL-Teil
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('Fehler beim Hochladen des Bildes');
-        }
-
-        const data = await response.json();
-        return data.content.download_url;
-    } catch (error) {
-        showNotification(`Fehler beim Hochladen: ${error.message}`, 'error');
-        return null;
-    }
-} 
+window.addEventListener('load', initializeAdmin); 

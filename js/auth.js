@@ -1,8 +1,10 @@
-const GITHUB_API_URL = 'https://api.github.com';
-const REPO_OWNER = 'Mikaator';
-const REPO_NAME = 'guessthemod';
+// Globale Variablen
+window.GITHUB_API_URL = 'https://api.github.com';
+window.REPO_OWNER = 'Mikaator';
+window.REPO_NAME = 'guessthemod';
 
-async function authenticate() {
+// Authentifizierungsfunktion
+window.authenticate = async function() {
     const token = document.getElementById('githubToken').value;
     if (!token) {
         alert('Bitte geben Sie einen GitHub Token ein');
@@ -54,7 +56,7 @@ async function authenticate() {
 }
 
 // Prüfe ob bereits eingeloggt
-function checkAuthStatus() {
+window.checkAuthStatus = function() {
     const token = sessionStorage.getItem('githubToken');
     if (token) {
         document.getElementById('githubToken').value = token;
