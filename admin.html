@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Mod - Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="authContainer" class="auth-container">
+        <h2>Admin Login</h2>
+        <p>Bitte geben Sie Ihren GitHub Personal Access Token ein:</p>
+        <input type="password" id="githubToken" placeholder="GitHub Token">
+        <button onclick="authenticate()">Login</button>
+    </div>
+
+    <div id="adminContainer" class="admin-container" style="display: none;">
+        <h1>Guess the Mod - Admin Panel</h1>
+        
+        <section class="mod-management">
+            <h2>Mod Management</h2>
+            <div class="mod-list" id="modList">
+                <!-- Mods werden hier dynamisch eingefügt -->
+            </div>
+            <button onclick="addNewMod()">Neuer Mod</button>
+        </section>
+
+        <section class="hint-management">
+            <h2>Tipp Management</h2>
+            <div class="hint-list" id="hintList">
+                <!-- Tipps werden hier dynamisch eingefügt -->
+            </div>
+            <button onclick="addNewHint()">Neuer Tipp</button>
+        </section>
+
+        <section class="preview">
+            <h2>Live Vorschau</h2>
+            <div id="previewContainer">
+                <!-- Vorschau wird hier dynamisch eingefügt -->
+            </div>
+        </section>
+
+        <button onclick="saveConfig()" class="save-button">Konfiguration speichern</button>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html> 
