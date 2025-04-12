@@ -11,7 +11,7 @@
         <h2>Admin Login</h2>
         <p>Bitte geben Sie Ihren GitHub Personal Access Token ein:</p>
         <input type="password" id="githubToken" placeholder="GitHub Token">
-        <button onclick="authenticate()">Login</button>
+        <button id="loginButton">Login</button>
     </div>
 
     <div id="adminContainer" class="admin-container" style="display: none;">
@@ -38,7 +38,14 @@
                         <option value="">Mod auswählen</option>
                     </select>
                     <input type="text" id="hintQuestion" placeholder="Frage">
-                    <input type="text" id="hintAnswer" placeholder="Antwort (Text oder Bild-URL)">
+                    <div class="answer-input">
+                        <input type="text" id="hintAnswer" placeholder="Antwort (Text oder Bild-URL)">
+                        <div class="image-upload">
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            <button onclick="document.getElementById('imageUpload').click()">Bild hochladen</button>
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </div>
                     <select id="hintDesign">
                         <option value="1">🟩 Neon Glow</option>
                         <option value="2">📦 Cardboard</option>
@@ -74,5 +81,20 @@
     </script>
     <script src="js/auth.js"></script>
     <script src="js/admin.js"></script>
+    <script>
+        // Event-Listener für den Login-Button
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.getElementById('loginButton');
+            if (loginButton) {
+                loginButton.addEventListener('click', authenticate);
+            }
+
+            // Bild-Upload Event-Listener
+            const imageUpload = document.getElementById('imageUpload');
+            if (imageUpload) {
+                imageUpload.addEventListener('change', handleImageUpload);
+            }
+        });
+    </script>
 </body>
 </html> 

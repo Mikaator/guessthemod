@@ -6,7 +6,9 @@
     <title>Guess the Mod</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-theme">
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme wechseln</button>
+    
     <div class="game-container">
         <div class="mods-container" id="modsContainer">
             <!-- Mods werden hier dynamisch eingefügt -->
@@ -18,6 +20,19 @@
     <div class="game-status" id="gameStatus">
         <p>Wähle einen Tipp, um zu beginnen!</p>
     </div>
+
+    <div class="sound-controls">
+        <button onclick="toggleSound('flip')">🔊 Karten-Sound</button>
+        <button onclick="toggleSound('guess')">🔊 Rate-Sound</button>
+    </div>
+
+    <!-- Soundeffekte -->
+    <audio id="flipSound" src="assets/sounds/flip.mp3"></audio>
+    <audio id="correctSound" src="assets/sounds/correct.mp3"></audio>
+    <audio id="wrongSound" src="assets/sounds/wrong.mp3"></audio>
+    <audio id="winSound" src="assets/sounds/win.mp3"></audio>
+    <audio id="loseSound" src="assets/sounds/lose.mp3"></audio>
+
     <script src="js/main.js"></script>
 </body>
 </html> 

@@ -61,11 +61,12 @@ function deleteMod(id) {
 }
 
 // Hint Management
-function addNewHint() {
+async function addNewHint() {
     const modId = parseInt(document.getElementById('modSelect').value);
     const question = document.getElementById('hintQuestion').value.trim();
     const answer = document.getElementById('hintAnswer').value.trim();
     const design = parseInt(document.getElementById('hintDesign').value);
+    const imageFile = document.getElementById('imageUpload').files[0];
 
     if (!modId) {
         showNotification('Bitte wählen Sie einen Mod aus', 'error');
@@ -75,22 +76,34 @@ function addNewHint() {
         showNotification('Bitte geben Sie eine Frage ein', 'error');
         return;
     }
-    if (!answer) {
-        showNotification('Bitte geben Sie eine Antwort ein', 'error');
+    if (!answer && !imageFile) {
+        showNotification('Bitte geben Sie eine Antwort ein oder laden Sie ein Bild hoch', 'error');
         return;
+    }
+
+    let finalAnswer = answer;
+    if (imageFile) {
+        const imageUrl = await uploadImageToGitHub(answer, `${Date.now()}_${imageFile.name}`);
+        if (imageUrl) {
+            finalAnswer = imageUrl;
+        } else {
+            return;
+        }
     }
 
     config.hints.push({
         id: Date.now(),
         modId,
         question,
-        answer,
+        answer: finalAnswer,
         design
     });
 
     // Formular zurücksetzen
     document.getElementById('hintQuestion').value = '';
     document.getElementById('hintAnswer').value = '';
+    document.getElementById('imageUpload').value = '';
+    document.getElementById('imagePreview').innerHTML = '';
     document.getElementById('hintDesign').value = '1';
 
     updateHintList();
@@ -181,4 +194,50 @@ function initializeAdmin() {
 }
 
 // Initialisiere Admin beim Laden
-window.addEventListener('load', initializeAdmin); 
+window.addEventListener('load', initializeAdmin);
+
+// Bild-Upload Funktionen
+async function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Vorschau">`;
+        document.getElementById('hintAnswer').value = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+async function uploadImageToGitHub(imageData, filename) {
+    const token = sessionStorage.getItem('githubToken');
+    if (!token) {
+        showNotification('Bitte loggen Sie sich erneut ein', 'error');
+        return null;
+    }
+
+    try {
+        const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/assets/img/${filename}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: `Upload image: ${filename}`,
+                content: imageData.split(',')[1] // Entferne den Data-URL-Teil
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Fehler beim Hochladen des Bildes');
+        }
+
+        const data = await response.json();
+        return data.content.download_url;
+    } catch (error) {
+        showNotification(`Fehler beim Hochladen: ${error.message}`, 'error');
+        return null;
+    }
+} 

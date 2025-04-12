@@ -50,11 +50,50 @@ function initializeGame(config) {
     `).join('');
 }
 
+// Sound Management
+let soundEnabled = {
+    flip: true,
+    guess: true
+};
+
+function toggleSound(type) {
+    soundEnabled[type] = !soundEnabled[type];
+    const button = document.querySelector(`button[onclick="toggleSound('${type}')"]`);
+    button.textContent = soundEnabled[type] ? '🔊' : '🔇';
+}
+
+function playSound(soundId) {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Sound konnte nicht abgespielt werden:', e));
+    }
+}
+
+// Theme Management
+function toggleTheme() {
+    const body = document.body;
+    if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Modifizierte revealHint Funktion
 function revealHint(hintId) {
     if (gameState.gameOver) return;
 
     const hintCard = document.querySelector(`.hint-card[onclick*="${hintId}"]`);
     if (!hintCard || gameState.revealedHints.includes(hintId)) return;
+
+    if (soundEnabled.flip) {
+        playSound('flipSound');
+    }
 
     hintCard.classList.add('flipped');
     gameState.revealedHints.push(hintId);
@@ -65,11 +104,22 @@ function revealHint(hintId) {
     }, 600);
 }
 
+// Modifizierte guessMod Funktion
 function guessMod(modId) {
     if (gameState.gameOver) return;
 
     const isCorrect = modId === gameState.currentMod.id;
     gameState.gameOver = true;
+
+    if (soundEnabled.guess) {
+        if (isCorrect) {
+            playSound('correctSound');
+            setTimeout(() => playSound('winSound'), 1000);
+        } else {
+            playSound('wrongSound');
+            setTimeout(() => playSound('loseSound'), 1000);
+        }
+    }
 
     const statusElement = document.getElementById('gameStatus');
     statusElement.innerHTML = `
@@ -88,5 +138,9 @@ function guessMod(modId) {
     });
 }
 
-// Starte Spiel beim Laden
-window.onload = loadConfig; 
+// Initialisiere Theme beim Laden
+window.addEventListener('load', function() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.classList.add(`${savedTheme}-theme`);
+    loadConfig();
+}); 
