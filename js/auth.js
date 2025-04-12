@@ -54,10 +54,13 @@ async function authenticate() {
 }
 
 // Prüfe ob bereits eingeloggt
-window.onload = function() {
+function checkAuthStatus() {
     const token = sessionStorage.getItem('githubToken');
     if (token) {
         document.getElementById('githubToken').value = token;
         authenticate();
     }
-}; 
+}
+
+// Initialisiere Auth beim Laden
+window.addEventListener('load', checkAuthStatus); 

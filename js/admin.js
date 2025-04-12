@@ -174,8 +174,11 @@ function showNotification(message, type) {
 }
 
 // Initialisiere Listen
-window.onload = function() {
+function initializeAdmin() {
     updateModList();
     updateModSelect();
     updateHintList();
-}; 
+}
+
+// Initialisiere Admin beim Laden
+window.addEventListener('load', initializeAdmin); 
