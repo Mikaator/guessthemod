@@ -1,4 +1,42 @@
 {
-    "mods": [],
-    "hints": []
-} 
+  "mods": [
+    {
+      "id": 1744491407270,
+      "name": "luca"
+    },
+    {
+      "id": 1744491436164,
+      "name": "banani"
+    }
+  ],
+  "hints": [
+    {
+      "id": 1744491419599,
+      "modId": 1744491407270,
+      "question": "was ist dein haustier",
+      "answer": "hugo",
+      "design": 2
+    },
+    {
+      "id": 1744491430562,
+      "modId": 1744491407270,
+      "question": "wie gehts dir",
+      "answer": "grausam wie noch nie",
+      "design": 1
+    },
+    {
+      "id": 1744491451830,
+      "modId": 1744491436164,
+      "question": "was ist dein job",
+      "answer": "nichtsa arbeitslos",
+      "design": 3
+    },
+    {
+      "id": 1744491472597,
+      "modId": 1744491436164,
+      "question": "3wörter",
+      "answer": "schlafen sklave nein",
+      "design": 4
+    }
+  ]
+}
