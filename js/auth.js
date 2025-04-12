@@ -15,32 +15,38 @@ window.authenticate = async function() {
         // Prüfe Benutzeridentität
         const userResponse = await fetch(`${GITHUB_API_URL}/user`, {
             headers: {
-                'Authorization': `token ${token}`
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
             }
         });
 
         if (!userResponse.ok) {
-            throw new Error('Ungültiger Token');
+            const errorData = await userResponse.json();
+            throw new Error(`Ungültiger Token: ${errorData.message}`);
         }
 
         const user = await userResponse.json();
+        console.log('Eingeloggt als:', user.login);
 
         // Prüfe Repository-Zugriff
         const repoResponse = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}`, {
             headers: {
-                'Authorization': `token ${token}`
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
             }
         });
 
         if (!repoResponse.ok) {
-            throw new Error('Kein Zugriff auf das Repository');
+            const errorData = await repoResponse.json();
+            throw new Error(`Repository-Zugriff fehlgeschlagen: ${errorData.message}`);
         }
 
         const repo = await repoResponse.json();
+        console.log('Repository gefunden:', repo.full_name);
 
         // Prüfe ob Benutzer der Owner ist
         if (repo.owner.login !== user.login) {
-            throw new Error('Sie sind nicht der Owner des Repositories');
+            throw new Error(`Sie sind nicht der Owner des Repositories. Aktueller Owner: ${repo.owner.login}`);
         }
 
         // Speichere Token temporär
@@ -51,6 +57,7 @@ window.authenticate = async function() {
         document.getElementById('adminContainer').style.display = 'block';
 
     } catch (error) {
+        console.error('Authentifizierungsfehler:', error);
         alert(`Fehler bei der Authentifizierung: ${error.message}`);
     }
 }
