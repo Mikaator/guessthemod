@@ -182,7 +182,7 @@ async function uploadImageToGitHub(imageData, filename) {
 }
 
 // Speichere Konfiguration als Datei
-window.saveConfig = async function() {
+window.saveConfig = function() {
     try {
         // Erstelle Blob mit der Konfiguration
         const configBlob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
