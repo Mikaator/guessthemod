@@ -193,32 +193,36 @@ window.saveConfig = async function() {
         // Zuerst die aktuelle Version der Datei abrufen
         const getResponse = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
             headers: {
-                'Authorization': `token ${token}`
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
             }
         });
 
-        let sha = '';
-        if (getResponse.ok) {
-            const data = await getResponse.json();
-            sha = data.sha;
+        if (!getResponse.ok) {
+            throw new Error('Konnte die aktuelle Konfiguration nicht abrufen');
         }
+
+        const currentData = await getResponse.json();
+        const sha = currentData.sha;
 
         // Dann die Datei aktualisieren
         const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
             method: 'PUT',
             headers: {
                 'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 message: 'Update config.json',
                 content: btoa(JSON.stringify(config, null, 2)),
-                sha: sha // SHA des aktuellen Commits, falls die Datei existiert
+                sha: sha
             })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
+            console.error('GitHub API Fehler:', errorData);
             throw new Error(errorData.message || 'Fehler beim Speichern');
         }
 
