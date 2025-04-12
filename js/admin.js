@@ -190,6 +190,20 @@ window.saveConfig = async function() {
     }
 
     try {
+        // Zuerst die aktuelle Version der Datei abrufen
+        const getResponse = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        });
+
+        let sha = '';
+        if (getResponse.ok) {
+            const data = await getResponse.json();
+            sha = data.sha;
+        }
+
+        // Dann die Datei aktualisieren
         const response = await fetch(`${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/config.json`, {
             method: 'PUT',
             headers: {
@@ -198,16 +212,19 @@ window.saveConfig = async function() {
             },
             body: JSON.stringify({
                 message: 'Update config.json',
-                content: btoa(JSON.stringify(config, null, 2))
+                content: btoa(JSON.stringify(config, null, 2)),
+                sha: sha // SHA des aktuellen Commits, falls die Datei existiert
             })
         });
 
         if (!response.ok) {
-            throw new Error('Fehler beim Speichern');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Fehler beim Speichern');
         }
 
         showNotification('Konfiguration erfolgreich gespeichert!', 'success');
     } catch (error) {
+        console.error('Speicherfehler:', error);
         showNotification(`Fehler beim Speichern: ${error.message}`, 'error');
     }
 }
