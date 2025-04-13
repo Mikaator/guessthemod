@@ -46,48 +46,63 @@ body {
 
 /* Game Container */
 .game-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
     position: relative;
-    animation: fadeIn 0.5s ease-out;
 }
 
+/* Mods Container (Mitte) */
 .mods-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
+    z-index: 2;
 }
 
+.mod-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mod-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Hints Container (Außen) */
 .hints-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem 0;
     perspective: 1000px;
 }
 
-/* Hint Card Designs */
 .hint-card {
     position: relative;
-    padding: 1.5rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 200px;
     transform-style: preserve-3d;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.hint-card:hover {
-    transform: translateY(-5px) scale(1.02);
+    transition: transform 0.6s;
+    cursor: pointer;
 }
 
 .hint-card.flipped {
-    animation: cardFlip 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform: rotateY(180deg);
 }
 
 .hint-front, .hint-back {
@@ -100,10 +115,53 @@ body {
     justify-content: center;
     padding: 1rem;
     border-radius: 12px;
+    text-align: center;
+}
+
+.hint-front {
+    background: var(--primary-color);
+    color: white;
 }
 
 .hint-back {
+    background: white;
+    color: var(--primary-color);
     transform: rotateY(180deg);
+}
+
+/* Game Status */
+.game-status {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+/* Sound Controls */
+.sound-controls {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 100;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hints-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .mod-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
 }
 
 /* Design Templates */
@@ -141,45 +199,6 @@ body {
     background: #fff;
     border: 10px solid #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Mod Buttons */
-.mod-button {
-    padding: 1rem;
-    background: linear-gradient(145deg, var(--secondary-color), #2980b9);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.mod-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.mod-button:active {
-    transform: translateY(1px);
-}
-
-/* Game Status */
-.game-status {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    animation: pulse 2s infinite;
-}
-
-.game-status p {
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
 }
 
 /* Admin Styles */
@@ -249,23 +268,6 @@ input {
 input:focus {
     outline: none;
     box-shadow: 0 0 10px var(--accent-color);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .game-container,
-    .admin-container {
-        padding: 0.5rem;
-    }
-    
-    .mods-container,
-    .hints-container {
-        grid-template-columns: 1fr;
-    }
-
-    .hint-card {
-        min-height: 150px;
-    }
 }
 
 /* Notification System */
@@ -547,28 +549,4 @@ body.light-theme {
     --background-color: #f5f5f5;
     --text-color: #333333;
     --accent-color: #2ecc71;
-}
-
-/* Sound Controls */
-.sound-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 1rem;
-    z-index: 1000;
-}
-
-.sound-controls button {
-    padding: 0.5rem;
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.sound-controls button:hover {
-    background: var(--secondary-color);
 } 
