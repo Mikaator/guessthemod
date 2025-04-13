@@ -52,45 +52,43 @@ function setupGame() {
 
 // Wähle neuen Mod und seine Tipps
 function selectNewMod() {
-    // Filtere bereits richtig geratene Mods aus
+    // Filtere bereits erratene Mods heraus
     const availableMods = config.mods.filter(mod => !correctMods.has(mod.id));
     
-    // Wenn alle Mods bereits richtig geraten wurden, zeige eine Nachricht
     if (availableMods.length === 0) {
         const status = document.getElementById('gameStatus');
-        status.textContent = 'Glückwunsch! Du hast alle Mods erraten! 🎉';
-        status.classList.add('correct');
+        status.innerHTML = '<p>Glückwunsch! Du hast alle Mods erraten!</p>';
         return;
     }
     
-    // Wähle zufälligen Mod aus den verfügbaren Mods
+    // Wähle einen zufälligen Mod aus den verfügbaren Mods
     const randomMod = availableMods[Math.floor(Math.random() * availableMods.length)];
     currentMod = randomMod;
     wrongModsInRound.clear(); // Reset der falsch geratenen Mods für die neue Runde
     
-    // Mod-Buttons erstellen
+    // Erstelle Mod-Buttons
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
+    
     config.mods.forEach(mod => {
         const button = document.createElement('button');
         button.className = 'mod-button';
         button.textContent = mod.name;
-        button.onclick = () => checkGuess(mod.id);
         
-        // Wenn der Mod bereits richtig geraten wurde, grün markieren und deaktivieren
+        // Wenn der Mod bereits erraten wurde, markiere ihn als korrekt
         if (correctMods.has(mod.id)) {
             button.classList.add('correct-mod');
-            button.disabled = true;
         }
         
+        button.addEventListener('click', () => checkGuess(mod.id));
         modsContainer.appendChild(button);
     });
     
-    // Tipp-Karten erstellen
+    // Erstelle Tipp-Karten
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
-    const modHints = config.hints.filter(hint => hint.modId === randomMod.id);
     
+    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
     modHints.forEach(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
@@ -102,32 +100,38 @@ function selectNewMod() {
         const answer = document.createElement('div');
         answer.className = 'hint-answer';
         
-        if (hint.isImage) {
-            // Extrahiere den Google Drive Link aus dem HTML-String
-            const imgMatch = hint.answer.match(/src="([^"]+)"/);
-            const imageUrl = imgMatch ? imgMatch[1] : hint.answer;
-            
-            // Konvertiere den Google Drive Link in einen direkten Link
-            const directLink = imageUrl.replace('open?usp=forms_web', 'uc?export=view');
-            
-            const link = document.createElement('a');
-            link.href = directLink;
-            link.target = '_blank';
-            link.textContent = 'Bild anzeigen';
-            link.style.color = 'var(--primary-color)';
-            link.style.textDecoration = 'none';
-            link.style.fontWeight = 'bold';
-            link.style.fontSize = '1.2rem';
-            link.style.padding = '10px';
-            link.style.cursor = 'pointer';
-            
-            // Verhindern Sie, dass der Klick auf den Link die Karte umdreht
-            link.onclick = function(e) {
-                e.stopPropagation();
-                window.open(directLink, '_blank');
-            };
-            
-            answer.appendChild(link);
+        // Prüfe, ob die Antwort ein Link ist
+        if (hint.answer.includes('http')) {
+            // Prüfe auf Lightshot oder Imgur Link
+            if (hint.answer.includes('prnt.sc') || hint.answer.includes('lightshot')) {
+                // Konvertiere Lightshot Link zu direktem Bild-Link
+                const imageUrl = hint.answer.replace('prnt.sc', 'i.imgur.com');
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Bild Antwort';
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '200px';
+                img.style.borderRadius = '8px';
+                answer.appendChild(img);
+            } else if (hint.answer.includes('imgur.com')) {
+                // Konvertiere Imgur Link zu direktem Bild-Link
+                const imageUrl = hint.answer.replace('imgur.com', 'i.imgur.com') + '.jpg';
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Bild Antwort';
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '200px';
+                img.style.borderRadius = '8px';
+                answer.appendChild(img);
+            } else {
+                // Für andere Links einen "Bild öffnen" Link erstellen
+                const imageLink = document.createElement('a');
+                imageLink.href = hint.answer;
+                imageLink.target = '_blank';
+                imageLink.textContent = 'Bild öffnen';
+                imageLink.className = 'image-link';
+                answer.appendChild(imageLink);
+            }
         } else {
             answer.textContent = hint.answer;
         }
@@ -135,18 +139,17 @@ function selectNewMod() {
         card.appendChild(question);
         card.appendChild(answer);
         
-        card.onclick = () => {
+        card.addEventListener('click', () => {
             if (!card.classList.contains('flipped')) {
                 card.classList.add('flipped');
-                flipSound.play();
-                updateGameStatus();
+                playSound('flip');
             }
-        };
+        });
         
         hintsContainer.appendChild(card);
     });
     
-    updateGameStatus();
+    document.getElementById('gameStatus').textContent = 'Wähle einen Tipp, um zu beginnen!';
 }
 
 // Deckt einen Tipp auf
