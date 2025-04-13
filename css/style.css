@@ -302,6 +302,8 @@ body {
     animation: statusPulse 2s infinite;
     z-index: 1000;
     transition: all 0.3s ease;
+    width: fit-content;
+    text-align: center;
 }
 
 .game-status.correct {
@@ -314,6 +316,27 @@ body {
     background: rgba(244, 67, 54, 0.8);
     animation: statusPulse 2s infinite;
     transform: translateX(-50%) scale(1.1);
+}
+
+/* Erfolgsmeldung */
+.game-status.success {
+    background: #4CAF50 !important;
+    color: white !important;
+    animation: success-pulse 0.5s ease-out;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+    transform: translateX(-50%) scale(1);
+}
+
+.game-status.success p {
+    color: white !important;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes success-pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
 }
 
 /* Theme Toggle */
@@ -1063,24 +1086,6 @@ body.light-theme {
     pointer-events: none;
     top: 100px; /* Startet unterhalb des Headers */
     opacity: 0; /* Startet unsichtbar */
-}
-
-/* Erfolgsmeldung */
-.game-status.success {
-    background: #4CAF50 !important;
-    color: white !important;
-    animation: success-pulse 0.5s ease-out;
-    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
-}
-
-.game-status.success p {
-    color: white !important;
-}
-
-@keyframes success-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
 }
 
 /* Überschreibe andere Status-Klassen für die Erfolgsmeldung */
