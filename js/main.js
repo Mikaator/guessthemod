@@ -103,13 +103,21 @@ function selectNewMod() {
         answer.className = 'hint-answer';
         
         if (hint.isImage) {
+            // Extrahiere den Google Drive Link aus dem HTML-String
+            const imgMatch = hint.answer.match(/src="([^"]+)"/);
+            const imageUrl = imgMatch ? imgMatch[1] : hint.answer;
+            
             const link = document.createElement('a');
-            link.href = hint.answer;
+            link.href = imageUrl;
             link.target = '_blank';
-            link.textContent = 'Bild: ' + hint.answer;
+            link.textContent = 'Bild anzeigen';
             link.style.color = 'var(--primary-color)';
             link.style.textDecoration = 'none';
             link.style.fontWeight = 'bold';
+            link.style.fontSize = '1.2rem';
+            link.style.padding = '10px';
+            link.style.borderRadius = '8px';
+            link.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
             answer.appendChild(link);
         } else {
             answer.textContent = hint.answer;
