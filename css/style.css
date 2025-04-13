@@ -93,6 +93,7 @@ body {
     padding: 2rem;
     gap: 3rem;
     position: relative;
+    margin-top: 100px;
 }
 
 /* Mods Container (Mitte) */
@@ -816,4 +817,58 @@ body.light-theme {
 .hint-card.wrong {
     animation: wrongGuess 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(145deg, #e74c3c, #c0392b);
+}
+
+/* Header Styles */
+.game-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 1.5rem;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.game-subtitle {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.twitch-link {
+    color: #9146ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.twitch-link:hover {
+    color: #772ce8;
+    text-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
 } 
