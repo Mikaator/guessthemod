@@ -119,7 +119,7 @@ function updateHintList() {
                 <div class="hint-preview design-${hint.design}">
                     <p><strong>Mod:</strong> ${mod ? mod.name : 'Unbekannt'}</p>
                     <p><strong>Frage:</strong> ${hint.question}</p>
-                    <p><strong>Antwort:</strong> ${hint.answer}</p>
+                    <p><strong>Antwort:</strong> ${hint.isImage ? hint.answer : hint.answer}</p>
                 </div>
                 <button onclick="deleteHint(${hint.id})" class="delete-button">Löschen</button>
             </div>
@@ -235,4 +235,98 @@ function initializeAdmin() {
 }
 
 // Initialisiere Admin beim Laden
-window.addEventListener('load', initializeAdmin); 
+window.addEventListener('load', initializeAdmin);
+
+// CSV Import Funktionen
+window.handleCSVImport = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const csvData = e.target.result;
+        const rows = csvData.split('\n');
+        const headers = rows[0].split(',').map(header => header.trim().replace(/"/g, ''));
+        
+        // Zeige Vorschau
+        const preview = document.getElementById('csvPreview');
+        let previewHTML = '<table>';
+        
+        // Header
+        previewHTML += '<tr>';
+        headers.forEach(header => {
+            previewHTML += `<th>${header}</th>`;
+        });
+        previewHTML += '</tr>';
+        
+        // Daten
+        for (let i = 1; i < Math.min(rows.length, 6); i++) {
+            const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
+            previewHTML += '<tr>';
+            cells.forEach(cell => {
+                previewHTML += `<td>${cell}</td>`;
+            });
+            previewHTML += '</tr>';
+        }
+        previewHTML += '</table>';
+        
+        if (rows.length > 6) {
+            previewHTML += `<p>... und ${rows.length - 6} weitere Zeilen</p>`;
+        }
+        
+        preview.innerHTML = previewHTML;
+        
+        // Verarbeite die Daten
+        processCSVData(rows, headers);
+    };
+    reader.readAsText(file);
+}
+
+function processCSVData(rows, headers) {
+    // Lösche vorhandene Daten
+    config.mods = [];
+    config.hints = [];
+    
+    // Verarbeite jede Zeile (außer Header)
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
+        if (cells.length < headers.length) continue;
+        
+        // Erstelle neuen Mod
+        const modName = cells[1]; // Zweite Spalte ist der Mod-Name
+        const modId = Date.now() + i;
+        
+        config.mods.push({
+            id: modId,
+            name: modName
+        });
+        
+        // Erstelle Tipps aus den restlichen Spalten
+        for (let j = 2; j < headers.length; j++) {
+            if (cells[j]) {
+                const answer = cells[j];
+                const isImageUrl = answer.includes('http') && 
+                    (answer.includes('drive.google.com') || 
+                     answer.includes('imgur.com') || 
+                     answer.includes('i.imgur.com') ||
+                     answer.match(/\.(jpg|jpeg|png|gif)$/i));
+                
+                config.hints.push({
+                    id: Date.now() + i + j,
+                    modId: modId,
+                    question: headers[j],
+                    answer: isImageUrl ? `<img src="${answer}" alt="Bild Antwort" style="max-width: 100%; max-height: 200px; border-radius: 8px;">` : answer,
+                    design: Math.floor(Math.random() * 6) + 1,
+                    isImage: isImageUrl
+                });
+            }
+        }
+    }
+    
+    // Aktualisiere die Listen
+    updateModList();
+    updateModSelect();
+    updateHintList();
+    
+    showNotification('CSV-Daten erfolgreich importiert!', 'success');
+} 

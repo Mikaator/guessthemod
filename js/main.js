@@ -60,7 +60,7 @@ function selectNewMod() {
         hintCard.className = `hint-card design-${hint.design}`;
         hintCard.innerHTML = `
             <div class="hint-question">${hint.question}</div>
-            <div class="hint-answer">${hint.answer}</div>
+            <div class="hint-answer">${hint.isImage ? hint.answer : `<p>${hint.answer}</p>`}</div>
         `;
         hintCard.onclick = () => revealHint(hintCard, hint);
         hintsContainer.appendChild(hintCard);

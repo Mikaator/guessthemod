@@ -26,14 +26,27 @@
 }
 
 @keyframes cardFlip {
-    0% { transform: perspective(1000px) rotateY(0deg); }
-    100% { transform: perspective(1000px) rotateY(180deg); }
+    0% { transform: perspective(1000px) rotateY(0deg) scale(1); }
+    50% { transform: perspective(1000px) rotateY(90deg) scale(1.05); }
+    100% { transform: perspective(1000px) rotateY(180deg) scale(1); }
 }
 
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+@keyframes cardHover {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+    50% { box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+    100% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
 }
 
 body {
@@ -102,7 +115,7 @@ body {
     width: 100%;
     height: 280px;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     background: var(--primary-color);
     color: white;
@@ -111,6 +124,16 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.hint-card:hover {
+    animation: cardHover 2s infinite ease-in-out;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.hint-card.flipped {
+    animation: cardFlip 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .hint-question {
@@ -124,6 +147,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: glowPulse 3s infinite;
+    backdrop-filter: blur(5px);
 }
 
 .hint-answer {
@@ -138,15 +163,17 @@ body {
     border-radius: 12px;
     transform: rotateY(180deg);
     backface-visibility: hidden;
-    transition: transform 0.6s, opacity 0.6s;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 1.5rem;
     font-size: 1.2rem;
     opacity: 0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
 }
 
 .hint-card.flipped .hint-answer {
     transform: rotateY(0deg);
     opacity: 1;
+    animation: fadeIn 0.5s ease-out;
 }
 
 /* Entferne die alten Front/Back Styles */
@@ -167,53 +194,18 @@ body {
     z-index: 100;
     font-size: 1.2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* Sound Controls */
-.sound-controls {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    display: flex;
-    gap: 1.5rem;
-    z-index: 100;
-}
-
-.sound-controls button {
-    padding: 0.8rem 1.5rem;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.sound-controls button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s ease-out;
+    backdrop-filter: blur(5px);
 }
 
 /* Theme Toggle */
 .theme-toggle {
-    position: fixed;
-    top: 2rem;
-    left: 2rem;
-    padding: 0.8rem 1.5rem;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    z-index: 100;
+    display: none;
 }
 
-.theme-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+/* Sound Controls */
+.sound-controls {
+    display: none;
 }
 
 /* Responsive Design */
@@ -255,37 +247,42 @@ body {
 .hint-card.design-1 {
     background: linear-gradient(145deg, #2c3e50, #34495e);
     border: 2px solid var(--accent-color);
-    animation: glow 2s infinite;
+    animation: glowPulse 3s infinite;
 }
 
 .hint-card.design-2 {
     background: linear-gradient(145deg, #8b4513, #a0522d);
     border: 2px solid #5c4033;
     box-shadow: 5px 5px 0 #5c4033;
+    transform-style: preserve-3d;
 }
 
 .hint-card.design-3 {
     background: linear-gradient(145deg, #f5e6c3, #e6d5b3);
     border: 1px solid #8b4513;
     font-family: 'Times New Roman', serif;
+    transform-style: preserve-3d;
 }
 
 .hint-card.design-4 {
     background: linear-gradient(145deg, #00b4db, #0083b0);
     border: 2px solid #fff;
     box-shadow: 0 0 20px rgba(0, 180, 219, 0.7);
+    animation: glowPulse 3s infinite;
 }
 
 .hint-card.design-5 {
     background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
     border: 1px solid #00ff00;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    animation: glowPulse 3s infinite;
 }
 
 .hint-card.design-6 {
     background: #fff;
     border: 10px solid #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
 }
 
 /* Admin Styles */
@@ -366,10 +363,11 @@ input:focus {
     border-radius: 8px;
     color: white;
     font-weight: bold;
-    transform: translateX(100%);
+    transform: translateX(120%);
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .notification.show {
@@ -622,4 +620,66 @@ body.light-theme {
     --background-color: #f5f5f5;
     --text-color: #333333;
     --accent-color: #2ecc71;
+}
+
+/* CSV Import Styles */
+.csv-import {
+    grid-column: 1 / -1;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.import-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.import-form button {
+    padding: 1rem 2rem;
+    background: linear-gradient(145deg, var(--secondary-color), #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.import-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.csv-preview {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.csv-preview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.csv-preview th,
+.csv-preview td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.csv-preview th {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: bold;
 } 

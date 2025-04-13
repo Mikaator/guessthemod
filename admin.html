@@ -18,6 +18,16 @@
         <h1>Guess the Mod - Admin Panel</h1>
         
         <div class="admin-grid">
+            <!-- CSV Import -->
+            <section class="csv-import">
+                <h2>Google Formular Import</h2>
+                <div class="import-form">
+                    <input type="file" id="csvFile" accept=".csv" style="display: none;">
+                    <button onclick="document.getElementById('csvFile').click()">CSV-Datei auswählen</button>
+                    <div id="csvPreview" class="csv-preview"></div>
+                </div>
+            </section>
+
             <!-- Mod Management -->
             <section class="mod-management">
                 <h2>Mod Management</h2>
@@ -87,6 +97,12 @@
             const imageUpload = document.getElementById('imageUpload');
             if (imageUpload) {
                 imageUpload.addEventListener('change', handleImageUpload);
+            }
+
+            // CSV-Import Event-Listener
+            const csvFile = document.getElementById('csvFile');
+            if (csvFile) {
+                csvFile.addEventListener('change', handleCSVImport);
             }
         });
     </script>
