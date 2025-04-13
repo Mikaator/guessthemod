@@ -217,6 +217,7 @@ body {
     opacity: 1;
     animation: fadeIn 0.5s ease-out;
     background: white;
+    transform: rotateY(0deg);
 }
 
 .hint-card.flipped .hint-question {
@@ -237,6 +238,7 @@ body {
     opacity: 1;
     pointer-events: none;
     background: white;
+    transform: rotateY(0deg);
 }
 
 /* Stellt sicher, dass die Frage bei aufgelösten Karten unsichtbar bleibt */
