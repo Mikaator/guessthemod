@@ -1,98 +1,126 @@
 {
   "mods": [
     {
-      "id": 1744552476608,
-      "name": "mikaator"
+      "id": 1744569224534,
+      "name": "Mikaator"
     },
     {
-      "id": 1744552476609,
-      "name": "testnutzer2"
-    },
-    {
-      "id": 1744552476610,
-      "name": "kakaman"
+      "id": 1744569224535,
+      "name": "scToti"
     }
   ],
   "hints": [
     {
-      "id": 1744552476610,
-      "modId": 1744552476608,
-      "question": "magst du hugo ",
-      "answer": "ja",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744552476611,
-      "modId": 1744552476608,
-      "question": "Beschreibe dich mit 3 wörtern selber",
-      "answer": "lusig schnell dumm",
+      "id": 1744569224536,
+      "modId": 1744569224534,
+      "question": "Talent? 💃",
+      "answer": "Sitzen",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744552476613,
-      "modId": 1744552476608,
-      "question": "was sind deine hobbys",
-      "answer": "schlafen ",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744552476611,
-      "modId": 1744552476609,
-      "question": "magst du hugo ",
-      "answer": "nein",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744552476612,
-      "modId": 1744552476609,
-      "question": "Beschreibe dich mit 3 wörtern selber",
-      "answer": "kaka langsam sklave",
+      "id": 1744569224538,
+      "modId": 1744569224534,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "69%",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1744552476614,
-      "modId": 1744552476609,
-      "question": "was sind deine hobbys",
-      "answer": "stehen",
+      "id": 1744569224539,
+      "modId": 1744569224534,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "lucalool (spaß)",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1744552476612,
-      "modId": 1744552476610,
-      "question": "magst du hugo ",
-      "answer": "nein",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744552476613,
-      "modId": 1744552476610,
-      "question": "Beschreibe dich mit 3 wörtern selber",
-      "answer": "cool lalala schlau",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744552476614,
-      "modId": 1744552476610,
-      "question": "haustier? wenn ja bild",
-      "answer": "<img src=\"https://drive.google.com/u/0/open?usp=forms_web&id=1eElAPDDFogQ2DokgQZHarhObhrS3OMKH\" alt=\"Bild Antwort\" style=\"max-width: 100%; max-height: 200px; border-radius: 8px;\">",
-      "design": 3,
+      "id": 1744569224541,
+      "modId": 1744569224534,
+      "question": "Haustier?",
+      "answer": "<img src=\"https://drive.google.com/u/0/open?usp=forms_web&id=1dciwfYh6PjHqapg7KWFwqQ_KmcC2_SP8\" alt=\"Bild Antwort\" style=\"max-width: 100%; max-height: 200px; border-radius: 8px;\">",
+      "design": 6,
       "isImage": true
     },
     {
-      "id": 1744552476615,
-      "modId": 1744552476610,
-      "question": "was sind deine hobbys",
-      "answer": "nichts",
+      "id": 1744569224542,
+      "modId": 1744569224534,
+      "question": "wie würdest du deine mod performance selber ranken? (0-10)",
+      "answer": "0",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744569224545,
+      "modId": 1744569224534,
+      "question": "Lieblingsemote (Bild)",
+      "answer": "<img src=\"https://drive.google.com/u/0/open?usp=forms_web&id=1gMb6-4G96rqFT8r2U0No5yfN2yyW77a_\" alt=\"Bild Antwort\" style=\"max-width: 100%; max-height: 200px; border-radius: 8px;\">",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744569224537,
+      "modId": 1744569224535,
+      "question": "Talent? 💃",
+      "answer": "Immer da sein",
       "design": 4,
       "isImage": false
+    },
+    {
+      "id": 1744569224538,
+      "modId": 1744569224535,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "Ken Carson",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744569224539,
+      "modId": 1744569224535,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "50",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744569224540,
+      "modId": 1744569224535,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "hahasina",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744569224543,
+      "modId": 1744569224535,
+      "question": "wie würdest du deine mod performance selber ranken? (0-10)",
+      "answer": "0",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744569224544,
+      "modId": 1744569224535,
+      "question": "Lieblingsgame",
+      "answer": "Fortnite (wegen Sabrina Carpentero)",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744569224545,
+      "modId": 1744569224535,
+      "question": "Ich wurde Mod, weil ich...🤡",
+      "answer": "ein Bastard bin 😨",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744569224546,
+      "modId": 1744569224535,
+      "question": "Lieblingsemote (Bild)",
+      "answer": "<img src=\"https://drive.google.com/u/0/open?usp=forms_web&id=1mr6Ns8ii0QUxsAogKVa2rOJS7es_tUaf\" alt=\"Bild Antwort\" style=\"max-width: 100%; max-height: 200px; border-radius: 8px;\">",
+      "design": 3,
+      "isImage": true
     }
   ]
 }
