@@ -4,11 +4,33 @@ let revealedHints = [];
 let gameState = 'waiting'; // waiting, playing, finished
 let correctMods = new Set(); // Speichert die IDs der richtig geratenen Mods
 let wrongModsInRound = new Set(); // Speichert die IDs der falsch geratenen Mods in der aktuellen Runde
+let currentLayout = 'default'; // default, centered, circular, grid
+
+// Layout-Optionen
+const layouts = {
+    default: {
+        mods: 'center',
+        hints: 'around'
+    },
+    centered: {
+        mods: 'center',
+        hints: 'center'
+    },
+    circular: {
+        mods: 'center',
+        hints: 'circle'
+    },
+    grid: {
+        mods: 'top',
+        hints: 'grid'
+    }
+};
 
 // Initialisiere das Spiel
 function initializeGame() {
     loadConfig();
     setupEventListeners();
+    updateLayout();
 }
 
 // Lade Konfiguration
@@ -198,6 +220,25 @@ function setupEventListeners() {
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
+
+    // Logo Click Event
+    const logo = document.querySelector('.header-logo');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            logo.classList.add('clicked');
+            setTimeout(() => {
+                location.reload();
+            }, 600);
+        });
+    }
+
+    // Layout-Buttons
+    const layoutButtons = document.querySelectorAll('.layout-button');
+    layoutButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            setLayout(button.dataset.layout);
+        });
+    });
 }
 
 // Theme wechseln
@@ -214,8 +255,33 @@ function toggleSound(type) {
     }
 }
 
-// Initialisiere das Spiel beim Laden
-window.addEventListener('load', initializeGame);
+// Wähle Layout
+function setLayout(layoutName) {
+    if (layouts[layoutName]) {
+        currentLayout = layoutName;
+        updateLayout();
+    }
+}
+
+// Aktualisiere Layout
+function updateLayout() {
+    const gameContainer = document.querySelector('.game-container');
+    const modsContainer = document.getElementById('modsContainer');
+    const hintsContainer = document.getElementById('hintsContainer');
+
+    // Entferne alle Layout-Klassen
+    gameContainer.className = 'game-container';
+    modsContainer.className = 'mods-container';
+    hintsContainer.className = 'hints-container';
+
+    // Füge neue Layout-Klassen hinzu
+    gameContainer.classList.add(`layout-${currentLayout}`);
+    modsContainer.classList.add(`mods-${layouts[currentLayout].mods}`);
+    hintsContainer.classList.add(`hints-${layouts[currentLayout].hints}`);
+
+    // Aktualisiere die Anzeige
+    selectNewMod();
+}
 
 function checkGuess(modId) {
     const modButton = document.querySelector(`.mod-button:nth-child(${Array.from(config.mods).indexOf(config.mods.find(m => m.id === modId)) + 1})`);
@@ -266,4 +332,31 @@ function checkGuess(modId) {
             status.classList.remove('wrong');
         }, 1000);
     }
-} 
+}
+
+// Initialisiere das Spiel beim Laden
+window.addEventListener('load', initializeGame);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Layout-Buttons Event Listener
+    const layoutButtons = document.querySelectorAll('.layout-button');
+    layoutButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const layout = this.dataset.layout;
+            const modsContainer = document.getElementById('modsContainer');
+            
+            // Entferne alle Layout-Klassen
+            modsContainer.classList.remove('default-layout', 'centered-layout', 'circular-layout', 'grid-layout');
+            
+            // Füge die gewählte Layout-Klasse hinzu
+            modsContainer.classList.add(`${layout}-layout`);
+            
+            // Aktualisiere den aktiven Button
+            layoutButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Setze Standard-Layout
+    document.querySelector('.layout-button[data-layout="default"]').click();
+}); 

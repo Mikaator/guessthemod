@@ -931,4 +931,164 @@ body.light-theme {
 .image-link:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
+}
+
+/* Layout-Buttons */
+.layout-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.layout-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.layout-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.layout-button.active {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Layouts */
+.default-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.centered-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.circular-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.circular-layout .mod-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.grid-layout .mod-button {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Default Layout */
+.layout-default .mods-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.layout-default .hints-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+/* Centered Layout */
+.layout-centered .mods-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.layout-centered .hints-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Circular Layout */
+.layout-circular {
+    position: relative;
+    min-height: 500px;
+}
+
+.layout-circular .mods-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.layout-circular .hints-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.layout-circular .hint-card {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.layout-circular .hint-card:nth-child(1) { transform: translate(0, -150px); }
+.layout-circular .hint-card:nth-child(2) { transform: translate(150px, -75px); }
+.layout-circular .hint-card:nth-child(3) { transform: translate(150px, 75px); }
+.layout-circular .hint-card:nth-child(4) { transform: translate(0, 150px); }
+.layout-circular .hint-card:nth-child(5) { transform: translate(-150px, 75px); }
+.layout-circular .hint-card:nth-child(6) { transform: translate(-150px, -75px); }
+
+/* Grid Layout */
+.layout-grid .mods-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.layout-grid .hints-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .layout-grid .hints-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .layout-circular .hint-card {
+        position: static;
+        transform: none;
+    }
 } 
