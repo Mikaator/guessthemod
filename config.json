@@ -1,42 +1,98 @@
 {
   "mods": [
     {
-      "id": 1744491407270,
-      "name": "luca"
+      "id": 1744552476608,
+      "name": "mikaator"
     },
     {
-      "id": 1744491436164,
-      "name": "banani"
+      "id": 1744552476609,
+      "name": "testnutzer2"
+    },
+    {
+      "id": 1744552476610,
+      "name": "kakaman"
     }
   ],
   "hints": [
     {
-      "id": 1744491419599,
-      "modId": 1744491407270,
-      "question": "was ist dein haustier",
-      "answer": "hugo",
-      "design": 2
+      "id": 1744552476610,
+      "modId": 1744552476608,
+      "question": "magst du hugo ",
+      "answer": "ja",
+      "design": 5,
+      "isImage": false
     },
     {
-      "id": 1744491430562,
-      "modId": 1744491407270,
-      "question": "wie gehts dir",
-      "answer": "grausam wie noch nie",
-      "design": 1
+      "id": 1744552476611,
+      "modId": 1744552476608,
+      "question": "Beschreibe dich mit 3 wörtern selber",
+      "answer": "lusig schnell dumm",
+      "design": 1,
+      "isImage": false
     },
     {
-      "id": 1744491451830,
-      "modId": 1744491436164,
-      "question": "was ist dein job",
-      "answer": "nichtsa arbeitslos",
-      "design": 3
+      "id": 1744552476613,
+      "modId": 1744552476608,
+      "question": "was sind deine hobbys",
+      "answer": "schlafen ",
+      "design": 3,
+      "isImage": false
     },
     {
-      "id": 1744491472597,
-      "modId": 1744491436164,
-      "question": "3wörter",
-      "answer": "schlafen sklave nein",
-      "design": 4
+      "id": 1744552476611,
+      "modId": 1744552476609,
+      "question": "magst du hugo ",
+      "answer": "nein",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744552476612,
+      "modId": 1744552476609,
+      "question": "Beschreibe dich mit 3 wörtern selber",
+      "answer": "kaka langsam sklave",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744552476614,
+      "modId": 1744552476609,
+      "question": "was sind deine hobbys",
+      "answer": "stehen",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744552476612,
+      "modId": 1744552476610,
+      "question": "magst du hugo ",
+      "answer": "nein",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744552476613,
+      "modId": 1744552476610,
+      "question": "Beschreibe dich mit 3 wörtern selber",
+      "answer": "cool lalala schlau",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744552476614,
+      "modId": 1744552476610,
+      "question": "haustier? wenn ja bild",
+      "answer": "<img src=\"https://drive.google.com/u/0/open?usp=forms_web&id=1eElAPDDFogQ2DokgQZHarhObhrS3OMKH\" alt=\"Bild Antwort\" style=\"max-width: 100%; max-height: 200px; border-radius: 8px;\">",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744552476615,
+      "modId": 1744552476610,
+      "question": "was sind deine hobbys",
+      "answer": "nichts",
+      "design": 4,
+      "isImage": false
     }
   ]
 }
