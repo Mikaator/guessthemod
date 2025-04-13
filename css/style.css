@@ -266,7 +266,7 @@ body {
 
 .hint-card.flipped .hint-answer {
     opacity: 1;
-    animation: fadeIn 0.5s ease-out;
+    pointer-events: auto;
     background: white;
 }
 
@@ -282,7 +282,7 @@ body {
 /* Stellt sicher, dass die Antwort bei aufgelösten Karten sichtbar bleibt */
 .hint-card.flipped .hint-answer {
     opacity: 1;
-    pointer-events: none;
+    pointer-events: auto;
     background: white;
 }
 

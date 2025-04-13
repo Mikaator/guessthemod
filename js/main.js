@@ -119,6 +119,14 @@ function selectNewMod() {
             link.style.fontWeight = 'bold';
             link.style.fontSize = '1.2rem';
             link.style.padding = '10px';
+            link.style.cursor = 'pointer';
+            
+            // Verhindern Sie, dass der Klick auf den Link die Karte umdreht
+            link.onclick = function(e) {
+                e.stopPropagation();
+                window.open(directLink, '_blank');
+            };
+            
             answer.appendChild(link);
         } else {
             answer.textContent = hint.answer;
