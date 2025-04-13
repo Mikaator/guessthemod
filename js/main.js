@@ -107,8 +107,11 @@ function selectNewMod() {
             const imgMatch = hint.answer.match(/src="([^"]+)"/);
             const imageUrl = imgMatch ? imgMatch[1] : hint.answer;
             
+            // Konvertiere den Google Drive Link in einen direkten Link
+            const directLink = imageUrl.replace('open?usp=forms_web', 'uc?export=view');
+            
             const link = document.createElement('a');
-            link.href = imageUrl;
+            link.href = directLink;
             link.target = '_blank';
             link.textContent = 'Bild anzeigen';
             link.style.color = 'var(--primary-color)';
