@@ -1,0 +1,158 @@
+{
+  "mods": [
+    {
+      "id": 1744570855539,
+      "name": "Mikaator"
+    },
+    {
+      "id": 1744570855540,
+      "name": "scToti"
+    }
+  ],
+  "hints": [
+    {
+      "id": 1744570855541,
+      "modId": 1744570855539,
+      "question": "Talent? 💃",
+      "answer": "existieren",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744570855542,
+      "modId": 1744570855539,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "penis",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744570855543,
+      "modId": 1744570855539,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "78%",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744570855544,
+      "modId": 1744570855539,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "mich selber",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744570855545,
+      "modId": 1744570855539,
+      "question": "Lieblingssong (Link)",
+      "answer": "https://youtu.be/fDowDPZA4NI?si=EGPuopVs1FO9-vyW",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744570855546,
+      "modId": 1744570855539,
+      "question": "Haustier?  (imgur/lightshot link)",
+      "answer": "https://prnt.sc/vJOVIkU8klzx",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744570855547,
+      "modId": 1744570855539,
+      "question": "wie würdest du deine mod performance selber ranken? (0-10)",
+      "answer": "4",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744570855550,
+      "modId": 1744570855539,
+      "question": "Lieblingsemote (imgur/lightshot link)",
+      "answer": "https://prnt.sc/9Uihb4KlAWDF",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744570855542,
+      "modId": 1744570855540,
+      "question": "Talent? 💃",
+      "answer": "immer da sein",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744570855543,
+      "modId": 1744570855540,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "Ken Carson",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744570855544,
+      "modId": 1744570855540,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "50",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744570855545,
+      "modId": 1744570855540,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "lenxlix",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744570855546,
+      "modId": 1744570855540,
+      "question": "Lieblingssong (Link)",
+      "answer": "https://open.spotify.com/track/2Y98lEkMVALCXni7o2g28b?si=474a89ff24a14dfc",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744570855547,
+      "modId": 1744570855540,
+      "question": "Haustier?  (imgur/lightshot link)",
+      "answer": "Hab keins",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744570855548,
+      "modId": 1744570855540,
+      "question": "wie würdest du deine mod performance selber ranken? (0-10)",
+      "answer": "0",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744570855549,
+      "modId": 1744570855540,
+      "question": "Lieblingsgame",
+      "answer": "Fortnite (wegen Sabrina Carpentero)",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744570855550,
+      "modId": 1744570855540,
+      "question": "Ich wurde Mod, weil ich...🤡",
+      "answer": "ein Bastard bin 😨",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744570855551,
+      "modId": 1744570855540,
+      "question": "Lieblingsemote (imgur/lightshot link)",
+      "answer": "https://imgur.com/a/IgkNZga",
+      "design": 6,
+      "isImage": false
+    }
+  ]
+}
