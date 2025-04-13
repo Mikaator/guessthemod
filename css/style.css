@@ -557,9 +557,8 @@ select:focus {
 /* Admin Grid Layout */
 .admin-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .admin-grid .preview {
@@ -871,4 +870,32 @@ body.light-theme {
 .twitch-link:hover {
     color: #772ce8;
     text-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-logo {
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.modern-button {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modern-button:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    transform: translateY(-2px);
 } 

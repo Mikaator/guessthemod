@@ -7,23 +7,26 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header class="admin-header">
+        <img src="logo2.png" alt="Guess the Mod Logo" class="header-logo">
+        <h1>Guess the Mod - Admin Panel</h1>
+    </header>
+
     <div id="authContainer" class="auth-container">
         <h2>Admin Login</h2>
         <p>Bitte geben Sie Ihren GitHub Personal Access Token ein:</p>
         <input type="password" id="githubToken" placeholder="GitHub Token">
-        <button id="loginButton">Login</button>
+        <button id="loginButton" class="modern-button">Login</button>
     </div>
 
     <div id="adminContainer" class="admin-container" style="display: none;">
-        <h1>Guess the Mod - Admin Panel</h1>
-        
         <div class="admin-grid">
             <!-- CSV Import -->
             <section class="csv-import">
                 <h2>Google Formular Import</h2>
                 <div class="import-form">
                     <input type="file" id="csvFile" accept=".csv" style="display: none;">
-                    <button onclick="document.getElementById('csvFile').click()">CSV-Datei auswählen</button>
+                    <button onclick="document.getElementById('csvFile').click()" class="modern-button">CSV-Datei auswählen</button>
                     <div id="csvPreview" class="csv-preview"></div>
                 </div>
             </section>
@@ -33,11 +36,9 @@
                 <h2>Mod Management</h2>
                 <div class="mod-form">
                     <input type="text" id="newModName" placeholder="Name des neuen Mods">
-                    <button onclick="addNewMod()">Mod hinzufügen</button>
+                    <button onclick="addNewMod()" class="modern-button">Mod hinzufügen</button>
                 </div>
-                <div class="mod-list" id="modList">
-                    <!-- Mods werden hier dynamisch eingefügt -->
-                </div>
+                <div class="mod-list" id="modList"></div>
             </section>
 
             <!-- Hint Management -->
@@ -52,7 +53,7 @@
                         <input type="text" id="hintAnswer" placeholder="Antwort (Text oder Bild-URL)">
                         <div class="image-upload">
                             <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-                            <button onclick="document.getElementById('imageUpload').click()">Bild hochladen</button>
+                            <button onclick="document.getElementById('imageUpload').click()" class="modern-button">Bild hochladen</button>
                             <div id="imagePreview" class="image-preview"></div>
                         </div>
                     </div>
@@ -64,23 +65,19 @@
                         <option value="5">🧪 Sci-Fi Panel</option>
                         <option value="6">📸 Polaroid Frame</option>
                     </select>
-                    <button onclick="addNewHint()">Tipp hinzufügen</button>
+                    <button onclick="addNewHint()" class="modern-button">Tipp hinzufügen</button>
                 </div>
-                <div class="hint-list" id="hintList">
-                    <!-- Tipps werden hier dynamisch eingefügt -->
-                </div>
+                <div class="hint-list" id="hintList"></div>
             </section>
 
             <!-- Preview -->
             <section class="preview">
                 <h2>Live Vorschau</h2>
-                <div id="previewContainer">
-                    <!-- Vorschau wird hier dynamisch eingefügt -->
-                </div>
+                <div id="previewContainer"></div>
             </section>
         </div>
 
-        <button onclick="saveConfig()" class="save-button">Konfiguration speichern</button>
+        <button onclick="saveConfig()" class="save-button modern-button">Konfiguration speichern</button>
     </div>
 
     <script src="js/auth.js"></script>
