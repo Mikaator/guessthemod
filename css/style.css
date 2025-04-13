@@ -205,15 +205,18 @@ body {
     max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
+    transform: rotateY(180deg);
 }
 
 .hint-card.flipped {
     transform: rotateY(180deg);
+    background: white;
 }
 
 .hint-card.flipped .hint-answer {
     opacity: 1;
     animation: fadeIn 0.5s ease-out;
+    background: white;
 }
 
 .hint-card.flipped .hint-question {
@@ -233,6 +236,7 @@ body {
 .hint-card.flipped .hint-answer {
     opacity: 1;
     pointer-events: none;
+    background: white;
 }
 
 /* Stellt sicher, dass die Frage bei aufgelösten Karten unsichtbar bleibt */
