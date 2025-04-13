@@ -52,6 +52,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 2rem;
+    gap: 3rem;
     position: relative;
 }
 
@@ -60,86 +61,106 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin: 2rem 0;
     z-index: 2;
+    max-width: 800px;
 }
 
 .mod-button {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
     background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 200px;
+    text-align: center;
 }
 
 .mod-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* Hints Container (Außen) */
 .hints-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2rem 0;
     perspective: 1000px;
+    padding: 2rem;
 }
 
 .hint-card {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 280px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
     cursor: pointer;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.hint-card.flipped {
-    transform: rotateY(180deg);
+.hint-question {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
 }
 
-.hint-front, .hint-back {
-    position: absolute;
-    width: 100%;
+.hint-answer {
+    position: relative;
     height: 100%;
-    backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    border-radius: 12px;
     text-align: center;
-}
-
-.hint-front {
-    background: var(--primary-color);
-    color: white;
-}
-
-.hint-back {
     background: white;
     color: var(--primary-color);
+    border-radius: 12px;
     transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.hint-card.flipped .hint-answer {
+    transform: rotateY(0deg);
+}
+
+/* Entferne die alten Front/Back Styles */
+.hint-front, .hint-back {
+    display: none;
 }
 
 /* Game Status */
 .game-status {
     position: fixed;
-    bottom: 2rem;
+    bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
     color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
+    padding: 1.2rem 2.5rem;
+    border-radius: 12px;
     z-index: 100;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* Sound Controls */
@@ -148,18 +169,78 @@ body {
     top: 2rem;
     right: 2rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     z-index: 100;
+}
+
+.sound-controls button {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.sound-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .game-container {
+        padding: 1rem;
+        gap: 2rem;
+    }
+    
     .hints-container {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
     }
     
     .mod-button {
-        padding: 0.8rem 1.5rem;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        min-width: 160px;
+    }
+    
+    .hint-card {
+        height: 240px;
+    }
+    
+    .hint-question {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+    
+    .game-status {
+        bottom: 2rem;
+        padding: 1rem 2rem;
         font-size: 1rem;
     }
 }
@@ -517,20 +598,6 @@ select:focus {
     max-width: 100%;
     max-height: 200px;
     object-fit: contain;
-}
-
-/* Theme Toggle */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 0.5rem;
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    z-index: 1000;
 }
 
 /* Dark Theme */

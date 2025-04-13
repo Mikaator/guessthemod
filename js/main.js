@@ -59,12 +59,9 @@ function selectNewMod() {
         const hintCard = document.createElement('div');
         hintCard.className = `hint-card design-${hint.design}`;
         hintCard.innerHTML = `
-            <div class="hint-front">
-                <p>?</p>
-            </div>
-            <div class="hint-back">
-                <p class="question">${hint.question}</p>
-                <p class="answer">${hint.answer}</p>
+            <div class="hint-question">${hint.question}</div>
+            <div class="hint-answer">
+                <p>${hint.answer}</p>
             </div>
         `;
         hintCard.onclick = () => revealHint(hintCard, hint);
