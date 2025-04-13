@@ -101,6 +101,15 @@
             if (csvFile) {
                 csvFile.addEventListener('change', handleCSVImport);
             }
+
+            const logo = document.querySelector('.header-logo');
+
+            logo.addEventListener('click', function() {
+                logo.classList.add('clicked');
+                setTimeout(() => {
+                    location.reload(); // Seite neu laden
+                }, 600); // Wartezeit, um die Animation abzuschließen
+            });
         });
     </script>
 </body>
