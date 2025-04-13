@@ -1040,8 +1040,17 @@ body.light-theme {
 
 /* Konfetti Animation */
 @keyframes confetti-fall {
-    0% { transform: translateY(-10px) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
+    0% { 
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 1;
+    }
 }
 
 .confetti {
@@ -1053,6 +1062,7 @@ body.light-theme {
     z-index: 1000;
     pointer-events: none;
     top: 100px; /* Startet unterhalb des Headers */
+    opacity: 0; /* Startet unsichtbar */
 }
 
 /* Erfolgsmeldung */
