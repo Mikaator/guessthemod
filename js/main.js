@@ -105,7 +105,7 @@ function selectNewMod() {
             const imageLink = document.createElement('a');
             imageLink.href = hint.answer;
             imageLink.target = '_blank';
-            imageLink.textContent = 'Bild öffnen';
+            imageLink.textContent = 'Link öffnen';
             imageLink.className = 'image-link';
             answer.appendChild(imageLink);
         } else {
