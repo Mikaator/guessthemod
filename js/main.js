@@ -52,23 +52,35 @@ function setupGame() {
 
 // Wähle neuen Mod und seine Tipps
 function selectNewMod() {
-    const mods = config.mods;
-    const randomMod = mods[Math.floor(Math.random() * mods.length)];
+    // Filtere bereits richtig geratene Mods aus
+    const availableMods = config.mods.filter(mod => !correctMods.has(mod.id));
+    
+    // Wenn alle Mods bereits richtig geraten wurden, zeige eine Nachricht
+    if (availableMods.length === 0) {
+        const status = document.getElementById('gameStatus');
+        status.textContent = 'Glückwunsch! Du hast alle Mods erraten! 🎉';
+        status.classList.add('correct');
+        return;
+    }
+    
+    // Wähle zufälligen Mod aus den verfügbaren Mods
+    const randomMod = availableMods[Math.floor(Math.random() * availableMods.length)];
     currentMod = randomMod;
     wrongModsInRound.clear(); // Reset der falsch geratenen Mods für die neue Runde
     
     // Mod-Buttons erstellen
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
-    mods.forEach(mod => {
+    config.mods.forEach(mod => {
         const button = document.createElement('button');
         button.className = 'mod-button';
         button.textContent = mod.name;
         button.onclick = () => checkGuess(mod.id);
         
-        // Wenn der Mod bereits richtig geraten wurde, grün markieren
+        // Wenn der Mod bereits richtig geraten wurde, grün markieren und deaktivieren
         if (correctMods.has(mod.id)) {
             button.classList.add('correct-mod');
+            button.disabled = true;
         }
         
         modsContainer.appendChild(button);
