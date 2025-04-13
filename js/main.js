@@ -193,6 +193,7 @@ function updateGameStatus(message, isSuccess = false) {
     
     if (isSuccess) {
         gameStatus.classList.add('success');
+        gameStatus.classList.remove('correct', 'wrong');
         createConfetti();
     } else {
         gameStatus.classList.remove('success');
@@ -294,16 +295,23 @@ function checkGuess(modId) {
         
         correctSound.play();
         
-        // Aktualisiere den Status
-        const status = document.getElementById('gameStatus');
-        status.textContent = 'Richtig! 🎉';
-        status.classList.add('correct');
-        
-        setTimeout(() => {
-            status.textContent = 'Wähle einen Tipp, um zu beginnen!';
-            status.classList.remove('correct');
-            selectNewMod();
-        }, 1500);
+        // Prüfe, ob alle Mods erraten wurden
+        if (correctMods.size === config.mods.length) {
+            updateGameStatus('Glückwunsch! Du hast alle Mods erraten!', true);
+            playSound('winSound');
+            createConfetti();
+        } else {
+            // Aktualisiere den Status
+            const status = document.getElementById('gameStatus');
+            status.textContent = 'Richtig! 🎉';
+            status.classList.add('correct');
+            
+            setTimeout(() => {
+                status.textContent = 'Wähle einen Tipp, um zu beginnen!';
+                status.classList.remove('correct');
+                selectNewMod();
+            }, 1500);
+        }
     } else {
         // Falsche Antwort
         wrongModsInRound.add(modId);
@@ -360,24 +368,20 @@ function createConfetti() {
     const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
     const container = document.body;
     
-    for (let i = 0; i < 100; i++) {
+    // Erstelle mehr Konfetti
+    for (let i = 0; i < 200; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
         confetti.style.left = Math.random() * 100 + 'vw';
         confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
         confetti.style.animationDelay = Math.random() * 2 + 's';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
         container.appendChild(confetti);
         
         setTimeout(() => {
             confetti.remove();
         }, 5000);
-    }
-}
-
-function checkWin() {
-    if (guessedMods.length === config.mods.length) {
-        updateGameStatus('Glückwunsch! Du hast alle Mods erraten!', true);
-        playSound('winSound');
     }
 } 
