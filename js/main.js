@@ -187,20 +187,15 @@ function handleModGuess(modId) {
 }
 
 // Aktualisiere Spielstatus
-function updateGameStatus() {
-    const status = document.getElementById('gameStatus');
-    const flippedCards = document.querySelectorAll('.hint-card.flipped').length;
-    const totalCards = document.querySelectorAll('.hint-card').length;
+function updateGameStatus(message, isSuccess = false) {
+    const gameStatus = document.getElementById('gameStatus');
+    gameStatus.textContent = message;
     
-    if (flippedCards === 0) {
-        status.textContent = 'Wähle einen Tipp, um zu beginnen!';
-        status.classList.remove('correct', 'wrong');
-    } else if (flippedCards === totalCards) {
-        status.textContent = 'Alle Tipps aufgedeckt! Rate jetzt den Mod!';
-        status.classList.remove('correct', 'wrong');
+    if (isSuccess) {
+        gameStatus.classList.add('success');
+        createConfetti();
     } else {
-        status.textContent = `Tipp aufgedeckt! Noch ${totalCards - flippedCards} Tipps übrig.`;
-        status.classList.remove('correct', 'wrong');
+        gameStatus.classList.remove('success');
     }
 }
 
@@ -359,4 +354,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setze Standard-Layout
     document.querySelector('.layout-button[data-layout="default"]').click();
-}); 
+});
+
+function createConfetti() {
+    const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+    const container = document.body;
+    
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+}
+
+function checkWin() {
+    if (guessedMods.length === config.mods.length) {
+        updateGameStatus('Glückwunsch! Du hast alle Mods erraten!', true);
+        playSound('winSound');
+    }
+} 
