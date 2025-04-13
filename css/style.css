@@ -106,26 +106,67 @@ body {
     max-width: 800px;
 }
 
+/* Mod Button Styles */
 .mod-button {
     padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background: linear-gradient(145deg, var(--primary-color), #2c3e50);
-    color: white;
+    margin: 0.5rem;
     border: none;
-    border-radius: 50px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.mod-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+.mod-button.correct-mod {
+    background: #4CAF50;
+    color: white;
+    text-decoration: line-through;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
-.mod-button.selected {
-    background: linear-gradient(145deg, #3498db, #2980b9);
-    animation: modReveal 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.mod-button.wrong-mod {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    background: #f44336;
+    color: white;
+}
+
+/* Animations */
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.success-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    animation: slideIn 0.5s ease-out;
+    z-index: 1000;
+}
+
+.error-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #f44336, #ff5722);
+    animation: slideIn 0.5s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
 }
 
 /* Hints Container (Außen) */
@@ -251,12 +292,12 @@ body {
 }
 
 .game-status.correct {
-    background: rgba(46, 204, 113, 0.8);
+    background: rgba(76, 175, 80, 0.8);
     animation: statusPulse 2s infinite;
 }
 
 .game-status.wrong {
-    background: rgba(231, 76, 60, 0.8);
+    background: rgba(244, 67, 54, 0.8);
     animation: statusPulse 2s infinite;
 }
 
