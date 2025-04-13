@@ -12,12 +12,28 @@ function initializeGame() {
 // Lade Konfiguration
 async function loadConfig() {
     try {
-        const response = await fetch('config.json');
+        // Füge Cache-Busting Parameter hinzu
+        const timestamp = new Date().getTime();
+        const response = await fetch(`config.json?t=${timestamp}`, {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Fehler beim Laden der Konfiguration');
+        }
+        
         const data = await response.json();
         window.config = data;
         setupGame();
     } catch (error) {
         console.error('Fehler beim Laden der Konfiguration:', error);
+        // Versuche es nach 5 Sekunden erneut
+        setTimeout(loadConfig, 5000);
     }
 }
 
