@@ -1,213 +1,225 @@
 {
   "mods": [
     {
-      "id": 1744578359796,
+      "id": 1744580313208,
       "name": "vibewithcassy"
     },
     {
-      "id": 1744578359797,
-      "name": "tomatent0m"
+      "id": 1744580313209,
+      "name": "tomatent0m (sigma)"
     },
     {
-      "id": 1744578359798,
-      "name": "Der_S0cken "
-    },
-    {
-      "id": 1744578359799,
+      "id": 1744580313210,
       "name": "leon_w1109"
+    },
+    {
+      "id": 1744580313211,
+      "name": "scToti"
+    },
+    {
+      "id": 1744580313212,
+      "name": "S0cken "
     }
   ],
   "hints": [
     {
-      "id": 1744578359798,
-      "modId": 1744578359796,
-      "question": "lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01JPRHC9JTM1KXYP44GV9RYKK6",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744578359799,
-      "modId": 1744578359796,
-      "question": "Haustier (link)",
-      "answer": "tot seit 2018",
+      "id": 1744580313210,
+      "modId": 1744580313208,
+      "question": "so viele freunde habe ich (Zahl)",
+      "answer": "zu viele",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1744578359800,
-      "modId": 1744578359796,
-      "question": "Lieblings Streamer",
-      "answer": "Papaplatte, filow, hugo",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1744578359801,
-      "modId": 1744578359796,
-      "question": "Mainchat",
-      "answer": "digga kp",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744578359802,
-      "modId": 1744578359796,
-      "question": "lieblings paint (link)",
-      "answer": "https://prnt.sc/q1xBJyY4ziV_",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1744578359803,
-      "modId": 1744578359796,
-      "question": "diesen chatter würde ich überall bannen",
-      "answer": "keine äußerung will keinen beef !",
+      "id": 1744580313211,
+      "modId": 1744580313208,
+      "question": "Lieblingsessen (link wenn ihr wollt)",
+      "answer": "sushi oder salat",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1744578359804,
-      "modId": 1744578359796,
-      "question": "ich kenne aus twitch chats am besten folgende person... (story)",
-      "answer": "öhhhh pepe oder sophia ig? und obv tscheansophieeee",
+      "id": 1744580313212,
+      "modId": 1744580313208,
+      "question": "Lieber IRL oder Online",
+      "answer": "online",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744580313214,
+      "modId": 1744580313208,
+      "question": "lieblings farbe",
+      "answer": "navy, bordeaux rot, schwarz",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744580313215,
+      "modId": 1744580313208,
+      "question": "lieblingsserie (link wenn ihr wollt)",
+      "answer": "stranger things oder vampire diaries",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744580313216,
+      "modId": 1744580313208,
+      "question": "eine story, die mir etwas peinlich",
+      "answer": "Meine tür (du checkst) hat alles abgebrochen und jetzt bin ich stuck hier weil ich nicht damit klar komme",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744580313211,
+      "modId": 1744580313209,
+      "question": "so viele freunde habe ich (Zahl)",
+      "answer": "IRL 4  100% Freunde",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744580313212,
+      "modId": 1744580313209,
+      "question": "Lieblingsessen (link wenn ihr wollt)",
+      "answer": "Picolinis oder so kaung",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744580313215,
+      "modId": 1744580313209,
+      "question": "lieblings farbe",
+      "answer": "gift grün",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744580313216,
+      "modId": 1744580313209,
+      "question": "lieblingsserie (link wenn ihr wollt)",
+      "answer": "Prison Break ig",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744580313218,
+      "modId": 1744580313209,
+      "question": "Setup (link)",
+      "answer": "https://imgur.com/a/6gbFqKd altes Bild hab 2 Monitore",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744580313212,
+      "modId": 1744580313210,
+      "question": "so viele freunde habe ich (Zahl)",
+      "answer": "30 beide zusammen",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744580313213,
+      "modId": 1744580313210,
+      "question": "Lieblingsessen (link wenn ihr wollt)",
+      "answer": "burger mit pommes",
       "design": 6,
       "isImage": false
     },
     {
-      "id": 1744578359799,
-      "modId": 1744578359797,
-      "question": "lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01H4PCWN7R0006QYYEV7C3EPFZ",
+      "id": 1744580313214,
+      "modId": 1744580313210,
+      "question": "Lieber IRL oder Online",
+      "answer": "kommt drauf an",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744580313216,
+      "modId": 1744580313210,
+      "question": "lieblings farbe",
+      "answer": "lila",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744580313217,
+      "modId": 1744580313210,
+      "question": "lieblingsserie (link wenn ihr wollt)",
+      "answer": "ninjago",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744580313218,
+      "modId": 1744580313210,
+      "question": "eine story, die mir etwas peinlich",
+      "answer": "damals ausversehen so deadass medal clip von irl kollegen in einen chat geschickt",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744580313219,
+      "modId": 1744580313210,
+      "question": "Setup (link)",
+      "answer": "https://prnt.sc/TVSBlbevIkO5",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744580313213,
+      "modId": 1744580313211,
+      "question": "so viele freunde habe ich (Zahl)",
+      "answer": "2 IRL und keine Ahnung wie viele Online ich als Freunde bezeichnen darf Sad",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744580313214,
+      "modId": 1744580313211,
+      "question": "Lieblingsessen (link wenn ihr wollt)",
+      "answer": "20er Spicy Nuggets Menü mit Pommes zu den Pommes Mayo und als Getränk Sprite ohne Eiswürfel (avg McDonald's Bestellung von mir)",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1744578359801,
-      "modId": 1744578359797,
-      "question": "Lieblings Streamer",
-      "answer": "hugo",
-      "design": 1,
+      "id": 1744580313215,
+      "modId": 1744580313211,
+      "question": "Lieber IRL oder Online",
+      "answer": "Online (Hasse IRL gerade)",
+      "design": 2,
       "isImage": false
     },
     {
-      "id": 1744578359802,
-      "modId": 1744578359797,
-      "question": "Mainchat",
-      "answer": "hugo",
-      "design": 3,
+      "id": 1744580313217,
+      "modId": 1744580313211,
+      "question": "lieblings farbe",
+      "answer": "Pink/Lila",
+      "design": 6,
       "isImage": false
     },
     {
-      "id": 1744578359803,
-      "modId": 1744578359797,
-      "question": "lieblings paint (link)",
-      "answer": "https://imgur.com/a/RqSKqNx",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744578359800,
-      "modId": 1744578359798,
-      "question": "lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01GWSGBQ7R0008X0SB6ANMACKG",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744578359801,
-      "modId": 1744578359798,
-      "question": "Haustier (link)",
-      "answer": "https://prnt.sc/8Y0nOmYogT7O",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744578359802,
-      "modId": 1744578359798,
-      "question": "Lieblings Streamer",
-      "answer": "LetsHusoTV",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744578359803,
-      "modId": 1744578359798,
-      "question": "Mainchat",
-      "answer": "Huso",
+      "id": 1744580313218,
+      "modId": 1744580313211,
+      "question": "lieblingsserie (link wenn ihr wollt)",
+      "answer": "Hab keine bin nicht so in Serien",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1744578359805,
-      "modId": 1744578359798,
-      "question": "diesen chatter würde ich überall bannen",
-      "answer": "Maulwurf, hasse ihn",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744578359806,
-      "modId": 1744578359798,
-      "question": "ich kenne aus twitch chats am besten folgende person... (story)",
-      "answer": "Leon, Tom , Maulwurf,  Mika1, Mika2, Ente, Sven,  kb mehr zu machen",
+      "id": 1744580313219,
+      "modId": 1744580313211,
+      "question": "eine story, die mir etwas peinlich",
+      "answer": "Viel zu viel und alle Storys sind mir so peinlich, dass ich diese nicht erzähle weil ich dabei so panik bekomme",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1744578359801,
-      "modId": 1744578359799,
-      "question": "lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01HD72KC680001XXDZ5G61GVXD",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744578359802,
-      "modId": 1744578359799,
-      "question": "Haustier (link)",
-      "answer": "https://prnt.sc/DR87gu3F9CDm",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744578359803,
-      "modId": 1744578359799,
-      "question": "Lieblings Streamer",
-      "answer": "vgregor",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744578359804,
-      "modId": 1744578359799,
-      "question": "Mainchat",
-      "answer": "vgregor",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744578359805,
-      "modId": 1744578359799,
-      "question": "lieblings paint (link)",
-      "answer": "https://prnt.sc/C6oMkMkDhNr0 gibt aber auch andere",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744578359806,
-      "modId": 1744578359799,
-      "question": "diesen chatter würde ich überall bannen",
-      "answer": "sage ich lieber nicht!",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744578359807,
-      "modId": 1744578359799,
-      "question": "ich kenne aus twitch chats am besten folgende person... (story)",
-      "answer": "s4ntli, damals kennengelernt, jetzt sehr viel kontakt",
-      "design": 3,
+      "id": 1744580313220,
+      "modId": 1744580313211,
+      "question": "Setup (link)",
+      "answer": "Schick ich nicht lol",
+      "design": 6,
       "isImage": false
     }
   ]
