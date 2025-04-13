@@ -980,17 +980,33 @@ body.light-theme {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    position: relative;
+    min-height: 400px;
 }
 
-.circular-layout .mod-button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+.circular-layout .hint-card {
+    width: 180px;
+    height: 120px;
+    font-size: 0.9rem;
+    padding: 8px;
 }
+
+.circular-layout .hint-question {
+    font-size: 0.9rem;
+    padding: 6px;
+}
+
+.circular-layout .hint-answer {
+    font-size: 0.9rem;
+    padding: 6px;
+}
+
+.circular-layout .hint-card:nth-child(1) { transform: translate(0, -120px); }
+.circular-layout .hint-card:nth-child(2) { transform: translate(120px, -60px); }
+.circular-layout .hint-card:nth-child(3) { transform: translate(120px, 60px); }
+.circular-layout .hint-card:nth-child(4) { transform: translate(0, 120px); }
+.circular-layout .hint-card:nth-child(5) { transform: translate(-120px, 60px); }
+.circular-layout .hint-card:nth-child(6) { transform: translate(-120px, -60px); }
 
 .grid-layout {
     display: grid;
@@ -1034,40 +1050,6 @@ body.light-theme {
     align-items: center;
     gap: 1rem;
 }
-
-/* Circular Layout */
-.layout-circular {
-    position: relative;
-    min-height: 500px;
-}
-
-.layout-circular .mods-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-.layout-circular .hints-container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.layout-circular .hint-card {
-    position: absolute;
-    transition: all 0.3s ease;
-}
-
-.layout-circular .hint-card:nth-child(1) { transform: translate(0, -150px); }
-.layout-circular .hint-card:nth-child(2) { transform: translate(150px, -75px); }
-.layout-circular .hint-card:nth-child(3) { transform: translate(150px, 75px); }
-.layout-circular .hint-card:nth-child(4) { transform: translate(0, 150px); }
-.layout-circular .hint-card:nth-child(5) { transform: translate(-150px, 75px); }
-.layout-circular .hint-card:nth-child(6) { transform: translate(-150px, -75px); }
 
 /* Grid Layout */
 .layout-grid .mods-container {
