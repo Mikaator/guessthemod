@@ -220,13 +220,25 @@ body {
     opacity: 0;
 }
 
-/* Entferne Hover-Effekte, die Probleme verursachen */
+/* Entferne alle Hover-Effekte, die Probleme verursachen */
 .hint-card:hover {
     transform: none;
 }
 
 .hint-card.flipped:hover {
     transform: rotateY(180deg);
+}
+
+/* Stellt sicher, dass die Antwort bei aufgelösten Karten sichtbar bleibt */
+.hint-card.flipped .hint-answer {
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Stellt sicher, dass die Frage bei aufgelösten Karten unsichtbar bleibt */
+.hint-card.flipped .hint-question {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Game Status */
