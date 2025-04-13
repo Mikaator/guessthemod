@@ -49,6 +49,32 @@
     100% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
 }
 
+@keyframes correctGuess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(46, 204, 113, 0.8); }
+    100% { transform: scale(1); }
+}
+
+@keyframes wrongGuess {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes modReveal {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes statusPulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background-color);
@@ -81,21 +107,25 @@ body {
 }
 
 .mod-button {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.3rem;
-    background: var(--primary-color);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: linear-gradient(145deg, var(--primary-color), #2c3e50);
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 200px;
-    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .mod-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mod-button.selected {
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    animation: modReveal 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hints Container (Außen) */
@@ -125,15 +155,7 @@ body {
     flex-direction: column;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     animation: fadeIn 0.5s ease-out;
-}
-
-.hint-card:hover {
-    animation: cardHover 2s infinite ease-in-out;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
-
-.hint-card.flipped {
-    transform: rotateY(180deg);
+    overflow: hidden;
 }
 
 .hint-question {
@@ -151,6 +173,8 @@ body {
     backdrop-filter: blur(5px);
     transform: rotateY(0deg);
     backface-visibility: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .hint-answer {
@@ -173,6 +197,18 @@ body {
     font-size: 1.2rem;
     opacity: 0;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.hint-answer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.hint-card.flipped {
+    transform: rotateY(180deg);
 }
 
 .hint-card.flipped .hint-answer {
@@ -184,26 +220,40 @@ body {
     opacity: 0;
 }
 
-/* Entferne die alten Front/Back Styles */
-.hint-front, .hint-back {
-    display: none;
+/* Entferne Hover-Effekte, die Probleme verursachen */
+.hint-card:hover {
+    transform: none;
+}
+
+.hint-card.flipped:hover {
+    transform: rotateY(180deg);
 }
 
 /* Game Status */
 .game-status {
     position: fixed;
-    bottom: 3rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 1.2rem 2.5rem;
-    border-radius: 12px;
-    z-index: 100;
+    padding: 1rem 2rem;
+    border-radius: 50px;
     font-size: 1.2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    animation: fadeIn 0.5s ease-out;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: statusPulse 2s infinite;
+    z-index: 1000;
+}
+
+.game-status.correct {
+    background: rgba(46, 204, 113, 0.8);
+    animation: statusPulse 2s infinite;
+}
+
+.game-status.wrong {
+    background: rgba(231, 76, 60, 0.8);
+    animation: statusPulse 2s infinite;
 }
 
 /* Theme Toggle */
@@ -690,4 +740,15 @@ body.light-theme {
 .csv-preview th {
     background: rgba(255, 255, 255, 0.1);
     font-weight: bold;
+}
+
+/* Modifizierte Karten-Styles */
+.hint-card.correct {
+    animation: correctGuess 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
+}
+
+.hint-card.wrong {
+    animation: wrongGuess 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
 } 

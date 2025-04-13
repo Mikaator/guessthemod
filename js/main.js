@@ -160,4 +160,46 @@ function toggleSound(type) {
 }
 
 // Initialisiere das Spiel beim Laden
-window.addEventListener('load', initializeGame); 
+window.addEventListener('load', initializeGame);
+
+function checkGuess(modId) {
+    if (selectedModId === modId) {
+        // Richtige Antwort
+        const card = document.querySelector(`.hint-card[data-mod-id="${modId}"]`);
+        card.classList.add('correct');
+        
+        const status = document.getElementById('gameStatus');
+        status.textContent = 'Richtig! 🎉';
+        status.classList.add('correct');
+        
+        playSound('correctSound');
+        
+        // Mod-Button hervorheben
+        const modButton = document.querySelector(`.mod-button[data-mod-id="${modId}"]`);
+        modButton.classList.add('selected');
+        
+        setTimeout(() => {
+            status.textContent = 'Wähle einen Tipp, um zu beginnen!';
+            status.classList.remove('correct');
+            card.classList.remove('correct');
+            modButton.classList.remove('selected');
+            selectNewMod();
+        }, 2000);
+    } else {
+        // Falsche Antwort
+        const card = document.querySelector(`.hint-card[data-mod-id="${modId}"]`);
+        card.classList.add('wrong');
+        
+        const status = document.getElementById('gameStatus');
+        status.textContent = 'Falsch! 😢';
+        status.classList.add('wrong');
+        
+        playSound('wrongSound');
+        
+        setTimeout(() => {
+            card.classList.remove('wrong');
+            status.classList.remove('wrong');
+            status.textContent = 'Versuche es nochmal!';
+        }, 1000);
+    }
+} 
