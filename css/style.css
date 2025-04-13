@@ -1040,7 +1040,7 @@ body.light-theme {
 
 /* Konfetti Animation */
 @keyframes confetti-fall {
-    0% { transform: translateY(-100vh) rotate(0deg); }
+    0% { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(100vh) rotate(360deg); }
 }
 
@@ -1052,6 +1052,7 @@ body.light-theme {
     animation: confetti-fall 3s linear forwards;
     z-index: 1000;
     pointer-events: none;
+    top: 100px; /* Startet unterhalb des Headers */
 }
 
 /* Erfolgsmeldung */
