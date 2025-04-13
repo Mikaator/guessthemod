@@ -1007,8 +1007,8 @@ body.light-theme {
 
 .circular-layout .hint-card {
     position: absolute;
-    width: 180px;
-    height: 120px;
+    width: 200px;
+    height: 150px;
     font-size: 0.9rem;
     padding: 8px;
     top: 50%;
@@ -1029,16 +1029,16 @@ body.light-theme {
 }
 
 /* Positioniere die Karten im Kreis */
-.circular-layout .hint-card:nth-child(1) { transform: translate(-90px, -60px) translateY(-300px); }
-.circular-layout .hint-card:nth-child(2) { transform: translate(-90px, -60px) translateY(-300px) rotate(36deg); }
-.circular-layout .hint-card:nth-child(3) { transform: translate(-90px, -60px) translateY(-300px) rotate(72deg); }
-.circular-layout .hint-card:nth-child(4) { transform: translate(-90px, -60px) translateY(-300px) rotate(108deg); }
-.circular-layout .hint-card:nth-child(5) { transform: translate(-90px, -60px) translateY(-300px) rotate(144deg); }
-.circular-layout .hint-card:nth-child(6) { transform: translate(-90px, -60px) translateY(-300px) rotate(180deg); }
-.circular-layout .hint-card:nth-child(7) { transform: translate(-90px, -60px) translateY(-300px) rotate(216deg); }
-.circular-layout .hint-card:nth-child(8) { transform: translate(-90px, -60px) translateY(-300px) rotate(252deg); }
-.circular-layout .hint-card:nth-child(9) { transform: translate(-90px, -60px) translateY(-300px) rotate(288deg); }
-.circular-layout .hint-card:nth-child(10) { transform: translate(-90px, -60px) translateY(-300px) rotate(324deg); }
+.circular-layout .hint-card:nth-child(1) { transform: translate(-100px, -75px) translateY(-300px); }
+.circular-layout .hint-card:nth-child(2) { transform: translate(-100px, -75px) translateY(-300px) rotate(36deg); }
+.circular-layout .hint-card:nth-child(3) { transform: translate(-100px, -75px) translateY(-300px) rotate(72deg); }
+.circular-layout .hint-card:nth-child(4) { transform: translate(-100px, -75px) translateY(-300px) rotate(108deg); }
+.circular-layout .hint-card:nth-child(5) { transform: translate(-100px, -75px) translateY(-300px) rotate(144deg); }
+.circular-layout .hint-card:nth-child(6) { transform: translate(-100px, -75px) translateY(-300px) rotate(180deg); }
+.circular-layout .hint-card:nth-child(7) { transform: translate(-100px, -75px) translateY(-300px) rotate(216deg); }
+.circular-layout .hint-card:nth-child(8) { transform: translate(-100px, -75px) translateY(-300px) rotate(252deg); }
+.circular-layout .hint-card:nth-child(9) { transform: translate(-100px, -75px) translateY(-300px) rotate(288deg); }
+.circular-layout .hint-card:nth-child(10) { transform: translate(-100px, -75px) translateY(-300px) rotate(324deg); }
 
 /* Drehe den Text der Karten zurück, damit er lesbar bleibt */
 .circular-layout .hint-card:nth-child(2) .hint-content { transform: rotate(-36deg); }
