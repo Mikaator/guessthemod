@@ -102,10 +102,11 @@ function selectNewMod() {
         
         // Prüfe, ob die Antwort ein Link ist
         if (hint.answer.includes('http')) {
-            // Prüfe auf Lightshot oder Imgur Link
-            if (hint.answer.includes('prnt.sc') || hint.answer.includes('lightshot')) {
-                // Konvertiere Lightshot Link zu direktem Bild-Link
-                const imageUrl = hint.answer.replace('prnt.sc', 'i.imgur.com');
+            // Prüfe auf Lightshot Link
+            if (hint.answer.includes('prnt.sc')) {
+                // Extrahiere den Bild-ID-Teil aus dem Lightshot Link
+                const imageId = hint.answer.split('/').pop();
+                const imageUrl = `https://i.imgur.com/${imageId}.png`;
                 const img = document.createElement('img');
                 img.src = imageUrl;
                 img.alt = 'Bild Antwort';
@@ -113,9 +114,12 @@ function selectNewMod() {
                 img.style.maxHeight = '200px';
                 img.style.borderRadius = '8px';
                 answer.appendChild(img);
-            } else if (hint.answer.includes('imgur.com')) {
-                // Konvertiere Imgur Link zu direktem Bild-Link
-                const imageUrl = hint.answer.replace('imgur.com', 'i.imgur.com') + '.jpg';
+            } 
+            // Prüfe auf Imgur Link
+            else if (hint.answer.includes('imgur.com')) {
+                // Extrahiere die Bild-ID aus dem Imgur Link
+                const imageId = hint.answer.split('/').pop().split('.')[0];
+                const imageUrl = `https://i.imgur.com/${imageId}.jpg`;
                 const img = document.createElement('img');
                 img.src = imageUrl;
                 img.alt = 'Bild Antwort';
