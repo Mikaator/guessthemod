@@ -3,6 +3,7 @@ let currentHints = [];
 let revealedHints = [];
 let gameState = 'waiting'; // waiting, playing, finished
 let correctMods = new Set(); // Speichert die IDs der richtig geratenen Mods
+let wrongModsInRound = new Set(); // Speichert die IDs der falsch geratenen Mods in der aktuellen Runde
 
 // Initialisiere das Spiel
 function initializeGame() {
@@ -65,6 +66,7 @@ function selectNewMod() {
     const mods = config.mods;
     const randomMod = mods[Math.floor(Math.random() * mods.length)];
     currentMod = randomMod;
+    wrongModsInRound.clear(); // Reset der falsch geratenen Mods für die neue Runde
     
     // Mod-Buttons erstellen
     const modsContainer = document.getElementById('modsContainer');
@@ -100,7 +102,6 @@ function selectNewMod() {
         answer.className = 'hint-answer';
         
         if (hint.isImage) {
-            // Erstelle einen Link für Bildantworten
             const link = document.createElement('a');
             link.href = hint.answer;
             link.target = '_blank';
@@ -208,10 +209,11 @@ function toggleSound(type) {
 window.addEventListener('load', initializeGame);
 
 function checkGuess(modId) {
+    const modButton = document.querySelector(`.mod-button:nth-child(${Array.from(config.mods).indexOf(config.mods.find(m => m.id === modId)) + 1})`);
+    
     if (modId === currentMod.id) {
         // Richtige Antwort
         correctMods.add(modId);
-        const modButton = document.querySelector(`.mod-button:nth-child(${Array.from(correctMods).indexOf(modId) + 1})`);
         modButton.classList.add('correct-mod');
         
         // Grüne Animation am Bildschirmrand
@@ -221,12 +223,20 @@ function checkGuess(modId) {
         setTimeout(() => successAnimation.remove(), 2000);
         
         correctSound.play();
+        
+        // Aktualisiere den Status
+        const status = document.getElementById('gameStatus');
+        status.textContent = 'Richtig! 🎉';
+        status.classList.add('correct');
+        
         setTimeout(() => {
+            status.textContent = 'Wähle einen Tipp, um zu beginnen!';
+            status.classList.remove('correct');
             selectNewMod();
         }, 1500);
     } else {
         // Falsche Antwort
-        const modButton = document.querySelector(`.mod-button:nth-child(${Array.from(config.mods).indexOf(config.mods.find(m => m.id === modId)) + 1})`);
+        wrongModsInRound.add(modId);
         modButton.classList.add('wrong-mod');
         
         // Rote Animation am Bildschirmrand
@@ -236,5 +246,15 @@ function checkGuess(modId) {
         setTimeout(() => errorAnimation.remove(), 2000);
         
         wrongSound.play();
+        
+        // Aktualisiere den Status
+        const status = document.getElementById('gameStatus');
+        status.textContent = 'Falsch! 😢';
+        status.classList.add('wrong');
+        
+        setTimeout(() => {
+            status.textContent = 'Versuche es nochmal!';
+            status.classList.remove('wrong');
+        }, 1000);
     }
 } 
