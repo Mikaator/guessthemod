@@ -978,7 +978,7 @@ body.light-theme {
 /* Circular Layout */
 .circular-layout {
     position: relative;
-    min-height: 600px;
+    min-height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -993,24 +993,29 @@ body.light-theme {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .circular-layout .hints-container {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 600px;
+    min-height: 800px;
 }
 
 .circular-layout .hint-card {
     position: absolute;
-    width: 150px;
-    height: 100px;
+    width: 180px;
+    height: 120px;
     font-size: 0.9rem;
     padding: 8px;
     top: 50%;
     left: 50%;
     transform-origin: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
 .circular-layout .hint-question {
@@ -1024,19 +1029,27 @@ body.light-theme {
 }
 
 /* Positioniere die Karten im Kreis */
-.circular-layout .hint-card:nth-child(1) { transform: translate(-75px, -50px) rotate(0deg) translateY(-200px); }
-.circular-layout .hint-card:nth-child(2) { transform: translate(-75px, -50px) rotate(60deg) translateY(-200px); }
-.circular-layout .hint-card:nth-child(3) { transform: translate(-75px, -50px) rotate(120deg) translateY(-200px); }
-.circular-layout .hint-card:nth-child(4) { transform: translate(-75px, -50px) rotate(180deg) translateY(-200px); }
-.circular-layout .hint-card:nth-child(5) { transform: translate(-75px, -50px) rotate(240deg) translateY(-200px); }
-.circular-layout .hint-card:nth-child(6) { transform: translate(-75px, -50px) rotate(300deg) translateY(-200px); }
+.circular-layout .hint-card:nth-child(1) { transform: translate(-90px, -60px) translateY(-300px); }
+.circular-layout .hint-card:nth-child(2) { transform: translate(-90px, -60px) translateY(-300px) rotate(36deg); }
+.circular-layout .hint-card:nth-child(3) { transform: translate(-90px, -60px) translateY(-300px) rotate(72deg); }
+.circular-layout .hint-card:nth-child(4) { transform: translate(-90px, -60px) translateY(-300px) rotate(108deg); }
+.circular-layout .hint-card:nth-child(5) { transform: translate(-90px, -60px) translateY(-300px) rotate(144deg); }
+.circular-layout .hint-card:nth-child(6) { transform: translate(-90px, -60px) translateY(-300px) rotate(180deg); }
+.circular-layout .hint-card:nth-child(7) { transform: translate(-90px, -60px) translateY(-300px) rotate(216deg); }
+.circular-layout .hint-card:nth-child(8) { transform: translate(-90px, -60px) translateY(-300px) rotate(252deg); }
+.circular-layout .hint-card:nth-child(9) { transform: translate(-90px, -60px) translateY(-300px) rotate(288deg); }
+.circular-layout .hint-card:nth-child(10) { transform: translate(-90px, -60px) translateY(-300px) rotate(324deg); }
 
 /* Drehe den Text der Karten zurück, damit er lesbar bleibt */
-.circular-layout .hint-card:nth-child(2) .hint-content { transform: rotate(-60deg); }
-.circular-layout .hint-card:nth-child(3) .hint-content { transform: rotate(-120deg); }
-.circular-layout .hint-card:nth-child(4) .hint-content { transform: rotate(-180deg); }
-.circular-layout .hint-card:nth-child(5) .hint-content { transform: rotate(-240deg); }
-.circular-layout .hint-card:nth-child(6) .hint-content { transform: rotate(-300deg); }
+.circular-layout .hint-card:nth-child(2) .hint-content { transform: rotate(-36deg); }
+.circular-layout .hint-card:nth-child(3) .hint-content { transform: rotate(-72deg); }
+.circular-layout .hint-card:nth-child(4) .hint-content { transform: rotate(-108deg); }
+.circular-layout .hint-card:nth-child(5) .hint-content { transform: rotate(-144deg); }
+.circular-layout .hint-card:nth-child(6) .hint-content { transform: rotate(-180deg); }
+.circular-layout .hint-card:nth-child(7) .hint-content { transform: rotate(-216deg); }
+.circular-layout .hint-card:nth-child(8) .hint-content { transform: rotate(-252deg); }
+.circular-layout .hint-card:nth-child(9) .hint-content { transform: rotate(-288deg); }
+.circular-layout .hint-card:nth-child(10) .hint-content { transform: rotate(-324deg); }
 
 /* Grid Layout */
 .grid-layout {
