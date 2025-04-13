@@ -119,7 +119,6 @@ function selectNewMod() {
             link.style.fontWeight = 'bold';
             link.style.fontSize = '1.2rem';
             link.style.padding = '10px';
-            link.style.borderRadius = '8px';
             answer.appendChild(link);
         } else {
             answer.textContent = hint.answer;
