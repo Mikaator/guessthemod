@@ -245,11 +245,14 @@ function processCSVData(rows, headers) {
     
     // Verarbeite jede Zeile (außer Header)
     for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
-        if (cells.length < headers.length) continue;
+        // Teile die Zeile korrekt auf und entferne Anführungszeichen
+        const cells = rows[i].split('"').filter((_, index) => index % 2 === 1);
+        if (cells.length < 2) continue; // Überspringe leere Zeilen
         
         // Erstelle neuen Mod (Zweite Spalte enthält den Mod-Namen)
-        const modName = cells[1]; // "Wie ist dein Name (TwitchUsername)"
+        const modName = cells[1]; // Name des Mods
+        if (!modName) continue; // Überspringe Zeilen ohne Mod-Namen
+        
         const modId = Date.now() + i;
         
         // Füge den Mod hinzu
@@ -259,10 +262,10 @@ function processCSVData(rows, headers) {
         });
         
         // Erstelle Tipps aus den restlichen Spalten (ab Index 2)
-        for (let j = 2; j < headers.length; j++) {
-            if (cells[j]) {
-                const question = headers[j].replace(/"/g, ''); // Entferne Anführungszeichen aus der Frage
-                const answer = cells[j];
+        for (let j = 2; j < cells.length; j++) {
+            if (cells[j] && cells[j].trim()) {
+                const question = headers[j].replace(/"/g, '').trim(); // Frage aus Header
+                const answer = cells[j].trim();
                 
                 // Prüfe, ob es sich um einen Google Drive Link handelt
                 const isImageUrl = answer.includes('drive.google.com');
@@ -281,6 +284,8 @@ function processCSVData(rows, headers) {
         }
     }
     
+    console.log('Verarbeitete Konfiguration:', config); // Debug-Ausgabe
+    
     // Aktualisiere die Listen
     updateModList();
     updateModSelect();
@@ -289,7 +294,7 @@ function processCSVData(rows, headers) {
     // Speichere die Konfiguration
     saveConfig();
     
-    showNotification('CSV-Daten erfolgreich importiert!', 'success');
+    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
 }
 
 // Füge diese Hilfsfunktion hinzu, um mit UTF-8 Zeichen umzugehen
@@ -308,16 +313,13 @@ window.handleCSVImport = function(event) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const csvData = decodeUTF8(e.target.result);
-        const rows = csvData.split('\n');
-        const headers = rows[0].split(',').map(header => 
-            header.trim()
-                 .replace(/"/g, '')
-                 .replace(/ðŸ'ƒ/g, '🏃')
-                 .replace(/ðŸ"Ž/g, '📎')
-                 .replace(/ðŸš«/g, '🚫')
-                 .replace(/ðŸ¤¡/g, '🤡')
-        );
+        const csvData = e.target.result;
+        // Teile die CSV-Datei in Zeilen
+        const rows = csvData.split('\n').map(row => row.trim()).filter(row => row);
+        
+        // Extrahiere die Headers (erste Zeile)
+        const headerLine = rows[0];
+        const headers = headerLine.split('"').filter((_, index) => index % 2 === 1);
         
         // Zeige Vorschau
         const preview = document.getElementById('csvPreview');
@@ -332,7 +334,7 @@ window.handleCSVImport = function(event) {
         
         // Daten
         for (let i = 1; i < Math.min(rows.length, 6); i++) {
-            const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
+            const cells = rows[i].split('"').filter((_, index) => index % 2 === 1);
             previewHTML += '<tr>';
             cells.forEach(cell => {
                 previewHTML += `<td>${cell}</td>`;
