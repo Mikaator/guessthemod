@@ -238,15 +238,86 @@ function initializeAdmin() {
 window.addEventListener('load', initializeAdmin);
 
 // CSV Import Funktionen
+function processCSVData(rows, headers) {
+    // Lösche vorhandene Daten
+    config.mods = [];
+    config.hints = [];
+    
+    // Verarbeite jede Zeile (außer Header)
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
+        if (cells.length < headers.length) continue;
+        
+        // Erstelle neuen Mod (Zweite Spalte enthält den Mod-Namen)
+        const modName = cells[1]; // "Wie ist dein Name (TwitchUsername)"
+        const modId = Date.now() + i;
+        
+        // Füge den Mod hinzu
+        config.mods.push({
+            id: modId,
+            name: modName
+        });
+        
+        // Erstelle Tipps aus den restlichen Spalten (ab Index 2)
+        for (let j = 2; j < headers.length; j++) {
+            if (cells[j]) {
+                const question = headers[j].replace(/"/g, ''); // Entferne Anführungszeichen aus der Frage
+                const answer = cells[j];
+                
+                // Prüfe, ob es sich um einen Google Drive Link handelt
+                const isImageUrl = answer.includes('drive.google.com');
+                
+                config.hints.push({
+                    id: Date.now() + i + j,
+                    modId: modId,
+                    question: question,
+                    answer: isImageUrl ? 
+                        `<img src="${answer}" alt="Bild Antwort" style="max-width: 100%; max-height: 200px; border-radius: 8px;">` : 
+                        answer,
+                    design: Math.floor(Math.random() * 6) + 1,
+                    isImage: isImageUrl
+                });
+            }
+        }
+    }
+    
+    // Aktualisiere die Listen
+    updateModList();
+    updateModSelect();
+    updateHintList();
+    
+    // Speichere die Konfiguration
+    saveConfig();
+    
+    showNotification('CSV-Daten erfolgreich importiert!', 'success');
+}
+
+// Füge diese Hilfsfunktion hinzu, um mit UTF-8 Zeichen umzugehen
+function decodeUTF8(str) {
+    try {
+        return decodeURIComponent(escape(str));
+    } catch (e) {
+        return str;
+    }
+}
+
+// Modifiziere die handleCSVImport Funktion
 window.handleCSVImport = function(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const csvData = e.target.result;
+        const csvData = decodeUTF8(e.target.result);
         const rows = csvData.split('\n');
-        const headers = rows[0].split(',').map(header => header.trim().replace(/"/g, ''));
+        const headers = rows[0].split(',').map(header => 
+            header.trim()
+                 .replace(/"/g, '')
+                 .replace(/ðŸ'ƒ/g, '🏃')
+                 .replace(/ðŸ"Ž/g, '📎')
+                 .replace(/ðŸš«/g, '🚫')
+                 .replace(/ðŸ¤¡/g, '🤡')
+        );
         
         // Zeige Vorschau
         const preview = document.getElementById('csvPreview');
@@ -280,53 +351,4 @@ window.handleCSVImport = function(event) {
         processCSVData(rows, headers);
     };
     reader.readAsText(file);
-}
-
-function processCSVData(rows, headers) {
-    // Lösche vorhandene Daten
-    config.mods = [];
-    config.hints = [];
-    
-    // Verarbeite jede Zeile (außer Header)
-    for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].split(',').map(cell => cell.trim().replace(/"/g, ''));
-        if (cells.length < headers.length) continue;
-        
-        // Erstelle neuen Mod
-        const modName = cells[1]; // Zweite Spalte ist der Mod-Name
-        const modId = Date.now() + i;
-        
-        config.mods.push({
-            id: modId,
-            name: modName
-        });
-        
-        // Erstelle Tipps aus den restlichen Spalten
-        for (let j = 2; j < headers.length; j++) {
-            if (cells[j]) {
-                const answer = cells[j];
-                const isImageUrl = answer.includes('http') && 
-                    (answer.includes('drive.google.com') || 
-                     answer.includes('imgur.com') || 
-                     answer.includes('i.imgur.com') ||
-                     answer.match(/\.(jpg|jpeg|png|gif)$/i));
-                
-                config.hints.push({
-                    id: Date.now() + i + j,
-                    modId: modId,
-                    question: headers[j],
-                    answer: isImageUrl ? `<img src="${answer}" alt="Bild Antwort" style="max-width: 100%; max-height: 200px; border-radius: 8px;">` : answer,
-                    design: Math.floor(Math.random() * 6) + 1,
-                    isImage: isImageUrl
-                });
-            }
-        }
-    }
-    
-    // Aktualisiere die Listen
-    updateModList();
-    updateModSelect();
-    updateHintList();
-    
-    showNotification('CSV-Daten erfolgreich importiert!', 'success');
 } 
