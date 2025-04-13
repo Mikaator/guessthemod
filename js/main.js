@@ -102,40 +102,12 @@ function selectNewMod() {
         
         // Prüfe, ob die Antwort ein Link ist
         if (hint.answer.includes('http')) {
-            // Prüfe auf Lightshot Link
-            if (hint.answer.includes('prnt.sc')) {
-                // Extrahiere den Bild-ID-Teil aus dem Lightshot Link
-                const imageId = hint.answer.split('/').pop();
-                const imageUrl = `https://i.imgur.com/${imageId}.png`;
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Bild Antwort';
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '200px';
-                img.style.borderRadius = '8px';
-                answer.appendChild(img);
-            } 
-            // Prüfe auf Imgur Link
-            else if (hint.answer.includes('imgur.com')) {
-                // Extrahiere die Bild-ID aus dem Imgur Link
-                const imageId = hint.answer.split('/').pop().split('.')[0];
-                const imageUrl = `https://i.imgur.com/${imageId}.jpg`;
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Bild Antwort';
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '200px';
-                img.style.borderRadius = '8px';
-                answer.appendChild(img);
-            } else {
-                // Für andere Links einen "Bild öffnen" Link erstellen
-                const imageLink = document.createElement('a');
-                imageLink.href = hint.answer;
-                imageLink.target = '_blank';
-                imageLink.textContent = 'Bild öffnen';
-                imageLink.className = 'image-link';
-                answer.appendChild(imageLink);
-            }
+            const imageLink = document.createElement('a');
+            imageLink.href = hint.answer;
+            imageLink.target = '_blank';
+            imageLink.textContent = 'Bild öffnen';
+            imageLink.className = 'image-link';
+            answer.appendChild(imageLink);
         } else {
             answer.textContent = hint.answer;
         }
