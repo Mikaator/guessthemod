@@ -61,28 +61,66 @@ function setupGame() {
 
 // Wähle neuen Mod und seine Tipps
 function selectNewMod() {
-    const randomModIndex = Math.floor(Math.random() * config.mods.length);
-    currentMod = config.mods[randomModIndex];
-    currentHints = config.hints.filter(hint => hint.modId === currentMod.id);
-    revealedHints = [];
-    gameState = 'waiting';
+    const mods = config.mods;
+    const randomMod = mods[Math.floor(Math.random() * mods.length)];
+    currentMod = randomMod;
     
-    // Erstelle Tipp-Karten
-    const hintsContainer = document.getElementById('hintsContainer');
-    hintsContainer.innerHTML = '';
-    
-    currentHints.forEach(hint => {
-        const hintCard = document.createElement('div');
-        hintCard.className = `hint-card design-${hint.design}`;
-        hintCard.innerHTML = `
-            <div class="hint-question">${hint.question}</div>
-            <div class="hint-answer">${hint.isImage ? hint.answer : `<p>${hint.answer}</p>`}</div>
-        `;
-        hintCard.onclick = () => revealHint(hintCard, hint);
-        hintsContainer.appendChild(hintCard);
+    // Mod-Buttons erstellen
+    const modsContainer = document.getElementById('modsContainer');
+    modsContainer.innerHTML = '';
+    mods.forEach(mod => {
+        const button = document.createElement('button');
+        button.className = 'mod-button';
+        button.textContent = mod.name;
+        button.onclick = () => checkGuess(mod.id);
+        modsContainer.appendChild(button);
     });
     
-    updateGameStatus('Wähle einen Tipp, um zu beginnen!');
+    // Tipp-Karten erstellen
+    const hintsContainer = document.getElementById('hintsContainer');
+    hintsContainer.innerHTML = '';
+    const modHints = config.hints.filter(hint => hint.modId === randomMod.id);
+    
+    modHints.forEach(hint => {
+        const card = document.createElement('div');
+        card.className = `hint-card design-${hint.design}`;
+        
+        const question = document.createElement('div');
+        question.className = 'hint-question';
+        question.textContent = hint.question;
+        
+        const answer = document.createElement('div');
+        answer.className = 'hint-answer';
+        
+        if (hint.isImage) {
+            // Erstelle einen Link für Bildantworten
+            const link = document.createElement('a');
+            link.href = hint.answer;
+            link.target = '_blank';
+            link.textContent = 'Bild öffnen';
+            link.style.color = 'var(--primary-color)';
+            link.style.textDecoration = 'none';
+            link.style.fontWeight = 'bold';
+            answer.appendChild(link);
+        } else {
+            answer.textContent = hint.answer;
+        }
+        
+        card.appendChild(question);
+        card.appendChild(answer);
+        
+        card.onclick = () => {
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                flipSound.play();
+                updateGameStatus();
+            }
+        };
+        
+        hintsContainer.appendChild(card);
+    });
+    
+    updateGameStatus();
 }
 
 // Deckt einen Tipp auf
