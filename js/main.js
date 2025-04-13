@@ -105,7 +105,7 @@ function selectNewMod() {
             const link = document.createElement('a');
             link.href = hint.answer;
             link.target = '_blank';
-            link.textContent = 'Bild öffnen';
+            link.textContent = 'Bild: ' + hint.answer;
             link.style.color = 'var(--primary-color)';
             link.style.textDecoration = 'none';
             link.style.fontWeight = 'bold';
@@ -168,9 +168,21 @@ function handleModGuess(modId) {
 }
 
 // Aktualisiere Spielstatus
-function updateGameStatus(message) {
-    const gameStatus = document.getElementById('gameStatus');
-    gameStatus.innerHTML = `<p>${message}</p>`;
+function updateGameStatus() {
+    const status = document.getElementById('gameStatus');
+    const flippedCards = document.querySelectorAll('.hint-card.flipped').length;
+    const totalCards = document.querySelectorAll('.hint-card').length;
+    
+    if (flippedCards === 0) {
+        status.textContent = 'Wähle einen Tipp, um zu beginnen!';
+        status.classList.remove('correct', 'wrong');
+    } else if (flippedCards === totalCards) {
+        status.textContent = 'Alle Tipps aufgedeckt! Rate jetzt den Mod!';
+        status.classList.remove('correct', 'wrong');
+    } else {
+        status.textContent = `Tipp aufgedeckt! Noch ${totalCards - flippedCards} Tipps übrig.`;
+        status.classList.remove('correct', 'wrong');
+    }
 }
 
 // Sound-Effekte
