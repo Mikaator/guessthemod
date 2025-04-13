@@ -115,11 +115,11 @@ body {
 
 .hint-question {
     font-size: 1.4rem;
-    margin-bottom: 1.5rem;
     text-align: center;
     padding: 1rem;
     background: rgba(255,255,255,0.1);
     border-radius: 12px;
+    margin-bottom: 1.5rem;
 }
 
 .hint-answer {
@@ -137,10 +137,12 @@ body {
     transition: transform 0.6s;
     padding: 1.5rem;
     font-size: 1.2rem;
+    opacity: 0;
 }
 
 .hint-card.flipped .hint-answer {
     transform: rotateY(0deg);
+    opacity: 1;
 }
 
 /* Entferne die alten Front/Back Styles */
