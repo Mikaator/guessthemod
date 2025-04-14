@@ -263,7 +263,7 @@ function initializeAdmin() {
 // Initialisiere Admin beim Laden
 window.addEventListener('load', initializeAdmin);
 
-// Vollständig überarbeiteter CSV-Import
+// Verbesserte CSV-Import Funktion
 window.handleCSVImport = function(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -271,7 +271,6 @@ window.handleCSVImport = function(event) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const csvData = e.target.result;
-        console.log("CSV-Datei geladen, Größe:", csvData.length);
         processCSVData(csvData);
     };
     reader.readAsText(file);
@@ -283,55 +282,55 @@ function processCSVData(csvText) {
         config.mods = [];
         config.hints = [];
         
-        // Zeilen mit Datum als Mod-Anfänge identifizieren
+        // Teile CSV in Zeilen auf
+        const rows = csvText.split('\n').filter(row => row.trim());
+        
+        // Extraktion der originalen Headers - wichtig: ganze Zeile als einen String behandeln
+        const headerRow = rows[0];
+        
+        // Korrekte Header-Liste extrahieren mit genauer Erkennung der Anführungszeichen
+        const headers = extractCSVHeaders(headerRow);
+        console.log("Original-Headers:", headers);
+        
+        // Basiszeitstempel für IDs
+        const baseTime = Date.now();
+        
+        // Datums-Pattern für Zeilenanfänge
         const datePattern = /^"20\d\d\/\d\d\/\d\d/;
-        const rawRows = csvText.split('\n');
         
-        // Header-Zeile extrahieren (ohne Anführungszeichen)
-        const headers = rawRows[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
-        console.log("Headers gefunden:", headers);
-        
-        // Mod-Einträge identifizieren
+        // Mod-Zeilen gruppieren
         let modEntries = [];
-        let currentEntry = [];
+        let currentEntry = "";
         
-        // Gruppiere Zeilen nach Mods
-        for (let i = 1; i < rawRows.length; i++) {
-            const row = rawRows[i].trim();
-            if (!row) continue; // Leere Zeilen überspringen
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i].trim();
+            if (!row) continue;
             
             if (datePattern.test(row)) {
-                // Neue Mod-Zeile gefunden
-                if (currentEntry.length > 0) {
-                    modEntries.push(currentEntry.join('\n'));
+                if (currentEntry) {
+                    modEntries.push(currentEntry);
                 }
-                currentEntry = [row];
-            } else if (currentEntry.length > 0) {
-                // Teil einer bestehenden Antwort
-                currentEntry.push(row);
+                currentEntry = row;
+            } else if (currentEntry) {
+                currentEntry += "\n" + row;
             }
         }
         
-        // Letzten Eintrag hinzufügen
-        if (currentEntry.length > 0) {
-            modEntries.push(currentEntry.join('\n'));
+        if (currentEntry) {
+            modEntries.push(currentEntry);
         }
         
-        console.log(`${modEntries.length} Mods gefunden`);
+        console.log(`${modEntries.length} Mod-Einträge gefunden`);
         
-        // Basis-ID für die Einträge
-        const baseTime = Date.now();
-        
-        // Verarbeite jeden Mod einzeln
+        // Jede Mod-Zeile verarbeiten
         for (let i = 0; i < modEntries.length; i++) {
-            const entry = modEntries[i];
-            
-            // CSV-Felder korrekt parsen (unter Berücksichtigung von Anführungszeichen)
-            const fields = parseComplexCSVLine(entry);
+            // Extrahiere alle Felder mit besonderer Berücksichtigung von Anführungszeichen
+            const fields = parseCompleteCSVRow(modEntries[i]);
             
             if (fields.length < 2) continue;
             
-            const modName = fields[1].trim();
+            // Mod-Name ist das zweite Feld
+            const modName = fields[1];
             if (!modName) continue;
             
             const modId = baseTime + i;
@@ -344,7 +343,7 @@ function processCSVData(csvText) {
             
             console.log(`Mod hinzugefügt: ${modName}`);
             
-            // Tipps für diesen Mod hinzufügen
+            // Tipps für diesen Mod hinzufügen - Headers stimmen exakt mit den Feldern überein
             for (let j = 2; j < Math.min(fields.length, headers.length); j++) {
                 const answer = fields[j];
                 if (!answer || answer.trim() === '') continue;
@@ -371,42 +370,70 @@ function processCSVData(csvText) {
         showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
         
     } catch (error) {
-        console.error("Fehler beim CSV-Import:", error);
-        showNotification("Fehler beim Import: " + error.message, "error");
+        console.error("CSV-Import Fehler:", error);
+        showNotification("Fehler beim CSV-Import: " + error.message, "error");
     }
 }
 
-// Parst eine CSV-Zeile korrekt, auch mit komplexen Einträgen
-function parseComplexCSVLine(line) {
-    const result = [];
+// Extrahiert die Header-Namen original aus der CSV
+function extractCSVHeaders(headerRow) {
+    const headers = [];
+    let inQuotes = false;
+    let currentHeader = '';
+    
+    for (let i = 0; i < headerRow.length; i++) {
+        const char = headerRow[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            headers.push(currentHeader.replace(/^"|"$/g, '').trim());
+            currentHeader = '';
+        } else {
+            currentHeader += char;
+        }
+    }
+    
+    // Letzten Header hinzufügen
+    if (currentHeader) {
+        headers.push(currentHeader.replace(/^"|"$/g, '').trim());
+    }
+    
+    return headers;
+}
+
+// Parst eine komplette CSV-Zeile unter Berücksichtigung aller Sonderfälle
+function parseCompleteCSVRow(row) {
+    const fields = [];
     let currentField = '';
     let inQuotes = false;
     
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
         
         if (char === '"') {
-            if (i + 1 < line.length && line[i + 1] === '"' && inQuotes) {
-                // Doppelte Anführungszeichen innerhalb von Anführungszeichen werden zu einem
+            if (i + 1 < row.length && row[i + 1] === '"' && inQuotes) {
+                // Doppelte Anführungszeichen in einem Feld
                 currentField += '"';
                 i++;
             } else {
-                // Anführungszeichen wechseln den Status
+                // Anführungszeichen umschalten
                 inQuotes = !inQuotes;
             }
         } else if (char === ',' && !inQuotes) {
-            // Komma außerhalb von Anführungszeichen bedeutet neues Feld
-            result.push(currentField);
+            // Neues Feld entdeckt
+            fields.push(currentField.replace(/^"|"$/g, '').trim());
             currentField = '';
         } else {
-            // Normales Zeichen zum aktuellen Feld hinzufügen
+            // Normales Zeichen
             currentField += char;
         }
     }
     
     // Letztes Feld hinzufügen
-    result.push(currentField);
+    if (currentField) {
+        fields.push(currentField.replace(/^"|"$/g, '').trim());
+    }
     
-    // Anführungszeichen entfernen und trimmen
-    return result.map(field => field.replace(/^"|"$/g, '').trim());
+    return fields;
 } 
