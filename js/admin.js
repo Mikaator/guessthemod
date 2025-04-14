@@ -24,12 +24,22 @@ window.addNewMod = function() {
 
 function updateModList() {
     const modList = document.getElementById('modList');
+    
+    // Überprüfen ob Mods vorhanden sind
+    if (config.mods.length === 0) {
+        modList.innerHTML = '<p>Keine Mods vorhanden. Fügen Sie Mods hinzu oder importieren Sie eine CSV-Datei.</p>';
+        return;
+    }
+    
     modList.innerHTML = config.mods.map(mod => `
         <div class="mod-item" data-id="${mod.id}">
             <input type="text" value="${mod.name}" onchange="updateModName(${mod.id}, this.value)">
             <button onclick="deleteMod(${mod.id})" class="delete-button">Löschen</button>
         </div>
     `).join('');
+    
+    // Debug-Ausgabe
+    console.log(`Insgesamt ${config.mods.length} Mods angezeigt.`);
 }
 
 function updateModSelect() {
@@ -112,19 +122,35 @@ window.addNewHint = async function() {
 
 function updateHintList() {
     const hintList = document.getElementById('hintList');
-    hintList.innerHTML = config.hints.map(hint => {
+    
+    // Überprüfen ob Tipps vorhanden sind
+    if (config.hints.length === 0) {
+        hintList.innerHTML = '<p>Keine Tipps vorhanden. Fügen Sie Tipps hinzu oder importieren Sie eine CSV-Datei.</p>';
+        return;
+    }
+    
+    // Maximale Anzahl der anzuzeigenden Tipps (alle anzeigen)
+    const allHints = config.hints;
+    
+    // Erstelle HTML für die Tipps
+    const hintsHTML = allHints.map(hint => {
         const mod = config.mods.find(m => m.id === hint.modId);
         return `
             <div class="hint-item" data-id="${hint.id}">
                 <div class="hint-preview design-${hint.design}">
                     <p><strong>Mod:</strong> ${mod ? mod.name : 'Unbekannt'}</p>
                     <p><strong>Frage:</strong> ${hint.question}</p>
-                    <p><strong>Antwort:</strong> ${hint.isImage ? hint.answer : hint.answer}</p>
+                    <p><strong>Antwort:</strong> ${hint.answer}</p>
                 </div>
                 <button onclick="deleteHint(${hint.id})" class="delete-button">Löschen</button>
             </div>
         `;
     }).join('');
+    
+    hintList.innerHTML = hintsHTML;
+    
+    // Debug-Ausgabe
+    console.log(`Insgesamt ${allHints.length} Tipps angezeigt.`);
 }
 
 window.deleteHint = function(id) {
@@ -239,62 +265,104 @@ window.addEventListener('load', initializeAdmin);
 
 // CSV Import Funktionen
 function processCSVData(rows, headers) {
-    // Lösche vorhandene Daten
+    // Leere vorhandene Daten
     config.mods = [];
     config.hints = [];
     
+    console.log(`Verarbeite ${rows.length} Zeilen`);
+    
+    // Erstelle Basiszeit für IDs, um Überschneidungen zu vermeiden
+    // Verwende eine eindeutige Basis-ID für jede Importaktion
+    const baseTime = Date.now();
+    
     // Verarbeite jede Zeile (außer Header)
     for (let i = 1; i < rows.length; i++) {
-        // Teile die Zeile korrekt auf und entferne Anführungszeichen
-        const cells = rows[i].split('"').filter((_, index) => index % 2 === 1);
-        if (cells.length < 2) continue; // Überspringe leere Zeilen
-        
-        // Erstelle neuen Mod (Zweite Spalte enthält den Mod-Namen)
-        const modName = cells[1]; // Name des Mods
-        if (!modName) continue; // Überspringe Zeilen ohne Mod-Namen
-        
-        const modId = Date.now() + i;
-        
-        // Füge den Mod hinzu
-        config.mods.push({
-            id: modId,
-            name: modName
-        });
-        
-        // Erstelle Tipps aus den restlichen Spalten (ab Index 2)
-        for (let j = 2; j < cells.length; j++) {
-            if (cells[j] && cells[j].trim()) {
-                const question = headers[j].replace(/"/g, '').trim(); // Frage aus Header
+        try {
+            // Parse Zeile mit einer verbesserten Methode
+            const cells = [];
+            let inQuotes = false;
+            let currentCell = '';
+            const rowStr = rows[i];
+            
+            for (let j = 0; j < rowStr.length; j++) {
+                const char = rowStr[j];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    cells.push(currentCell.trim());
+                    currentCell = '';
+                } else {
+                    currentCell += char;
+                }
+            }
+            if (currentCell) cells.push(currentCell.trim());
+            
+            if (cells.length < 2) {
+                console.log(`Überspringe Zeile ${i}: Nicht genug Zellen`);
+                continue;
+            }
+            
+            // Erstelle neuen Mod (Name aus der zweiten Spalte)
+            const modName = cells[1].replace(/"/g, '').trim();
+            
+            if (!modName) {
+                console.log(`Überspringe Zeile ${i}: Kein Mod-Name`);
+                continue;
+            }
+            
+            // Erstelle eindeutige ID für diesen Mod mit großem Abstand
+            const modId = baseTime + (i * 100000);
+            
+            console.log(`Verarbeite Mod #${i}: ${modName} (ID: ${modId})`);
+            
+            // Füge Mod hinzu
+            config.mods.push({
+                id: modId,
+                name: modName
+            });
+            
+            // Verarbeite Tipps für diesen Mod (ab 3. Spalte)
+            for (let j = 2; j < cells.length && j < headers.length; j++) {
                 const answer = cells[j].trim();
                 
-                // Prüfe, ob es sich um einen Google Drive Link handelt
-                const isImageUrl = answer.includes('drive.google.com');
+                if (!answer) continue;
+                
+                const question = headers[j].replace(/"/g, '').trim();
+                const isImageUrl = answer.includes('http') && (
+                    answer.includes('.jpg') || 
+                    answer.includes('.png') || 
+                    answer.includes('.gif') ||
+                    answer.includes('imgur') ||
+                    answer.includes('drive.google')
+                );
+                
+                // Noch eindeutigere ID für Tipps
+                const hintId = baseTime + (i * 100000) + (j * 1000);
                 
                 config.hints.push({
-                    id: Date.now() + i + j,
+                    id: hintId,
                     modId: modId,
                     question: question,
-                    answer: isImageUrl ? 
-                        `<img src="${answer}" alt="Bild Antwort" style="max-width: 100%; max-height: 200px; border-radius: 8px;">` : 
-                        answer,
+                    answer: answer,
                     design: Math.floor(Math.random() * 6) + 1,
                     isImage: isImageUrl
                 });
+                
+                console.log(`- Tipp hinzugefügt: "${question}" (ID: ${hintId})`);
             }
+        } catch (error) {
+            console.error(`Fehler bei Zeile ${i}:`, error);
         }
     }
     
-    console.log('Verarbeitete Konfiguration:', config); // Debug-Ausgabe
+    console.log(`CSV-Import abgeschlossen: ${config.mods.length} Mods und ${config.hints.length} Tipps`);
     
-    // Aktualisiere die Listen
+    // Aktualisiere die Listen in der UI
     updateModList();
     updateModSelect();
     updateHintList();
     
-    // Speichere die Konfiguration
-    saveConfig();
-    
-    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
+    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps erfolgreich importiert!`, 'success');
 }
 
 // Füge diese Hilfsfunktion hinzu, um mit UTF-8 Zeichen umzugehen
