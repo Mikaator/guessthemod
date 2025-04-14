@@ -457,3 +457,71 @@ function updateHints() {
     
     document.getElementById('gameStatus').textContent = 'Wähle einen Tipp, um zu beginnen!';
 }
+
+function processCSVData(rows, headers) {
+    // Lösche vorhandene Daten
+    config.mods = [];
+    config.hints = [];
+    
+    // Verarbeite jede Zeile (außer Header)
+    for (let i = 1; i < rows.length; i++) {
+        // Teile die Zeile korrekt auf und entferne Anführungszeichen
+        const cells = rows[i].split('"').filter((_, index) => index % 2 === 1);
+        if (cells.length < 2) continue; // Überspringe leere Zeilen
+        
+        // Erstelle neuen Mod (Zweite Spalte enthält den Mod-Namen)
+        const modName = cells[1]; // Name des Mods
+        if (!modName) continue; // Überspringe Zeilen ohne Mod-Namen
+        
+        // Erstelle für jeden Mod eine eindeutige ID mit mehr Abstand
+        const modId = Date.now() + (i * 1000);
+        
+        // Füge den Mod hinzu
+        config.mods.push({
+            id: modId,
+            name: modName
+        });
+        
+        console.log(`Mod hinzugefügt: ${modName} mit ID ${modId}`);
+        
+        // Erstelle Tipps aus den restlichen Spalten (ab Index 2)
+        for (let j = 2; j < cells.length; j++) {
+            if (cells[j] && cells[j].trim()) {
+                // Prüfe, ob es einen passenden Header gibt
+                if (j >= headers.length) continue;
+                
+                const question = headers[j].replace(/"/g, '').trim(); // Frage aus Header
+                const answer = cells[j].trim();
+                
+                // Prüfe, ob es sich um einen Google Drive Link handelt
+                const isImageUrl = answer.includes('drive.google.com');
+                
+                // Eindeutige ID für jeden Tipp
+                const hintId = Date.now() + (i * 1000) + (j * 10);
+                
+                config.hints.push({
+                    id: hintId,
+                    modId: modId,
+                    question: question,
+                    answer: answer,
+                    design: Math.floor(Math.random() * 6) + 1,
+                    isImage: isImageUrl
+                });
+                
+                console.log(`Tipp hinzugefügt: ${question} für Mod ${modName}`);
+            }
+        }
+    }
+    
+    console.log(`Insgesamt importiert: ${config.mods.length} Mods, ${config.hints.length} Tipps`);
+    
+    // Aktualisiere die Listen
+    updateModList();
+    updateModSelect();
+    updateHintList();
+    
+    // Speichere die Konfiguration
+    saveConfig();
+    
+    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
+}
