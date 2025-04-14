@@ -257,7 +257,9 @@ function updateLayout() {
 }
 
 function checkGuess(modId) {
-    const modButton = document.querySelector(`.mod-button:nth-child(${Array.from(config.mods).indexOf(config.mods.find(m => m.id === modId)) + 1})`);
+    // Finde den Mod-Button in der gemischten Liste
+    const modIndex = shuffledMods.findIndex(mod => mod.id === modId);
+    const modButton = document.querySelector(`.mod-button:nth-child(${modIndex + 1})`);
     
     if (modId === currentMod.id) {
         // Richtige Antwort
