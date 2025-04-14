@@ -5,6 +5,7 @@ let gameState = 'waiting'; // waiting, playing, finished
 let correctMods = new Set(); // Speichert die IDs der richtig geratenen Mods
 let wrongModsInRound = new Set(); // Speichert die IDs der falsch geratenen Mods in der aktuellen Runde
 let currentLayout = 'default'; // default, centered, circular, grid
+let currentModIndex = 0;
 
 // Layout-Optionen
 const layouts = {
@@ -74,80 +75,37 @@ function setupGame() {
 
 // Wähle neuen Mod und seine Tipps
 function selectNewMod() {
-    // Filtere bereits erratene Mods heraus
-    const availableMods = config.mods.filter(mod => !correctMods.has(mod.id));
+    // Zeige die Navigations-Buttons
+    const navButtons = document.getElementById('navigationButtons');
+    navButtons.style.display = 'flex';
     
-    if (availableMods.length === 0) {
-        const status = document.getElementById('gameStatus');
-        status.innerHTML = '<p>Glückwunsch! Du hast alle Mods erraten!</p>';
-        return;
-    }
+    // Aktualisiere den Status der Navigations-Buttons
+    const prevButton = document.getElementById('prevModButton');
+    const nextButton = document.getElementById('nextModButton');
     
-    // Wähle einen zufälligen Mod aus den verfügbaren Mods
-    const randomMod = availableMods[Math.floor(Math.random() * availableMods.length)];
-    currentMod = randomMod;
-    wrongModsInRound.clear(); // Reset der falsch geratenen Mods für die neue Runde
+    prevButton.disabled = currentModIndex === 0;
+    nextButton.disabled = currentModIndex === config.mods.length - 1;
     
-    // Erstelle Mod-Buttons
+    // Wähle den nächsten Mod aus
+    currentMod = config.mods[currentModIndex];
+    
+    // Aktualisiere die Mod-Buttons
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
     
     config.mods.forEach(mod => {
-        const button = document.createElement('button');
-        button.className = 'mod-button';
-        button.textContent = mod.name;
-        
-        // Wenn der Mod bereits erraten wurde, markiere ihn als korrekt
+        const modButton = document.createElement('button');
+        modButton.className = 'mod-button';
         if (correctMods.has(mod.id)) {
-            button.classList.add('correct-mod');
+            modButton.classList.add('correct-mod');
         }
-        
-        button.addEventListener('click', () => checkGuess(mod.id));
-        modsContainer.appendChild(button);
+        modButton.textContent = mod.name;
+        modButton.onclick = () => checkGuess(mod.id);
+        modsContainer.appendChild(modButton);
     });
     
-    // Erstelle Tipp-Karten
-    const hintsContainer = document.getElementById('hintsContainer');
-    hintsContainer.innerHTML = '';
-    
-    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
-    modHints.forEach(hint => {
-        const card = document.createElement('div');
-        card.className = `hint-card design-${hint.design}`;
-        
-        const question = document.createElement('div');
-        question.className = 'hint-question';
-        question.textContent = hint.question;
-        
-        const answer = document.createElement('div');
-        answer.className = 'hint-answer';
-        
-        // Prüfe, ob die Antwort ein Link ist
-        if (hint.answer.includes('http')) {
-            const imageLink = document.createElement('a');
-            imageLink.href = hint.answer;
-            imageLink.target = '_blank';
-            imageLink.textContent = 'Link öffnen';
-            imageLink.className = 'image-link';
-            answer.appendChild(imageLink);
-        } else {
-            answer.textContent = hint.answer;
-        }
-        
-        card.appendChild(question);
-        card.appendChild(answer);
-        
-        card.addEventListener('click', () => {
-            if (!card.classList.contains('flipped')) {
-                card.classList.add('flipped');
-                playSound('flip');
-            }
-        });
-        
-        hintsContainer.appendChild(card);
-    });
-    
-    document.getElementById('gameStatus').textContent = 'Wähle einen Tipp, um zu beginnen!';
+    // Aktualisiere die Tipps
+    updateHints();
 }
 
 // Deckt einen Tipp auf
@@ -235,6 +193,21 @@ function setupEventListeners() {
             setLayout(button.dataset.layout);
         });
     });
+
+    // Event-Listener für die Navigations-Buttons
+    document.getElementById('nextModButton').addEventListener('click', () => {
+        if (currentModIndex < config.mods.length - 1) {
+            currentModIndex++;
+            selectNewMod();
+        }
+    });
+
+    document.getElementById('prevModButton').addEventListener('click', () => {
+        if (currentModIndex > 0) {
+            currentModIndex--;
+            selectNewMod();
+        }
+    });
 }
 
 // Theme wechseln
@@ -307,9 +280,8 @@ function checkGuess(modId) {
             status.classList.add('correct');
             
             setTimeout(() => {
-                status.textContent = 'Wähle einen Tipp, um zu beginnen!';
+                status.textContent = 'Klicke auf "Weiter" für den nächsten Mod!';
                 status.classList.remove('correct');
-                selectNewMod();
             }, 1500);
         }
     } else {
@@ -384,4 +356,64 @@ function createConfetti() {
             confetti.remove();
         }, 5000);
     }
-} 
+}
+
+function updateHints() {
+    // Erstelle Tipp-Karten
+    const hintsContainer = document.getElementById('hintsContainer');
+    hintsContainer.innerHTML = '';
+    
+    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
+    modHints.forEach(hint => {
+        const card = document.createElement('div');
+        card.className = `hint-card design-${hint.design}`;
+        
+        const question = document.createElement('div');
+        question.className = 'hint-question';
+        question.textContent = hint.question;
+        
+        const answer = document.createElement('div');
+        answer.className = 'hint-answer';
+        
+        // Prüfe, ob die Antwort einen Link enthält
+        if (hint.answer.includes('http')) {
+            // Teile den Text in Teile vor und nach dem Link
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            const parts = hint.answer.split(urlRegex);
+            
+            parts.forEach(part => {
+                if (part.match(urlRegex)) {
+                    // Wenn es ein Link ist, erstelle einen Link-Button
+                    const imageLink = document.createElement('a');
+                    imageLink.href = part;
+                    imageLink.target = '_blank';
+                    imageLink.textContent = 'Link öffnen';
+                    imageLink.className = 'image-link';
+                    answer.appendChild(imageLink);
+                } else if (part.trim()) {
+                    // Wenn es Text ist, erstelle ein Text-Element
+                    const textElement = document.createElement('p');
+                    textElement.textContent = part.trim();
+                    textElement.style.margin = '10px 0';
+                    answer.appendChild(textElement);
+                }
+            });
+        } else {
+            answer.textContent = hint.answer;
+        }
+        
+        card.appendChild(question);
+        card.appendChild(answer);
+        
+        card.addEventListener('click', () => {
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                playSound('flip');
+            }
+        });
+        
+        hintsContainer.appendChild(card);
+    });
+    
+    document.getElementById('gameStatus').textContent = 'Wähle einen Tipp, um zu beginnen!';
+}
