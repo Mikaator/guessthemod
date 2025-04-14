@@ -73,8 +73,8 @@ function setupGame() {
         modsContainer.appendChild(modButton);
     });
     
-    // Wähle einen zufälligen Mod als Start
-    currentModIndex = Math.floor(Math.random() * shuffledMods.length);
+    // Beginne immer mit dem ersten Mod in der zufälligen Reihenfolge
+    currentModIndex = 0;
     selectNewMod();
 }
 
