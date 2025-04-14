@@ -270,112 +270,80 @@ window.handleCSVImport = function(event) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const csvData = e.target.result;
-        processCSVData(csvData);
+        console.log("CSV-Datei geladen, Größe:", e.target.result.length);
+        processCSVData(e.target.result);
     };
     reader.readAsText(file);
 };
 
 function processCSVData(csvText) {
     try {
-        console.log("CSV-Import gestartet");
+        console.log("CSV-Verarbeitung gestartet");
         
-        // Konfiguration zurücksetzen
+        // Config zurücksetzen
         config.mods = [];
         config.hints = [];
         
-        // CSV in Abschnitte pro Mod aufteilen, mit Datum als Trennzeichen
-        const splitPattern = /("?20\d\d\/\d\d\/\d\d[^"]*?"?),/g;
-        
-        // Header extrahieren (erste Zeile)
-        const headerEndPos = csvText.indexOf('\n');
-        const headerLine = csvText.substring(0, headerEndPos);
-        const headers = headerLine.split(',').map(h => h.replace(/^"|"$/g, '').trim());
-        
-        console.log(`${headers.length} Headers gefunden`);
-        
-        // Rest des Textes
-        const bodyText = csvText.substring(headerEndPos + 1);
-        
-        // Finde alle Startpositionen der Mod-Zeilen
-        const modStartPositions = [];
-        let match;
-        while ((match = splitPattern.exec(bodyText)) !== null) {
-            modStartPositions.push(match.index);
+        // Splitten Sie die CSV in Zeilen, aber behalten Sie die Formatierung bei
+        const rows = csvText.split(/\r?\n/);
+        if (rows.length < 2) {
+            showNotification("CSV enthält zu wenige Zeilen", "error");
+            return;
         }
+        
+        // Extrahiere Header (erste Zeile)
+        const headerRow = parseCSVRowPrecise(rows[0]);
+        console.log("Gefundene Headers:", headerRow);
         
         // Basis-ID für neue Einträge
         const baseTime = Date.now();
         
-        // Jeden Mod-Abschnitt verarbeiten
-        for (let i = 0; i < modStartPositions.length; i++) {
-            const startPos = modStartPositions[i];
-            const endPos = (i < modStartPositions.length - 1) ? modStartPositions[i + 1] - 1 : bodyText.length;
+        // Verarbeite jede Zeile ab der zweiten Zeile
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i].trim();
+            if (!row) continue;
             
-            // Extrahiere den kompletten Text für diesen Mod
-            const modSection = bodyText.substring(startPos, endPos);
-            
-            // Analyse des Mod-Texts mit Berücksichtigung von Anführungszeichen
-            const modData = {};
-            let currentPos = 0;
-            let inQuotes = false;
-            let currentField = '';
-            let fieldIndex = 0;
-            
-            // Manuelles Parsen der CSV für komplexe Fälle
-            for (let j = 0; j < modSection.length; j++) {
-                const char = modSection[j];
+            // Überprüfen, ob es eine Mod-Zeile ist (beginnt mit einem Datum)
+            if (row.match(/^"?20\d\d\/\d\d\/\d\d/)) {
+                const values = parseCSVRowPrecise(row);
                 
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    // Ein Feld ist abgeschlossen
-                    if (fieldIndex < headers.length) {
-                        modData[headers[fieldIndex]] = currentField.replace(/^"|"$/g, '');
-                    }
-                    fieldIndex++;
-                    currentField = '';
-                } else {
-                    currentField += char;
-                }
-            }
-            
-            // Letztes Feld hinzufügen
-            if (fieldIndex < headers.length) {
-                modData[headers[fieldIndex]] = currentField.replace(/^"|"$/g, '');
-            }
-            
-            // Mod hinzufügen, wenn ein Name vorhanden ist
-            const modName = modData["Wie ist dein Name (TwitchUsername)"];
-            if (modName && modName.trim()) {
-                const modId = baseTime + i;
-                
-                // Mod zur Konfiguration hinzufügen
-                config.mods.push({
-                    id: modId,
-                    name: modName.trim()
-                });
-                
-                console.log(`Mod hinzugefügt: ${modName} (ID: ${modId})`);
-                
-                // Hints für diesen Mod erstellen
-                for (let j = 2; j < headers.length; j++) {
-                    const question = headers[j];
-                    const answer = modData[question];
+                // Überprüfen, ob genügend Werte vorhanden sind
+                if (values.length >= 2) {
+                    const modName = values[1].trim();
+                    if (!modName) continue;
                     
-                    if (answer && answer.trim()) {
-                        const hintId = baseTime + (i * 1000) + j;
+                    // Erstelle einen neuen Mod
+                    const modId = baseTime + i;
+                    config.mods.push({
+                        id: modId,
+                        name: modName
+                    });
+                    
+                    console.log(`Mod hinzugefügt: ${modName} (ID: ${modId})`);
+                    
+                    // Erstelle Hints für diesen Mod
+                    // Fange bei Index 2 an (erster Hint nach Mod-Name)
+                    for (let j = 2; j < values.length && j < headerRow.length; j++) {
+                        // Verwende den Header als Frage und den Wert als Antwort
+                        const question = headerRow[j];
+                        const answer = values[j];
                         
-                        config.hints.push({
-                            id: hintId,
-                            modId: modId,
-                            question: question,
-                            answer: answer.trim(),
-                            design: Math.floor(Math.random() * 6) + 1,
-                            isImage: answer.includes('http')
-                        });
-                        
-                        console.log(`Tipp hinzugefügt: ${question.substring(0, 20)}... für ${modName}`);
+                        // Nur Hints hinzufügen, wenn eine Antwort vorhanden ist
+                        if (answer && answer.trim()) {
+                            const isImage = answer.includes('http');
+                            const hintId = baseTime + (i * 1000) + j;
+                            
+                            config.hints.push({
+                                id: hintId,
+                                modId: modId,
+                                question: question,
+                                answer: answer,
+                                design: Math.floor(Math.random() * 6) + 1,
+                                isImage: isImage
+                            });
+                            
+                            console.log(`Tipp hinzugefügt: "${question}" für ${modName}: "${answer.substring(0, 30)}${answer.length > 30 ? '...' : ''}"`);
+                        }
                     }
                 }
             }
@@ -386,10 +354,45 @@ function processCSVData(csvText) {
         updateModSelect();
         updateHintList();
         
-        showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
+        // Erfolgsmeldung anzeigen
+        showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps erfolgreich importiert!`, 'success');
         
     } catch (error) {
         console.error("CSV-Import Fehler:", error);
-        showNotification("Fehler beim Import: " + error.message, "error");
+        showNotification("Fehler beim CSV-Import: " + error.message, "error");
     }
+}
+
+// Präzises CSV-Parsen mit korrekter Behandlung von Anführungszeichen und Kommas
+function parseCSVRowPrecise(line) {
+    const result = [];
+    let insideQuotes = false;
+    let currentValue = "";
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+            // Check für doppelte Anführungszeichen innerhalb eines Felds
+            if (insideQuotes && i+1 < line.length && line[i+1] === '"') {
+                currentValue += '"';
+                i++; // Überspringe das nächste Anführungszeichen
+            } else {
+                insideQuotes = !insideQuotes;
+            }
+        } else if (char === ',' && !insideQuotes) {
+            // Feld abgeschlossen
+            result.push(currentValue);
+            currentValue = "";
+        } else {
+            // Normales Zeichen
+            currentValue += char;
+        }
+    }
+    
+    // Letztes Feld hinzufügen
+    result.push(currentValue);
+    
+    // Anführungszeichen entfernen
+    return result.map(value => value.replace(/^"|"$/g, ''));
 }
