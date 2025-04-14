@@ -74,9 +74,40 @@ function setupGame() {
     
     // Wähle zufälligen Mod als ersten Mod
     currentModIndex = Math.floor(Math.random() * config.mods.length);
+    selectNewMod();
+}
+
+function selectNewMod() {
+    // Zeige die Navigations-Buttons
+    const navButtons = document.getElementById('navigationButtons');
+    navButtons.style.display = 'flex';
+    
+    // Aktualisiere den Status der Navigations-Buttons
+    const prevButton = document.getElementById('prevModButton');
+    const nextButton = document.getElementById('nextModButton');
+    
+    prevButton.disabled = currentModIndex === 0;
+    nextButton.disabled = currentModIndex === config.mods.length - 1;
+    
+    // Wähle den aktuellen Mod aus
     currentMod = config.mods[currentModIndex];
     
-    // Aktualisiere die Tipps für den zufälligen Mod
+    // Aktualisiere die Mod-Buttons
+    const modsContainer = document.getElementById('modsContainer');
+    modsContainer.innerHTML = '';
+    
+    config.mods.forEach(mod => {
+        const modButton = document.createElement('button');
+        modButton.className = 'mod-button';
+        if (correctMods.has(mod.id)) {
+            modButton.classList.add('correct-mod');
+        }
+        modButton.textContent = mod.name;
+        modButton.onclick = () => checkGuess(mod.id);
+        modsContainer.appendChild(modButton);
+    });
+    
+    // Aktualisiere die Tipps
     updateHints();
 }
 
