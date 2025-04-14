@@ -417,21 +417,20 @@ function updateHints() {
         
         // Prüfe, ob die Antwort einen Link enthält
         if (hint.answer.includes('http')) {
-            // Erzeuge ein Container-Element für die formatierte Antwort
             const answerContainer = document.createElement('div');
             answerContainer.className = 'hint-answer-content';
             
-            // Teile den Text an URLs auf
+            // Finde alle URLs in der Antwort
             const regex = /(https?:\/\/[^\s]+)/g;
             const parts = hint.answer.split(regex);
             const links = hint.answer.match(regex) || [];
             
-            // Index für die gefundenen Links
+            // Teile die Antwort in Text und Links auf
             let linkIndex = 0;
             
-            // Füge abwechselnd Text und Links hinzu
+            // Verarbeite jeden Teil der Antwort
             for (let i = 0; i < parts.length; i++) {
-                // Text hinzufügen, falls vorhanden
+                // Text-Teil (wenn nicht leer)
                 if (parts[i].trim()) {
                     const textElement = document.createElement('p');
                     textElement.textContent = parts[i].trim();
@@ -439,15 +438,15 @@ function updateHints() {
                     answerContainer.appendChild(textElement);
                 }
                 
-                // Link hinzufügen, falls für diesen Teil vorhanden
-                if (linkIndex < links.length && (i === parts.length - 1 || parts[i+1].startsWith(links[linkIndex]))) {
+                // Link hinzufügen, falls an dieser Position (Indizes wechseln sich ab: Text, Link, Text, Link, ...)
+                if (i < parts.length - 1 && linkIndex < links.length) {
                     const currentLink = links[linkIndex];
                     linkIndex++;
                     
                     const linkButton = document.createElement('a');
                     linkButton.href = currentLink;
                     linkButton.target = '_blank';
-                    linkButton.textContent = 'Link öffnen';
+                    linkButton.textContent = `Link ${linkIndex} öffnen`;
                     linkButton.className = 'image-link';
                     answerContainer.appendChild(linkButton);
                 }
