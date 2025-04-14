@@ -364,7 +364,11 @@ function updateHints() {
     hintsContainer.innerHTML = '';
     
     const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
-    modHints.forEach(hint => {
+    
+    // Mische die Tipps zufällig
+    const shuffledHints = modHints.sort(() => Math.random() - 0.5);
+    
+    shuffledHints.forEach(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
