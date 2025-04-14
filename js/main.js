@@ -65,7 +65,7 @@ function setupGame() {
     // Erstelle eine zufällige Reihenfolge der Mods
     shuffledMods = [...config.mods].sort(() => Math.random() - 0.5);
     
-    // Erstelle Mod-Buttons in der Mitte
+    // Erstelle Mod-Buttons in zufälliger Reihenfolge
     shuffledMods.forEach(mod => {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
@@ -73,9 +73,6 @@ function setupGame() {
         modButton.onclick = () => checkGuess(mod.id);
         modsContainer.appendChild(modButton);
     });
-    
-    // Erstelle eine zufällige Reihenfolge für die Tipp-Blöcke
-    shuffledHints = [...config.hints].sort(() => Math.random() - 0.5);
     
     // Beginne immer mit dem ersten Mod in der zufälligen Reihenfolge
     currentModIndex = 0;
@@ -97,11 +94,16 @@ function selectNewMod() {
     // Wähle den aktuellen Mod aus der gemischten Liste
     currentMod = shuffledMods[currentModIndex];
     
-    // Aktualisiere die Mod-Buttons
+    // Aktualisiere die Mod-Buttons und mische sie zusätzlich
+    // Dies entkoppelt die Anzeige der Mod-Buttons von der Reihenfolge der Tipps
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
     
-    shuffledMods.forEach(mod => {
+    // Eine neue, anders gemischte Kopie der Mods erstellen
+    // Dies stellt sicher, dass die Reihenfolge der Mod-Buttons nicht mit der Reihenfolge der Tipps korreliert
+    const displayMods = [...shuffledMods].sort(() => Math.random() - 0.5);
+    
+    displayMods.forEach(mod => {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
         if (correctMods.has(mod.id)) {
@@ -114,6 +116,11 @@ function selectNewMod() {
     
     // Aktualisiere die Tipps
     updateHints();
+    
+    // Setze zurückgesetzte Spielvariablen
+    revealedHints = [];
+    gameState = 'waiting';
+    wrongModsInRound = new Set();
 }
 
 // Deckt einen Tipp auf
@@ -372,11 +379,14 @@ function updateHints() {
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
     
-    // Hole alle Tipps für den aktuellen Mod aus der gemischten Liste
-    const modHints = shuffledHints.filter(hint => hint.modId === currentMod.id);
+    // Hole alle Tipps für den aktuellen Mod
+    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
     
-    // Erstelle Tipp-Karten in der gemischten Reihenfolge
-    modHints.forEach(hint => {
+    // Erstelle eine zufällige Reihenfolge der Tipps für diesen Mod
+    const shuffledModHints = [...modHints].sort(() => Math.random() - 0.5);
+    
+    // Erstelle Tipp-Karten in der zufälligen Reihenfolge
+    shuffledModHints.forEach(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
