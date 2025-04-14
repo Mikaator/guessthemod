@@ -268,14 +268,30 @@ function updateLayout() {
 }
 
 function checkGuess(modId) {
-    // Finde den Mod-Button in der gemischten Liste
-    const modIndex = shuffledMods.findIndex(mod => mod.id === modId);
-    const modButton = document.querySelector(`.mod-button:nth-child(${modIndex + 1})`);
+    // Finde den Button des geklickten Mods mit Hilfe der ID und des Textinhalts
+    // Wir können nicht mehr auf die Position im shuffledMods-Array vertrauen, da wir die Anzeige neu gemischt haben
+    const modName = config.mods.find(mod => mod.id === modId)?.name;
+    
+    // Finde alle Mod-Buttons und den Button, der angeklickt wurde
+    const allModButtons = document.querySelectorAll('.mod-button');
+    let clickedButton = null;
+    
+    // Finde den genauen Button, der diesem Mod entspricht
+    allModButtons.forEach(button => {
+        if (button.textContent === modName && !button.classList.contains('correct-mod') && !button.classList.contains('wrong-mod')) {
+            clickedButton = button;
+        }
+    });
+    
+    if (!clickedButton) {
+        console.error("Button für Mod nicht gefunden:", modId, modName);
+        return;
+    }
     
     if (modId === currentMod.id) {
         // Richtige Antwort
         correctMods.add(modId);
-        modButton.classList.add('correct-mod');
+        clickedButton.classList.add('correct-mod');
         
         // Grüne Animation am Bildschirmrand
         const successAnimation = document.createElement('div');
@@ -283,7 +299,8 @@ function checkGuess(modId) {
         document.body.appendChild(successAnimation);
         setTimeout(() => successAnimation.remove(), 2000);
         
-        correctSound.play();
+        // Korrekter Sound abspielen
+        playSound('correctSound');
         
         // Prüfe, ob alle Mods erraten wurden
         if (correctMods.size === config.mods.length) {
@@ -304,7 +321,7 @@ function checkGuess(modId) {
     } else {
         // Falsche Antwort
         wrongModsInRound.add(modId);
-        modButton.classList.add('wrong-mod');
+        clickedButton.classList.add('wrong-mod');
         
         // Rote Animation am Bildschirmrand
         const errorAnimation = document.createElement('div');
@@ -312,7 +329,8 @@ function checkGuess(modId) {
         document.body.appendChild(errorAnimation);
         setTimeout(() => errorAnimation.remove(), 2000);
         
-        wrongSound.play();
+        // Falscher Sound abspielen
+        playSound('wrongSound');
         
         // Aktualisiere den Status
         const status = document.getElementById('gameStatus');
