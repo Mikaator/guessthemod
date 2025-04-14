@@ -458,70 +458,179 @@ function updateHints() {
     document.getElementById('gameStatus').textContent = 'Wähle einen Tipp, um zu beginnen!';
 }
 
+// Verbesserte CSV-Import-Funktion
+window.handleCSVImport = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        // CSV-Daten
+        const csvData = e.target.result;
+        console.log("CSV Datei geladen, Größe:", csvData.length);
+        
+        try {
+            // Zeilen aufteilen und leere Zeilen entfernen
+            const rows = csvData.split('\n')
+                .map(row => row.trim())
+                .filter(row => row.length > 0);
+            
+            console.log(`Anzahl Zeilen in CSV: ${rows.length}`);
+            
+            // Extrahiere Header (erste Zeile)
+            const headerLine = rows[0];
+            const headers = parseCSVRow(headerLine);
+            
+            console.log("Headers gefunden:", headers);
+            
+            // Zeige Vorschau (nur die ersten 5 Zeilen)
+            showCSVPreview(rows, headers);
+            
+            // Verarbeite alle Daten
+            processCSVData(rows, headers);
+            
+        } catch (error) {
+            console.error("Fehler beim CSV-Import:", error);
+            showNotification("Fehler beim CSV-Import: " + error.message, 'error');
+        }
+    };
+    
+    reader.readAsText(file);
+}
+
+// Bessere CSV-Zeilen-Parsing-Funktion
+function parseCSVRow(row) {
+    const result = [];
+    let cell = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(cell.trim());
+            cell = '';
+        } else {
+            cell += char;
+        }
+    }
+    
+    // Füge die letzte Zelle hinzu
+    if (cell) result.push(cell.trim());
+    
+    return result;
+}
+
+// Zeige eine Vorschau der CSV-Daten
+function showCSVPreview(rows, headers) {
+    const preview = document.getElementById('csvPreview');
+    let previewHTML = '<table>';
+    
+    // Header
+    previewHTML += '<tr>';
+    headers.forEach(header => {
+        previewHTML += `<th>${header}</th>`;
+    });
+    previewHTML += '</tr>';
+    
+    // Zeige maximal 5 Zeilen an
+    const maxRows = Math.min(rows.length, 6);
+    for (let i = 1; i < maxRows; i++) {
+        const cells = parseCSVRow(rows[i]);
+        previewHTML += '<tr>';
+        cells.forEach(cell => {
+            previewHTML += `<td>${cell}</td>`;
+        });
+        previewHTML += '</tr>';
+    }
+    
+    previewHTML += '</table>';
+    
+    if (rows.length > 6) {
+        previewHTML += `<p>... und ${rows.length - 6} weitere Zeilen</p>`;
+    }
+    
+    preview.innerHTML = previewHTML;
+}
+
+// Verbesserte CSV-Datenverarbeitung
 function processCSVData(rows, headers) {
-    // Lösche vorhandene Daten
+    // Leere vorhandene Daten
     config.mods = [];
     config.hints = [];
     
+    console.log(`Verarbeite ${rows.length} Zeilen`);
+    
+    // Erstelle Basiszeit für IDs, um Überschneidungen zu vermeiden
+    const baseTime = Date.now();
+    
     // Verarbeite jede Zeile (außer Header)
     for (let i = 1; i < rows.length; i++) {
-        // Teile die Zeile korrekt auf und entferne Anführungszeichen
-        const cells = rows[i].split('"').filter((_, index) => index % 2 === 1);
-        if (cells.length < 2) continue; // Überspringe leere Zeilen
+        // Parse Zeile mit der verbesserten Funktion
+        const cells = parseCSVRow(rows[i]);
         
-        // Erstelle neuen Mod (Zweite Spalte enthält den Mod-Namen)
-        const modName = cells[1]; // Name des Mods
-        if (!modName) continue; // Überspringe Zeilen ohne Mod-Namen
+        if (cells.length < 2) {
+            console.log(`Überspringe Zeile ${i}: Nicht genug Zellen`);
+            continue;
+        }
         
-        // Erstelle für jeden Mod eine eindeutige ID mit mehr Abstand
-        const modId = Date.now() + (i * 1000);
+        // Erstelle neuen Mod (Name aus der zweiten Spalte)
+        const modName = cells[1].replace(/"/g, '').trim();
         
-        // Füge den Mod hinzu
+        if (!modName) {
+            console.log(`Überspringe Zeile ${i}: Kein Mod-Name`);
+            continue;
+        }
+        
+        // Erstelle eindeutige ID für diesen Mod
+        const modId = baseTime + (i * 10000);
+        
+        console.log(`Verarbeite Mod #${i}: ${modName} (ID: ${modId})`);
+        
+        // Füge Mod hinzu
         config.mods.push({
             id: modId,
             name: modName
         });
         
-        console.log(`Mod hinzugefügt: ${modName} mit ID ${modId}`);
-        
-        // Erstelle Tipps aus den restlichen Spalten (ab Index 2)
-        for (let j = 2; j < cells.length; j++) {
-            if (cells[j] && cells[j].trim()) {
-                // Prüfe, ob es einen passenden Header gibt
-                if (j >= headers.length) continue;
-                
-                const question = headers[j].replace(/"/g, '').trim(); // Frage aus Header
-                const answer = cells[j].trim();
-                
-                // Prüfe, ob es sich um einen Google Drive Link handelt
-                const isImageUrl = answer.includes('drive.google.com');
-                
-                // Eindeutige ID für jeden Tipp
-                const hintId = Date.now() + (i * 1000) + (j * 10);
-                
-                config.hints.push({
-                    id: hintId,
-                    modId: modId,
-                    question: question,
-                    answer: answer,
-                    design: Math.floor(Math.random() * 6) + 1,
-                    isImage: isImageUrl
-                });
-                
-                console.log(`Tipp hinzugefügt: ${question} für Mod ${modName}`);
-            }
+        // Verarbeite Tipps für diesen Mod (ab 3. Spalte)
+        for (let j = 2; j < cells.length && j < headers.length; j++) {
+            const answer = cells[j].trim();
+            
+            if (!answer) continue;
+            
+            const question = headers[j].replace(/"/g, '').trim();
+            const isImageUrl = answer.includes('http') && (
+                answer.includes('.jpg') || 
+                answer.includes('.png') || 
+                answer.includes('.gif') ||
+                answer.includes('imgur') ||
+                answer.includes('drive.google')
+            );
+            
+            const hintId = baseTime + (i * 10000) + (j * 100);
+            
+            config.hints.push({
+                id: hintId,
+                modId: modId,
+                question: question,
+                answer: answer,
+                design: Math.floor(Math.random() * 6) + 1,
+                isImage: isImageUrl
+            });
+            
+            console.log(`- Tipp hinzugefügt: "${question}" (ID: ${hintId})`);
         }
     }
     
-    console.log(`Insgesamt importiert: ${config.mods.length} Mods, ${config.hints.length} Tipps`);
+    console.log(`CSV-Import abgeschlossen: ${config.mods.length} Mods und ${config.hints.length} Tipps`);
     
-    // Aktualisiere die Listen
+    // Aktualisiere die Listen in der UI
     updateModList();
     updateModSelect();
     updateHintList();
     
-    // Speichere die Konfiguration
-    saveConfig();
-    
-    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
+    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps erfolgreich importiert!`, 'success');
 }
