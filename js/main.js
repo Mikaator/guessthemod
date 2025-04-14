@@ -68,7 +68,7 @@ function setupGame() {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
         modButton.textContent = mod.name;
-        modButton.onclick = () => handleModGuess(mod.id);
+        modButton.onclick = () => checkGuess(mod.id);
         modsContainer.appendChild(modButton);
     });
     
