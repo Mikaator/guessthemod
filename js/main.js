@@ -8,6 +8,7 @@ let currentLayout = 'default'; // default, centered, circular, grid
 let currentModIndex = 0;
 let shuffledMods = []; // Globale Variable für die gemischte Mod-Liste
 let shuffledHints = []; // Globale Variable für die gemischte Reihenfolge der Tipp-Blöcke
+let displayModsOrder = []; // Globale Variable für die Display-Reihenfolge der Mods
 
 // Layout-Optionen
 const layouts = {
@@ -65,8 +66,11 @@ function setupGame() {
     // Erstelle eine zufällige Reihenfolge der Mods
     shuffledMods = [...config.mods].sort(() => Math.random() - 0.5);
     
+    // Erstelle eine einmalige zufällige Reihenfolge für die Anzeige
+    displayModsOrder = [...shuffledMods].sort(() => Math.random() - 0.5);
+    
     // Erstelle Mod-Buttons in zufälliger Reihenfolge
-    shuffledMods.forEach(mod => {
+    displayModsOrder.forEach(mod => {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
         modButton.textContent = mod.name;
@@ -94,16 +98,12 @@ function selectNewMod() {
     // Wähle den aktuellen Mod aus der gemischten Liste
     currentMod = shuffledMods[currentModIndex];
     
-    // Aktualisiere die Mod-Buttons und mische sie zusätzlich
-    // Dies entkoppelt die Anzeige der Mod-Buttons von der Reihenfolge der Tipps
+    // Aktualisiere die Mod-Buttons ohne erneutes Mischen
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
     
-    // Eine neue, anders gemischte Kopie der Mods erstellen
-    // Dies stellt sicher, dass die Reihenfolge der Mod-Buttons nicht mit der Reihenfolge der Tipps korreliert
-    const displayMods = [...shuffledMods].sort(() => Math.random() - 0.5);
-    
-    displayMods.forEach(mod => {
+    // Verwende die bereits gemischte Reihenfolge aus displayModsOrder
+    displayModsOrder.forEach(mod => {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
         if (correctMods.has(mod.id)) {
