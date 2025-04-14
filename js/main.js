@@ -416,46 +416,20 @@ function updateHints() {
         answer.className = 'hint-answer';
         
         // Prüfe, ob die Antwort einen Link enthält
-        if (hint.answer.includes('http')) {
-            const answerContainer = document.createElement('div');
-            answerContainer.className = 'hint-answer-content';
-            
-            // Finde alle URLs in der Antwort
-            const regex = /(https?:\/\/[^\s]+)/g;
-            const parts = hint.answer.split(regex);
-            const links = hint.answer.match(regex) || [];
-            
-            // Verarbeite jeden Teil der Antwort
-            for (let i = 0; i < parts.length; i++) {
-                // Text-Teil (wenn nicht leer und keine URL)
-                if (parts[i].trim() && !parts[i].includes('http')) {
-                    const textElement = document.createElement('p');
-                    textElement.textContent = parts[i].trim();
-                    textElement.style.margin = '8px 0';
-                    answerContainer.appendChild(textElement);
-                }
-                
-                // Link hinzufügen, falls an dieser Position
-                if (i < parts.length - 1 && i < links.length) {
-                    const currentLink = links[i];
-                    
-                    const linkButton = document.createElement('a');
-                    linkButton.href = currentLink;
-                    linkButton.target = '_blank';
-                    linkButton.textContent = `Link ${i + 1} öffnen`;
-                    linkButton.className = 'image-link';
-                    answerContainer.appendChild(linkButton);
-                }
-            }
-            
-            answer.appendChild(answerContainer);
-        } else {
-            // Für Texte ohne Links
-            const textElement = document.createElement('p');
-            textElement.textContent = hint.answer;
-            answer.appendChild(textElement);
-        }
+        const regex = /(https?:\/\/[^\s]+)/g;
+        const links = hint.answer.match(regex) || [];
         
+        // Füge nur die Links als Buttons hinzu
+        links.forEach((link, index) => {
+            const linkButton = document.createElement('a');
+            linkButton.href = link;
+            linkButton.target = '_blank';
+            linkButton.textContent = `Link ${index + 1} öffnen`;
+            linkButton.className = 'image-link';
+            answer.appendChild(linkButton);
+        });
+        
+        // Füge die Frage und die Antwort hinzu
         card.appendChild(question);
         card.appendChild(answer);
         
