@@ -6,6 +6,7 @@ let correctMods = new Set(); // Speichert die IDs der richtig geratenen Mods
 let wrongModsInRound = new Set(); // Speichert die IDs der falsch geratenen Mods in der aktuellen Runde
 let currentLayout = 'default'; // default, centered, circular, grid
 let currentModIndex = 0;
+let shuffledMods = []; // Globale Variable für die gemischte Mod-Liste
 
 // Layout-Optionen
 const layouts = {
@@ -60,8 +61,8 @@ function setupGame() {
     modsContainer.innerHTML = '';
     hintsContainer.innerHTML = '';
     
-    // Mische die Mods zufällig
-    const shuffledMods = [...config.mods].sort(() => Math.random() - 0.5);
+    // Mische die Mods zufällig und speichere sie in der globalen Variable
+    shuffledMods = [...config.mods].sort(() => Math.random() - 0.5);
     
     // Erstelle Mod-Buttons in der Mitte
     shuffledMods.forEach(mod => {
@@ -72,8 +73,8 @@ function setupGame() {
         modsContainer.appendChild(modButton);
     });
     
-    // Wähle zufälligen Mod als ersten Mod
-    currentModIndex = Math.floor(Math.random() * config.mods.length);
+    // Wähle den ersten Mod als Start
+    currentModIndex = 0;
     selectNewMod();
 }
 
@@ -87,16 +88,16 @@ function selectNewMod() {
     const nextButton = document.getElementById('nextModButton');
     
     prevButton.disabled = currentModIndex === 0;
-    nextButton.disabled = currentModIndex === config.mods.length - 1;
+    nextButton.disabled = currentModIndex === shuffledMods.length - 1;
     
-    // Wähle den aktuellen Mod aus
-    currentMod = config.mods[currentModIndex];
+    // Wähle den aktuellen Mod aus der gemischten Liste
+    currentMod = shuffledMods[currentModIndex];
     
     // Aktualisiere die Mod-Buttons
     const modsContainer = document.getElementById('modsContainer');
     modsContainer.innerHTML = '';
     
-    config.mods.forEach(mod => {
+    shuffledMods.forEach(mod => {
         const modButton = document.createElement('button');
         modButton.className = 'mod-button';
         if (correctMods.has(mod.id)) {
@@ -199,7 +200,7 @@ function setupEventListeners() {
 
     // Event-Listener für die Navigations-Buttons
     document.getElementById('nextModButton').addEventListener('click', () => {
-        if (currentModIndex < config.mods.length - 1) {
+        if (currentModIndex < shuffledMods.length - 1) {
             currentModIndex++;
             selectNewMod();
         }
