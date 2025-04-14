@@ -271,49 +271,44 @@ function processCSVData(rows, headers) {
     
     console.log(`Verarbeite ${rows.length} Zeilen`);
     
-    // Erstelle Basiszeit für IDs, um Überschneidungen zu vermeiden
-    // Verwende eine eindeutige Basis-ID für jede Importaktion
+    // Erstelle Basiszeit für IDs
     const baseTime = Date.now();
     
-    // Verarbeite jede Zeile (außer Header)
+    // Verarbeite nur die echten Mod-Zeilen (jede Zeile ist ein neuer Mod)
     for (let i = 1; i < rows.length; i++) {
         try {
-            // Parse Zeile mit einer verbesserten Methode
-            const cells = [];
+            // Extrahiere die Daten nach dem CSV-Format
+            // Diese Methode ist besser für Felder mit Anführungszeichen
+            const fields = [];
+            let currentField = '';
             let inQuotes = false;
-            let currentCell = '';
-            const rowStr = rows[i];
             
-            for (let j = 0; j < rowStr.length; j++) {
-                const char = rowStr[j];
+            for (let j = 0; j < rows[i].length; j++) {
+                const char = rows[i][j];
+                
                 if (char === '"') {
                     inQuotes = !inQuotes;
                 } else if (char === ',' && !inQuotes) {
-                    cells.push(currentCell.trim());
-                    currentCell = '';
+                    fields.push(currentField);
+                    currentField = '';
                 } else {
-                    currentCell += char;
+                    currentField += char;
                 }
             }
-            if (currentCell) cells.push(currentCell.trim());
             
-            if (cells.length < 2) {
-                console.log(`Überspringe Zeile ${i}: Nicht genug Zellen`);
+            // Letztes Feld hinzufügen
+            if (currentField) {
+                fields.push(currentField);
+            }
+            
+            // Prüfe, ob mindestens der Mod-Name vorhanden ist (zweites Feld)
+            if (fields.length < 2 || !fields[1].trim()) {
+                console.warn(`Zeile ${i} übersprungen: Kein Mod-Name gefunden`);
                 continue;
             }
             
-            // Erstelle neuen Mod (Name aus der zweiten Spalte)
-            const modName = cells[1].replace(/"/g, '').trim();
-            
-            if (!modName) {
-                console.log(`Überspringe Zeile ${i}: Kein Mod-Name`);
-                continue;
-            }
-            
-            // Erstelle eindeutige ID für diesen Mod mit großem Abstand
+            const modName = fields[1].trim().replace(/^"|"$/g, '');
             const modId = baseTime + (i * 100000);
-            
-            console.log(`Verarbeite Mod #${i}: ${modName} (ID: ${modId})`);
             
             // Füge Mod hinzu
             config.mods.push({
@@ -321,22 +316,26 @@ function processCSVData(rows, headers) {
                 name: modName
             });
             
-            // Verarbeite Tipps für diesen Mod (ab 3. Spalte)
-            for (let j = 2; j < cells.length && j < headers.length; j++) {
-                const answer = cells[j].trim();
-                
-                if (!answer) continue;
+            console.log(`Mod hinzugefügt: ${modName}`);
+            
+            // Füge Hints für diesen Mod hinzu (ab Feld 3)
+            for (let j = 2; j < fields.length && j < headers.length; j++) {
+                // Überspringen, wenn das Feld leer ist
+                if (!fields[j] || !fields[j].trim()) continue;
                 
                 const question = headers[j].replace(/"/g, '').trim();
+                const answer = fields[j].trim().replace(/^"|"$/g, '');
+                
+                // Prüfe, ob es sich um einen Link handelt
                 const isImageUrl = answer.includes('http') && (
-                    answer.includes('.jpg') || 
-                    answer.includes('.png') || 
-                    answer.includes('.gif') ||
+                    answer.includes('jpg') || 
+                    answer.includes('png') || 
+                    answer.includes('gif') ||
                     answer.includes('imgur') ||
+                    answer.includes('prnt.sc') ||
                     answer.includes('drive.google')
                 );
                 
-                // Noch eindeutigere ID für Tipps
                 const hintId = baseTime + (i * 100000) + (j * 1000);
                 
                 config.hints.push({
@@ -347,22 +346,21 @@ function processCSVData(rows, headers) {
                     design: Math.floor(Math.random() * 6) + 1,
                     isImage: isImageUrl
                 });
-                
-                console.log(`- Tipp hinzugefügt: "${question}" (ID: ${hintId})`);
             }
+            
         } catch (error) {
-            console.error(`Fehler bei Zeile ${i}:`, error);
+            console.error(`Fehler beim Verarbeiten der Zeile ${i}:`, error);
         }
     }
     
-    console.log(`CSV-Import abgeschlossen: ${config.mods.length} Mods und ${config.hints.length} Tipps`);
+    console.log(`Import abgeschlossen: ${config.mods.length} Mods, ${config.hints.length} Tipps`);
     
-    // Aktualisiere die Listen in der UI
+    // Listen aktualisieren
     updateModList();
     updateModSelect();
     updateHintList();
     
-    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps erfolgreich importiert!`, 'success');
+    showNotification(`${config.mods.length} Mods und ${config.hints.length} Tipps importiert!`, 'success');
 }
 
 // Füge diese Hilfsfunktion hinzu, um mit UTF-8 Zeichen umzugehen

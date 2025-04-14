@@ -420,24 +420,27 @@ function updateHints() {
             // Teile den Text in Teile vor und nach dem Link
             const urlRegex = /(https?:\/\/[^\s]+)/g;
             const parts = hint.answer.split(urlRegex);
+            const links = hint.answer.match(urlRegex) || [];
             
-            parts.forEach(part => {
-                if (part.match(urlRegex)) {
-                    // Wenn es ein Link ist, erstelle einen Link-Button
+            // Text und Links zusammenfügen
+            for (let i = 0; i < parts.length; i++) {
+                if (parts[i].trim()) {
+                    const textElement = document.createElement('p');
+                    textElement.textContent = parts[i].trim();
+                    textElement.style.margin = '10px 0';
+                    answer.appendChild(textElement);
+                }
+                
+                // Füge Link nach dem Text ein, wenn vorhanden
+                if (links[i]) {
                     const imageLink = document.createElement('a');
-                    imageLink.href = part;
+                    imageLink.href = links[i];
                     imageLink.target = '_blank';
                     imageLink.textContent = 'Link öffnen';
                     imageLink.className = 'image-link';
                     answer.appendChild(imageLink);
-                } else if (part.trim()) {
-                    // Wenn es Text ist, erstelle ein Text-Element
-                    const textElement = document.createElement('p');
-                    textElement.textContent = part.trim();
-                    textElement.style.margin = '10px 0';
-                    answer.appendChild(textElement);
                 }
-            });
+            }
         } else {
             answer.textContent = hint.answer;
         }
