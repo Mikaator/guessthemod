@@ -8,6 +8,7 @@ let currentLayout = 'default'; // default, centered, circular, grid
 let currentModIndex = 0;
 let shuffledMods = []; // Globale Variable für die gemischte Mod-Liste
 let hintOrder = {}; // Globale Variable für die Reihenfolge der Tipps pro Mod
+let shuffledHints = []; // Globale Variable für die gemischte Reihenfolge der Tipp-Blöcke
 
 // Layout-Optionen
 const layouts = {
@@ -77,6 +78,9 @@ function setupGame() {
         const modHints = config.hints.filter(hint => hint.modId === mod.id);
         hintOrder[mod.id] = [...modHints].sort(() => Math.random() - 0.5);
     });
+    
+    // Erstelle eine zufällige Reihenfolge für die Tipp-Blöcke
+    shuffledHints = [...config.hints].sort(() => Math.random() - 0.5);
     
     // Beginne immer mit dem ersten Mod in der zufälligen Reihenfolge
     currentModIndex = 0;
@@ -373,8 +377,8 @@ function updateHints() {
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
     
-    // Hole die vordefinierte Reihenfolge der Tipps für den aktuellen Mod
-    const modHints = hintOrder[currentMod.id];
+    // Hole alle Tipps für den aktuellen Mod
+    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
     
     // Erstelle Tipp-Karten in der vordefinierten Reihenfolge
     modHints.forEach(hint => {
