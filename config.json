@@ -1,244 +1,344 @@
 {
   "mods": [
     {
-      "id": 1744582141235,
-      "name": "leon_w1109"
+      "id": 1744642966991,
+      "name": "stefan_jott_"
     },
     {
-      "id": 1744582141237,
-      "name": "scToti"
+      "id": 1744642966992,
+      "name": "FAKEMOD"
     },
     {
-      "id": 1744582141238,
-      "name": "S0cken  👍"
-    },
-    {
-      "id": 1744582141239,
-      "name": "vibewithcassy :3 "
+      "id": 1744642966993,
+      "name": "jeansophiee "
     }
   ],
   "hints": [
     {
-      "id": 1744582141238,
-      "modId": 1744582141235,
-      "question": "favorite artist zurzeit",
-      "answer": "ken carson",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141239,
-      "modId": 1744582141235,
-      "question": "favorite song alltime (link)",
-      "answer": "https://open.spotify.com/intl-de/track/5DBmXF7QO43Cuy9yqva116?si=027650b520924555",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141241,
-      "modId": 1744582141235,
-      "question": "fav song zurzeit (link)",
-      "answer": "https://open.spotify.com/intl-de/track/1PUwCOtQUOZrjAp8ljxGhE?si=eb539d239d284bae",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744582141242,
-      "modId": 1744582141235,
-      "question": "ich habe angst vor dieser person...",
-      "answer": "stefan_jott_",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744582141243,
-      "modId": 1744582141235,
-      "question": "lieblingszahl",
-      "answer": "tote frage",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744582141244,
-      "modId": 1744582141235,
-      "question": "lieblingsfach",
-      "answer": "reli",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744582141245,
-      "modId": 1744582141235,
-      "question": "artist alltime",
-      "answer": "kanye (distanz von seinen aussagen!!!!!!)",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141239,
-      "modId": 1744582141237,
-      "question": "favorite artist zurzeit",
-      "answer": "Ken Carson",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141240,
-      "modId": 1744582141237,
-      "question": "favorite song alltime (link)",
-      "answer": "https://open.spotify.com/track/0b0Dz0Gi86SVdBxYeiQcCP?si=58550d3b34fb4903",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141241,
-      "modId": 1744582141237,
-      "question": "deswegen bin ich mal fast doid gegangen",
-      "answer": "Wurde von einem Auto auf meinem E-Roller wo ich über einen Zebrastreifen gefahren bin (das ist mir schon 2 mal passiert sogar) fast angefahren (Ich wünschte ich wünschte...)",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141242,
-      "modId": 1744582141237,
-      "question": "fav song zurzeit (link)",
-      "answer": "https://open.spotify.com/track/6iycYUk3oB0NPMdaDUrN1w?si=cdb636ea793f43b6",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141243,
-      "modId": 1744582141237,
-      "question": "ich habe angst vor dieser person...",
-      "answer": "Cassy Nachtaraz und mir selber",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141244,
-      "modId": 1744582141237,
-      "question": "lieblingszahl",
-      "answer": "69",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744582141245,
-      "modId": 1744582141237,
-      "question": "lieblingsfach",
-      "answer": "Englisch",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744582141246,
-      "modId": 1744582141237,
-      "question": "artist alltime",
-      "answer": "Sabrina Carpenter(o) lol",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744582141241,
-      "modId": 1744582141238,
-      "question": "favorite song alltime (link)",
-      "answer": "https://open.spotify.com/intl-de/track/0wEfMSUj3T7z8ssIxA4AxD?si=0def652efefc4edf",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744582141242,
-      "modId": 1744582141238,
-      "question": "deswegen bin ich mal fast doid gegangen",
-      "answer": "Bin fast ertrunken, warum nicht ganz",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141244,
-      "modId": 1744582141238,
-      "question": "ich habe angst vor dieser person...",
-      "answer": "El0",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141245,
-      "modId": 1744582141238,
-      "question": "lieblingszahl",
-      "answer": "69  peepoGiggles",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744582141246,
-      "modId": 1744582141238,
-      "question": "lieblingsfach",
-      "answer": "Mathe, Physik, Technik",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744582141241,
-      "modId": 1744582141239,
-      "question": "favorite artist zurzeit",
-      "answer": "Sabrina Carpenter",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744582141242,
-      "modId": 1744582141239,
-      "question": "favorite song alltime (link)",
-      "answer": "https://open.spotify.com/intl-de/track/7KA4W4McWYRpgf0fWsJZWB?si=81ecfb2d963147aa",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744582141243,
-      "modId": 1744582141239,
-      "question": "deswegen bin ich mal fast doid gegangen",
-      "answer": "wurde von auto angefahren, hatte hirnblutung und lag 2 wochen auf intensiv",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141244,
-      "modId": 1744582141239,
-      "question": "fav song zurzeit (link)",
-      "answer": "https://open.spotify.com/intl-de/track/0b0Dz0Gi86SVdBxYeiQcCP?si=8e82451a6fed49af",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744582141245,
-      "modId": 1744582141239,
-      "question": "ich habe angst vor dieser person...",
-      "answer": "bin sigma hab keine angst vor irgendwem",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744582141246,
-      "modId": 1744582141239,
-      "question": "lieblingszahl",
-      "answer": "222",
+      "id": 1744642966993,
+      "modId": 1744642966991,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "twitter gomme",
       "design": 6,
       "isImage": false
     },
     {
-      "id": 1744582141247,
-      "modId": 1744582141239,
-      "question": "lieblingsfach",
-      "answer": "englisch",
+      "id": 1744642966994,
+      "modId": 1744642966991,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "100",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744642966995,
+      "modId": 1744642966991,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "Keinen, weil ich die alle schon gebannt habe",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642966997,
+      "modId": 1744642966991,
+      "question": "Haustier?  (imgur)",
+      "answer": "lebt nicht mehr",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744642966998,
+      "modId": 1744642966991,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "8",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1744582141248,
-      "modId": 1744582141239,
-      "question": "artist alltime",
-      "answer": "ufo361 ig oder billie",
+      "id": 1744642966999,
+      "modId": 1744642966991,
+      "question": "Lieblingsgame?",
+      "answer": "WoW",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642967000,
+      "modId": 1744642966991,
+      "question": "Ich wurde Mod, weil ich...🤡",
+      "answer": "nach 3 Wochen ohne Mod endlich gefragt wurde",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744642967001,
+      "modId": 1744642966991,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://7tv.app/emotes/01HGJSZW4000082YXGJV6440WX",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744642967004,
+      "modId": 1744642966991,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "Wenn der mir auf den Sack geht",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967006,
+      "modId": 1744642966991,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "keine, ich pass halt auf",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642967007,
+      "modId": 1744642966991,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://youtu.be/aUWU1EG9jlw",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744642967009,
+      "modId": 1744642966991,
+      "question": "Lieblings Twitch Clip (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/AmusedBitterDurianMau5-TIElldYA5ooRCykr",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642966994,
+      "modId": 1744642966992,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "Klebt Ketchup im Intimbereich gutefragenet",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642966995,
+      "modId": 1744642966992,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "21%",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642966997,
+      "modId": 1744642966992,
+      "question": "Lieblingssong (link)",
+      "answer": "https://www.youtube.com/watch?v=KEG7b851Ric",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642966998,
+      "modId": 1744642966992,
+      "question": "Haustier?  (imgur)",
+      "answer": "https://prnt.sc/nmuRRYrlE8aT",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642966999,
+      "modId": 1744642966992,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "3",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967000,
+      "modId": 1744642966992,
+      "question": "Lieblingsgame?",
+      "answer": "RocketLeague",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744642967002,
+      "modId": 1744642966992,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://cdn.7tv.app/emote/01H4PCWN7R0006QYYEV7C3EPFZ/4x.avif",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967003,
+      "modId": 1744642966992,
+      "question": "Setup  (imgur)",
+      "answer": "https://prnt.sc/V9zMr0Fmkh1K",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744642967004,
+      "modId": 1744642966992,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "Ich habe mich beim modden zur CraftAttack Zeit eingepinkelt, weil ich nicht aufstehen wollte",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967006,
+      "modId": 1744642966992,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "https://prnt.sc/8NKnwm-hcr2z",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967007,
+      "modId": 1744642966992,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "Als Kind im Urlaub in der Türkei fast von einer Klippe gefallen",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967008,
+      "modId": 1744642966992,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=OfPa0tsfROA",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967009,
+      "modId": 1744642966992,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.youtube.com/watch?v=7zgQgFJIEHI",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744642967010,
+      "modId": 1744642966992,
+      "question": "Lieblings Twitch Clip (link)",
+      "answer": "https://www.twitch.tv/seltix/clip/BlindingAbstruseBunnySmoocherZ-4Iw3Xz_icH_vgwc_?filter=clips&range=all&sort=time",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642966995,
+      "modId": 1744642966993,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "''rituals'' beweis -> https://i.imgur.com/lhrF0ly.png",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642966996,
+      "modId": 1744642966993,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "95%",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642966997,
+      "modId": 1744642966993,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "scToti",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642966998,
+      "modId": 1744642966993,
+      "question": "Lieblingssong (link)",
+      "answer": "https://open.spotify.com/intl-de/track/0b0Dz0Gi86SVdBxYeiQcCP?si=3177642d118c48bf",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642966999,
+      "modId": 1744642966993,
+      "question": "Haustier?  (imgur)",
+      "answer": "https://imgur.com/a/ltf9Pma",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967000,
+      "modId": 1744642966993,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "7",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967001,
+      "modId": 1744642966993,
+      "question": "Lieblingsgame?",
+      "answer": "fortnite",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967002,
+      "modId": 1744642966993,
+      "question": "Ich wurde Mod, weil ich...🤡",
+      "answer": "dumm bin",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744642967003,
+      "modId": 1744642966993,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://7tv.app/emotes/01H9373MDR000696ETCT8WE4YB",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642967004,
+      "modId": 1744642966993,
+      "question": "Setup  (imgur)",
+      "answer": "https://imgur.com/a/3cwG8wZ",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967006,
+      "modId": 1744642966993,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "das die person nur cosmetic mod ist",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744642967008,
+      "modId": 1744642966993,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "hatte nierenentzündung bin nach 3 tagen schmerzen zum krankenhaus, die dann meinten wäre ich an dem tag nicht gekommen wäre ich wahrscheinlich gestorben oder hätte starke schäden fürs ganze leben (ich wünschte ich wäre nicht hingegangen.. (ingame))",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967009,
+      "modId": 1744642966993,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=CT9apsxCeok&t=1467s",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744642967010,
+      "modId": 1744642966993,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.youtube.com/watch?v=vrL8L2GgQcM (das original davon was es leider nicht mehr gibt)",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744642967011,
+      "modId": 1744642966993,
+      "question": "Lieblings Twitch Clip (link)",
+      "answer": "SEHR LAUT // https://clips.twitch.tv/AuspiciousCarefulDurianNononoCat-qfghwIGCDO78Jyv1",
       "design": 1,
       "isImage": false
     }
