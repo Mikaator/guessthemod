@@ -61,7 +61,7 @@ function setupGame() {
     modsContainer.innerHTML = '';
     hintsContainer.innerHTML = '';
     
-    // Mische die Mods zufällig und speichere sie in der globalen Variable
+    // Erstelle eine zufällige Reihenfolge der Mods
     shuffledMods = [...config.mods].sort(() => Math.random() - 0.5);
     
     // Erstelle Mod-Buttons in der Mitte
@@ -73,8 +73,8 @@ function setupGame() {
         modsContainer.appendChild(modButton);
     });
     
-    // Wähle den ersten Mod als Start
-    currentModIndex = 0;
+    // Wähle einen zufälligen Mod als Start
+    currentModIndex = Math.floor(Math.random() * shuffledMods.length);
     selectNewMod();
 }
 
@@ -365,16 +365,16 @@ function createConfetti() {
 }
 
 function updateHints() {
-    // Erstelle Tipp-Karten
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
     
-    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
+    // Hole alle Tipps für den aktuellen Mod und mische sie zufällig
+    const modHints = config.hints
+        .filter(hint => hint.modId === currentMod.id)
+        .sort(() => Math.random() - 0.5);
     
-    // Mische die Tipps zufällig
-    const shuffledHints = [...modHints].sort(() => Math.random() - 0.5);
-    
-    shuffledHints.forEach(hint => {
+    // Erstelle Tipp-Karten für jeden Tipp
+    modHints.forEach(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
