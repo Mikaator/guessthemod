@@ -425,28 +425,24 @@ function updateHints() {
             const parts = hint.answer.split(regex);
             const links = hint.answer.match(regex) || [];
             
-            // Teile die Antwort in Text und Links auf
-            let linkIndex = 0;
-            
             // Verarbeite jeden Teil der Antwort
             for (let i = 0; i < parts.length; i++) {
-                // Text-Teil (wenn nicht leer)
-                if (parts[i].trim()) {
+                // Text-Teil (wenn nicht leer und keine URL)
+                if (parts[i].trim() && !parts[i].includes('http')) {
                     const textElement = document.createElement('p');
                     textElement.textContent = parts[i].trim();
                     textElement.style.margin = '8px 0';
                     answerContainer.appendChild(textElement);
                 }
                 
-                // Link hinzufügen, falls an dieser Position (Indizes wechseln sich ab: Text, Link, Text, Link, ...)
-                if (i < parts.length - 1 && linkIndex < links.length) {
-                    const currentLink = links[linkIndex];
-                    linkIndex++;
+                // Link hinzufügen, falls an dieser Position
+                if (i < parts.length - 1 && i < links.length) {
+                    const currentLink = links[i];
                     
                     const linkButton = document.createElement('a');
                     linkButton.href = currentLink;
                     linkButton.target = '_blank';
-                    linkButton.textContent = `Link ${linkIndex} öffnen`;
+                    linkButton.textContent = `Link ${i + 1} öffnen`;
                     linkButton.className = 'image-link';
                     answerContainer.appendChild(linkButton);
                 }
