@@ -368,13 +368,11 @@ function updateHints() {
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
     
-    // Hole alle Tipps für den aktuellen Mod und mische sie zufällig
-    const modHints = config.hints
-        .filter(hint => hint.modId === currentMod.id)
-        .sort(() => Math.random() - 0.5);
+    // Hole alle Tipps für den aktuellen Mod
+    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
     
-    // Erstelle Tipp-Karten für jeden Tipp
-    modHints.forEach(hint => {
+    // Erstelle Tipp-Karten für jeden Tipp in der ursprünglichen Reihenfolge
+    const hintCards = modHints.map(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
@@ -422,6 +420,14 @@ function updateHints() {
             }
         });
         
+        return card;
+    });
+    
+    // Mische die Karten zufällig
+    const shuffledCards = [...hintCards].sort(() => Math.random() - 0.5);
+    
+    // Füge die gemischten Karten zum Container hinzu
+    shuffledCards.forEach(card => {
         hintsContainer.appendChild(card);
     });
     
