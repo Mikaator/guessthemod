@@ -270,7 +270,6 @@ window.handleCSVImport = function(event) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        console.log("CSV-Datei geladen, Größe:", e.target.result.length);
         processCSVData(e.target.result);
     };
     reader.readAsText(file);
@@ -278,74 +277,84 @@ window.handleCSVImport = function(event) {
 
 function processCSVData(csvText) {
     try {
-        console.log("CSV-Verarbeitung gestartet");
+        console.log("CSV-Import gestartet");
         
         // Config zurücksetzen
         config.mods = [];
         config.hints = [];
         
-        // Splitten Sie die CSV in Zeilen, aber behalten Sie die Formatierung bei
-        const rows = csvText.split(/\r?\n/);
-        if (rows.length < 2) {
-            showNotification("CSV enthält zu wenige Zeilen", "error");
-            return;
+        // Wir arbeiten mit dem kompletten CSV-Text auf einmal
+        let text = csvText;
+        
+        // Zuerst extrahieren wir die Header-Zeile
+        const firstLineEnd = text.indexOf('\n');
+        const headerLine = text.substring(0, firstLineEnd);
+        const headers = parseCSVRow(headerLine);
+        
+        console.log("Gefundene Headers:", headers);
+        
+        // Finde alle Startpositionen von Mod-Zeilen (Zeilen, die mit einem Datum beginnen)
+        const modLineRegex = /^"?20\d\d\/\d\d\/\d\d/m;
+        const lines = text.split('\n');
+        const modLines = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            if (modLineRegex.test(lines[i])) {
+                modLines.push(lines[i]);
+            }
         }
         
-        // Extrahiere Header (erste Zeile)
-        const headerRow = parseCSVRowPrecise(rows[0]);
-        console.log("Gefundene Headers:", headerRow);
+        console.log(`${modLines.length} Mod-Zeilen gefunden`);
         
         // Basis-ID für neue Einträge
         const baseTime = Date.now();
         
-        // Verarbeite jede Zeile ab der zweiten Zeile
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i].trim();
-            if (!row) continue;
+        // Jetzt verarbeiten wir jede Mod-Zeile
+        for (let i = 0; i < modLines.length; i++) {
+            const line = modLines[i];
             
-            // Überprüfen, ob es eine Mod-Zeile ist (beginnt mit einem Datum)
-            if (row.match(/^"?20\d\d\/\d\d\/\d\d/)) {
-                const values = parseCSVRowPrecise(row);
+            // Manuelles CSV-Parsing für diese Zeile, um Anführungszeichen korrekt zu behandeln
+            const fields = parseCSVRowComplex(line);
+            
+            if (fields.length >= 2) {
+                const modName = fields[1].trim();
+                if (!modName) continue;
                 
-                // Überprüfen, ob genügend Werte vorhanden sind
-                if (values.length >= 2) {
-                    const modName = values[1].trim();
-                    if (!modName) continue;
+                // Erstelle einen neuen Mod
+                const modId = baseTime + i;
+                config.mods.push({
+                    id: modId,
+                    name: modName
+                });
+                
+                console.log(`Mod hinzugefügt: ${modName} (ID: ${modId})`);
+                
+                // Jetzt alle Tipps für diesen Mod hinzufügen
+                let hintCounter = 0;
+                for (let j = 2; j < headers.length; j++) {
+                    if (j >= fields.length) continue;
                     
-                    // Erstelle einen neuen Mod
-                    const modId = baseTime + i;
-                    config.mods.push({
-                        id: modId,
-                        name: modName
-                    });
+                    const question = headers[j].trim();
+                    const answer = fields[j];
                     
-                    console.log(`Mod hinzugefügt: ${modName} (ID: ${modId})`);
-                    
-                    // Erstelle Hints für diesen Mod
-                    // Fange bei Index 2 an (erster Hint nach Mod-Name)
-                    for (let j = 2; j < values.length && j < headerRow.length; j++) {
-                        // Verwende den Header als Frage und den Wert als Antwort
-                        const question = headerRow[j];
-                        const answer = values[j];
+                    if (answer && answer.trim()) {
+                        hintCounter++;
+                        const hintId = baseTime + (i * 1000) + hintCounter;
                         
-                        // Nur Hints hinzufügen, wenn eine Antwort vorhanden ist
-                        if (answer && answer.trim()) {
-                            const isImage = answer.includes('http');
-                            const hintId = baseTime + (i * 1000) + j;
-                            
-                            config.hints.push({
-                                id: hintId,
-                                modId: modId,
-                                question: question,
-                                answer: answer,
-                                design: Math.floor(Math.random() * 6) + 1,
-                                isImage: isImage
-                            });
-                            
-                            console.log(`Tipp hinzugefügt: "${question}" für ${modName}: "${answer.substring(0, 30)}${answer.length > 30 ? '...' : ''}"`);
-                        }
+                        config.hints.push({
+                            id: hintId,
+                            modId: modId,
+                            question: question,
+                            answer: answer.trim(),
+                            design: Math.floor(Math.random() * 6) + 1,
+                            isImage: answer.includes('http')
+                        });
+                        
+                        console.log(`Tipp #${hintCounter} hinzugefügt für ${modName}: "${question}"`);
                     }
                 }
+                
+                console.log(`Insgesamt ${hintCounter} Tipps für ${modName} hinzugefügt`);
             }
         }
         
@@ -363,36 +372,65 @@ function processCSVData(csvText) {
     }
 }
 
-// Präzises CSV-Parsen mit korrekter Behandlung von Anführungszeichen und Kommas
-function parseCSVRowPrecise(line) {
+// Verbesserte CSV-Zeilen-Parser-Funktion für komplexe Zeilen
+function parseCSVRowComplex(row) {
     const result = [];
-    let insideQuotes = false;
-    let currentValue = "";
+    let field = "";
+    let inQuotes = false;
     
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        const nextChar = (i < row.length - 1) ? row[i + 1] : "";
         
         if (char === '"') {
-            // Check für doppelte Anführungszeichen innerhalb eines Felds
-            if (insideQuotes && i+1 < line.length && line[i+1] === '"') {
-                currentValue += '"';
-                i++; // Überspringe das nächste Anführungszeichen
+            if (inQuotes && nextChar === '"') {
+                // Escaped quote inside quotes
+                field += '"';
+                i++; // Skip the next quote
             } else {
-                insideQuotes = !insideQuotes;
+                // Toggle quote state
+                inQuotes = !inQuotes;
             }
-        } else if (char === ',' && !insideQuotes) {
-            // Feld abgeschlossen
-            result.push(currentValue);
-            currentValue = "";
+        } else if (char === ',' && !inQuotes) {
+            // Field delimiter - end of field
+            result.push(field);
+            field = "";
         } else {
-            // Normales Zeichen
-            currentValue += char;
+            // Normal character - add to field
+            field += char;
         }
     }
     
-    // Letztes Feld hinzufügen
-    result.push(currentValue);
+    // Add the last field
+    result.push(field);
     
-    // Anführungszeichen entfernen
-    return result.map(value => value.replace(/^"|"$/g, ''));
+    // Clean up quotes at beginning and end of fields
+    return result.map(f => f.replace(/^"|"$/g, ''));
+}
+
+// Einfachere Funktion für die erste Zeile
+function parseCSVRow(row) {
+    // Teilt die Zeile an Kommas, aber ignoriert Kommas in Anführungszeichen
+    const result = [];
+    let inQuotes = false;
+    let currentField = "";
+    
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(currentField.replace(/^"|"$/g, ''));
+            currentField = "";
+        } else {
+            currentField += char;
+        }
+    }
+    
+    if (currentField) {
+        result.push(currentField.replace(/^"|"$/g, ''));
+    }
+    
+    return result;
 }
