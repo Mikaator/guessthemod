@@ -1,346 +1,850 @@
 {
   "mods": [
     {
-      "id": 1744642966991,
+      "id": 1744666251675,
       "name": "stefan_jott_"
     },
     {
-      "id": 1744642966992,
+      "id": 1744666251676,
       "name": "FAKEMOD"
     },
     {
-      "id": 1744642966993,
-      "name": "jeansophiee "
+      "id": 1744666251677,
+      "name": "jeansophiee"
+    },
+    {
+      "id": 1744666251678,
+      "name": "KleinesDodo"
+    },
+    {
+      "id": 1744666251679,
+      "name": "k177uaaa"
+    },
+    {
+      "id": 1744666251680,
+      "name": "Middiway"
+    },
+    {
+      "id": 1744666251681,
+      "name": "flushedjulian"
     }
   ],
   "hints": [
     {
-      "id": 1744642966993,
-      "modId": 1744642966991,
+      "id": 1744666251677,
+      "modId": 1744666251675,
       "question": "letzte Google-Suche  🔎",
       "answer": "twitter gomme",
-      "design": 6,
+      "design": 2,
       "isImage": false
     },
     {
-      "id": 1744642966994,
-      "modId": 1744642966991,
+      "id": 1744666251678,
+      "modId": 1744666251675,
       "question": "Durchschnittliche Anwesenheit im Stream (in %)",
       "answer": "100",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1744642966995,
-      "modId": 1744642966991,
+      "id": 1744666251679,
+      "modId": 1744666251675,
       "question": "Chatter den ich gerne bannen würde 🚫",
       "answer": "Keinen, weil ich die alle schon gebannt habe",
-      "design": 1,
+      "design": 2,
       "isImage": false
     },
     {
-      "id": 1744642966997,
-      "modId": 1744642966991,
+      "id": 1744666251681,
+      "modId": 1744666251675,
       "question": "Haustier?  (imgur)",
       "answer": "lebt nicht mehr",
-      "design": 6,
+      "design": 3,
       "isImage": false
     },
     {
-      "id": 1744642966998,
-      "modId": 1744642966991,
+      "id": 1744666251682,
+      "modId": 1744666251675,
       "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
       "answer": "8",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1744642966999,
-      "modId": 1744642966991,
+      "id": 1744666251683,
+      "modId": 1744666251675,
       "question": "Lieblingsgame?",
       "answer": "WoW",
-      "design": 3,
+      "design": 6,
       "isImage": false
     },
     {
-      "id": 1744642967000,
-      "modId": 1744642966991,
-      "question": "Ich wurde Mod, weil ich...🤡",
+      "id": 1744666251684,
+      "modId": 1744666251675,
+      "question": "Ich wurde Mod",
       "answer": "nach 3 Wochen ohne Mod endlich gefragt wurde",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744642967001,
-      "modId": 1744642966991,
-      "question": "Lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01HGJSZW4000082YXGJV6440WX",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1744642967004,
-      "modId": 1744642966991,
-      "question": "Wofür würdest du einen anderen Mod reporten?",
-      "answer": "Wenn der mir auf den Sack geht",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744642967006,
-      "modId": 1744642966991,
-      "question": "Meine Nahtot Erfahrung",
-      "answer": "keine, ich pass halt auf",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744642967007,
-      "modId": 1744642966991,
-      "question": "Lieblings YT Video von Hugo (link)",
-      "answer": "https://youtu.be/aUWU1EG9jlw",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1744642967009,
-      "modId": 1744642966991,
-      "question": "Lieblings Twitch Clip (link)",
-      "answer": "https://www.twitch.tv/letshugotv/clip/AmusedBitterDurianMau5-TIElldYA5ooRCykr",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1744642966994,
-      "modId": 1744642966992,
-      "question": "letzte Google-Suche  🔎",
-      "answer": "Klebt Ketchup im Intimbereich gutefragenet",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744642966995,
-      "modId": 1744642966992,
-      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
-      "answer": "21%",
-      "design": 3,
-      "isImage": false
-    },
-    {
-      "id": 1744642966997,
-      "modId": 1744642966992,
-      "question": "Lieblingssong (link)",
-      "answer": "https://www.youtube.com/watch?v=KEG7b851Ric",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642966998,
-      "modId": 1744642966992,
-      "question": "Haustier?  (imgur)",
-      "answer": "https://prnt.sc/nmuRRYrlE8aT",
+      "id": 1744666251685,
+      "modId": 1744666251675,
+      "question": "weil ich...🤡",
+      "answer": "https://7tv.app/emotes/01HGJSZW4000082YXGJV6440WX",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666251688,
+      "modId": 1744666251675,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "Wenn der mir auf den Sack geht",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1744642966999,
-      "modId": 1744642966992,
+      "id": 1744666251690,
+      "modId": 1744666251675,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "keine, ich pass halt auf",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666251691,
+      "modId": 1744666251675,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://youtu.be/aUWU1EG9jlw",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744666251693,
+      "modId": 1744666251675,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/AmusedBitterDurianMau5-TIElldYA5ooRCykr",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666252677,
+      "modId": 1744666251676,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "Klebt Ketchup im Intimbereich gutefragenet",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666252678,
+      "modId": 1744666251676,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "21%",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666252680,
+      "modId": 1744666251676,
+      "question": "Lieblingssong (link)",
+      "answer": "https://www.youtube.com/watch?v=KEG7b851Ric",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666252681,
+      "modId": 1744666251676,
+      "question": "Haustier?  (imgur)",
+      "answer": "https://prnt.sc/nmuRRYrlE8aT",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666252682,
+      "modId": 1744666251676,
       "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
       "answer": "3",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642967000,
-      "modId": 1744642966992,
+      "id": 1744666252683,
+      "modId": 1744666251676,
       "question": "Lieblingsgame?",
       "answer": "RocketLeague",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1744642967002,
-      "modId": 1744642966992,
-      "question": "Lieblingsemote (link)",
+      "id": 1744666252685,
+      "modId": 1744666251676,
+      "question": "weil ich...🤡",
       "answer": "https://cdn.7tv.app/emote/01H4PCWN7R0006QYYEV7C3EPFZ/4x.avif",
-      "design": 2,
-      "isImage": false
+      "design": 1,
+      "isImage": true
     },
     {
-      "id": 1744642967003,
-      "modId": 1744642966992,
-      "question": "Setup  (imgur)",
+      "id": 1744666252686,
+      "modId": 1744666251676,
+      "question": "Lieblingsemote (link)",
       "answer": "https://prnt.sc/V9zMr0Fmkh1K",
       "design": 6,
-      "isImage": false
+      "isImage": true
     },
     {
-      "id": 1744642967004,
-      "modId": 1744642966992,
-      "question": "Eine Story die mir etwas peinlich ist",
+      "id": 1744666252687,
+      "modId": 1744666251676,
+      "question": "Setup  (imgur)",
       "answer": "Ich habe mich beim modden zur CraftAttack Zeit eingepinkelt, weil ich nicht aufstehen wollte",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744642967006,
-      "modId": 1744642966992,
-      "question": "Mod Spirit Animal (imgur)",
-      "answer": "https://prnt.sc/8NKnwm-hcr2z",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744642967007,
-      "modId": 1744642966992,
-      "question": "Meine Nahtot Erfahrung",
-      "answer": "Als Kind im Urlaub in der Türkei fast von einer Klippe gefallen",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744642967008,
-      "modId": 1744642966992,
-      "question": "Lieblings YT Video von Hugo (link)",
-      "answer": "https://www.youtube.com/watch?v=OfPa0tsfROA",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744642967009,
-      "modId": 1744642966992,
-      "question": "Lieblings YT Video Allgemein (link)",
-      "answer": "https://www.youtube.com/watch?v=7zgQgFJIEHI",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1744642967010,
-      "modId": 1744642966992,
-      "question": "Lieblings Twitch Clip (link)",
-      "answer": "https://www.twitch.tv/seltix/clip/BlindingAbstruseBunnySmoocherZ-4Iw3Xz_icH_vgwc_?filter=clips&range=all&sort=time",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1744642966995,
-      "modId": 1744642966993,
+      "id": 1744666252689,
+      "modId": 1744666251676,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "https://prnt.sc/8NKnwm-hcr2z",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666252690,
+      "modId": 1744666251676,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "Als Kind im Urlaub in der Türkei fast von einer Klippe gefallen",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666252691,
+      "modId": 1744666251676,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://www.youtube.com/watch?v=OfPa0tsfROA",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666252692,
+      "modId": 1744666251676,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=7zgQgFJIEHI",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666252693,
+      "modId": 1744666251676,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.twitch.tv/seltix/clip/BlindingAbstruseBunnySmoocherZ-4Iw3Xz_icH_vgwc_?filter=clips&range=all&sort=time",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666253677,
+      "modId": 1744666251677,
       "question": "letzte Google-Suche  🔎",
       "answer": "''rituals'' beweis -> https://i.imgur.com/lhrF0ly.png",
       "design": 1,
-      "isImage": false
+      "isImage": true
     },
     {
-      "id": 1744642966996,
-      "modId": 1744642966993,
+      "id": 1744666253678,
+      "modId": 1744666251677,
       "question": "Durchschnittliche Anwesenheit im Stream (in %)",
       "answer": "95%",
-      "design": 2,
+      "design": 5,
       "isImage": false
     },
     {
-      "id": 1744642966997,
-      "modId": 1744642966993,
+      "id": 1744666253679,
+      "modId": 1744666251677,
       "question": "Chatter den ich gerne bannen würde 🚫",
       "answer": "scToti",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1744642966998,
-      "modId": 1744642966993,
-      "question": "Lieblingssong (link)",
-      "answer": "https://open.spotify.com/intl-de/track/0b0Dz0Gi86SVdBxYeiQcCP?si=3177642d118c48bf",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1744642966999,
-      "modId": 1744642966993,
-      "question": "Haustier?  (imgur)",
-      "answer": "https://imgur.com/a/ltf9Pma",
-      "design": 2,
-      "isImage": false
+      "id": 1744666253680,
+      "modId": 1744666251677,
+      "question": "Lieblingssong (link)",
+      "answer": "https://open.spotify.com/intl-de/track/0b0Dz0Gi86SVdBxYeiQcCP?si=3177642d118c48bf",
+      "design": 6,
+      "isImage": true
     },
     {
-      "id": 1744642967000,
-      "modId": 1744642966993,
+      "id": 1744666253681,
+      "modId": 1744666251677,
+      "question": "Haustier?  (imgur)",
+      "answer": "https://imgur.com/a/ltf9Pma",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666253682,
+      "modId": 1744666251677,
       "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
       "answer": "7",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642967001,
-      "modId": 1744642966993,
+      "id": 1744666253683,
+      "modId": 1744666251677,
       "question": "Lieblingsgame?",
       "answer": "fortnite",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666253684,
+      "modId": 1744666251677,
+      "question": "Ich wurde Mod",
+      "answer": "dumm bin",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666253685,
+      "modId": 1744666251677,
+      "question": "weil ich...🤡",
+      "answer": "https://7tv.app/emotes/01H9373MDR000696ETCT8WE4YB",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666253686,
+      "modId": 1744666251677,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://imgur.com/a/3cwG8wZ",
+      "design": 6,
+      "isImage": true
+    },
+    {
+      "id": 1744666253688,
+      "modId": 1744666251677,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "das die person nur cosmetic mod ist",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666253690,
+      "modId": 1744666251677,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "hatte nierenentzündung bin nach 3 tagen schmerzen zum krankenhaus, die dann meinten wäre ich an dem tag nicht gekommen wäre ich wahrscheinlich gestorben oder hätte starke schäden fürs ganze leben (ich wünschte ich wäre nicht hingegangen.. (ingame))",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642967002,
-      "modId": 1744642966993,
-      "question": "Ich wurde Mod, weil ich...🤡",
-      "answer": "dumm bin",
+      "id": 1744666253691,
+      "modId": 1744666251677,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://www.youtube.com/watch?v=CT9apsxCeok&t=1467s",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666253692,
+      "modId": 1744666251677,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=vrL8L2GgQcM (das original davon was es leider nicht mehr gibt)",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666253693,
+      "modId": 1744666251677,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "SEHR LAUT // https://clips.twitch.tv/AuspiciousCarefulDurianNononoCat-qfghwIGCDO78Jyv1",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666254677,
+      "modId": 1744666251678,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "18\" LMR Vielspeiche 488 Bicolor",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666254678,
+      "modId": 1744666251678,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "90%",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666254680,
+      "modId": 1744666251678,
+      "question": "Lieblingssong (link)",
+      "answer": "https://open.spotify.com/intl-de/track/3M0lSi5WW79CXQamgSBIjx?si=d02a2f23e4bb4de2",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666254682,
+      "modId": 1744666251678,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "8,5",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666254683,
+      "modId": 1744666251678,
+      "question": "Lieblingsgame?",
+      "answer": "Minecraft",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666254684,
+      "modId": 1744666251678,
+      "question": "Ich wurde Mod",
+      "answer": "Kindern den weg weisen möchte (Gänsehaut)",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666254685,
+      "modId": 1744666251678,
+      "question": "weil ich...🤡",
+      "answer": "https://betterttv.com/emotes/64a04ad769a37bbdeef8d81f",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666254686,
+      "modId": 1744666251678,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://imgur.com/a/aGPBeBo",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666254688,
+      "modId": 1744666251678,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "Unnötige Nachrichten schreiben, die kein Mod schreiben sollte",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666254689,
+      "modId": 1744666251678,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "https://imgur.com/a/x1RyatD",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666254691,
+      "modId": 1744666251678,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://www.youtube.com/watch?v=YM_ytZ4urJ8&ab_channel=LetsHugo",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666254692,
+      "modId": 1744666251678,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=R21But3UhH0&ab_channel=LetsHugo",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666254693,
+      "modId": 1744666251678,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/FuriousFilthyMilkBlargNaut-6Pt_5lm6Je3HyHlM?filter=clips&range=all&sort=time",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666255677,
+      "modId": 1744666251679,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "🤫 Besser nicht sonst twitch bann",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666255678,
+      "modId": 1744666251679,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "Gerade leider 0% aber bald werde wird wieder 100%",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666255679,
+      "modId": 1744666251679,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "Habe kein",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666255680,
+      "modId": 1744666251679,
+      "question": "Lieblingssong (link)",
+      "answer": "Im moment kein lieblingssong",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666255681,
+      "modId": 1744666251679,
+      "question": "Haustier?  (imgur)",
+      "answer": "🖕",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1744642967003,
-      "modId": 1744642966993,
+      "id": 1744666255682,
+      "modId": 1744666251679,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "Gerade 0 aber sonst 11 🦁",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666255683,
+      "modId": 1744666251679,
+      "question": "Lieblingsgame?",
+      "answer": "Minecraft",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666255684,
+      "modId": 1744666251679,
+      "question": "Ich wurde Mod",
+      "answer": "Ein bastard bin",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666255685,
+      "modId": 1744666251679,
+      "question": "weil ich...🤡",
+      "answer": "https://7tv.app/emotes/01FSKSNSR00007E5TN8YT2BA57",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666255686,
+      "modId": 1744666251679,
       "question": "Lieblingsemote (link)",
-      "answer": "https://7tv.app/emotes/01H9373MDR000696ETCT8WE4YB",
-      "design": 3,
+      "answer": "Alles vollgemüllt deswegen kein bild 😓",
+      "design": 4,
       "isImage": false
     },
     {
-      "id": 1744642967004,
-      "modId": 1744642966993,
+      "id": 1744666255687,
+      "modId": 1744666251679,
       "question": "Setup  (imgur)",
-      "answer": "https://imgur.com/a/3cwG8wZ",
-      "design": 2,
+      "answer": "Mein schwanz ist zu lang",
+      "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642967006,
-      "modId": 1744642966993,
+      "id": 1744666255688,
+      "modId": 1744666251679,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "Kriegsverbrechen",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666255689,
+      "modId": 1744666251679,
       "question": "Wofür würdest du einen anderen Mod reporten?",
-      "answer": "das die person nur cosmetic mod ist",
+      "answer": "https://imgur.com/a/CyLqT0x",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666255690,
+      "modId": 1744666251679,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "Russische FSB.",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666255691,
+      "modId": 1744666251679,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://www.youtube.com/watch?v=zJQ3JfOKydw",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666255692,
+      "modId": 1744666251679,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://www.youtube.com/watch?v=Gfuvtd1W9sU",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666255693,
+      "modId": 1744666251679,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/CloudyProudCroquetteKeyboardCat-M_3L-NGHGO7kzFHy",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1744666256677,
+      "modId": 1744666251680,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "Jason Mamoa",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1744642967008,
-      "modId": 1744642966993,
+      "id": 1744666256678,
+      "modId": 1744666251680,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "80%",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666256679,
+      "modId": 1744666251680,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "Gibt keinen richtigen Chatter den ich gerne bannen würde, wenn jedoch folgendes passiert gibt es einen Ban:\n- Rassistische oder diskriminierende Sprache\n–Beleidigungen oder Hass gegen Herkunft, Hautfarbe, Religion, Geschlecht usw\n- Sexuelle Belästigung oder unangemessene Kommentare gegenüber Chatterinnen oder im Stream zusehende Personen\n- Toxisches Verhalten, permanentes Provozieren\n- Eigenwerbung oder Werbung für einen Freund*in\n- Telefonummern leaken, von sich selbst oder anderen Streamern\n- generelle Verstöße gegen Chat-Regeln, nach mehrmaligen Verwahrnen\n- Scam links\n- Tos Themen, zb Aussagen wie N wort, B wort,  oder Nazis / Hitler zeit etc",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1744666256680,
+      "modId": 1744666251680,
+      "question": "Lieblingssong (link)",
+      "answer": "https://open.spotify.com/track/3azJifCSqg9fRij2yKIbWz?si=bkB_jYFlRdCtNMcuflM4rA&context=spotify%3Aartist%3A2jku7tDXc6XoB6MO2hFuqg",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666256681,
+      "modId": 1744666251680,
+      "question": "Haustier?  (imgur)",
+      "answer": "https://prnt.sc/yfrQIGdL4GQ6",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744666256682,
+      "modId": 1744666251680,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "8/10 - möchte mich gerne noch weiterentwickeln beim Umgang mit Tools, den Funktionen oder was Community Management angeht",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666256683,
+      "modId": 1744666251680,
+      "question": "Lieblingsgame?",
+      "answer": "Minecraft natürlich / aktuell RedM und The Elder Scrolls",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1744666256684,
+      "modId": 1744666251680,
+      "question": "Ich wurde Mod",
+      "answer": "schon extrem lange dabei bin, ich mich dazu bereit gefühlt habe und auch gewisse Vorkenntnisse habe und gerne helfe",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1744666256685,
+      "modId": 1744666251680,
+      "question": "weil ich...🤡",
+      "answer": "https://prnt.sc/7LhZk9IZne9x",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666256686,
+      "modId": 1744666251680,
+      "question": "Lieblingsemote (link)",
+      "answer": "https://prnt.sc/AXiVpqql8cJa / https://prnt.sc/oKTCIKF0dTfL",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666256687,
+      "modId": 1744666251680,
+      "question": "Setup  (imgur)",
+      "answer": "hab keine mir ist nie was peinlich",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666256688,
+      "modId": 1744666251680,
+      "question": "Eine Story die mir etwas peinlich ist",
+      "answer": "siehe oben bei \"Chatter den ich gerne bannen würde 🚫\", gilt dann auch für ein Mod",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666256689,
+      "modId": 1744666251680,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "https://prnt.sc/imon-zcc48A2 🥶",
+      "design": 6,
+      "isImage": true
+    },
+    {
+      "id": 1744666256690,
+      "modId": 1744666251680,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "Durch Dissoziation mit Hund über Straße gelaufen, nichts gehört nichts gesehen nichts wahrgenommen und hätte man mich nicht zurückgezogen wärs das gewesen",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666256691,
+      "modId": 1744666251680,
       "question": "Meine Nahtot Erfahrung",
-      "answer": "hatte nierenentzündung bin nach 3 tagen schmerzen zum krankenhaus, die dann meinten wäre ich an dem tag nicht gekommen wäre ich wahrscheinlich gestorben oder hätte starke schäden fürs ganze leben (ich wünschte ich wäre nicht hingegangen.. (ingame))",
-      "design": 2,
-      "isImage": false
+      "answer": "https://youtu.be/FTq6PDiQS30?si=o4tfnhl_sWyJQQQY",
+      "design": 4,
+      "isImage": true
     },
     {
-      "id": 1744642967009,
-      "modId": 1744642966993,
+      "id": 1744666256692,
+      "modId": 1744666251680,
       "question": "Lieblings YT Video von Hugo (link)",
-      "answer": "https://www.youtube.com/watch?v=CT9apsxCeok&t=1467s",
+      "answer": "https://youtu.be/eyRGDVbco6I?si=N5tXecAIr_SqLSRa",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744666256693,
+      "modId": 1744666251680,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/NicePoorDugongOptimizePrime-MPeOHs-gDJ1wQs3M",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666257677,
+      "modId": 1744666251681,
+      "question": "letzte Google-Suche  🔎",
+      "answer": "paris wetter",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666257678,
+      "modId": 1744666251681,
+      "question": "Durchschnittliche Anwesenheit im Stream (in %)",
+      "answer": "momentan nur 30% würde ich sagen :/",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1744642967010,
-      "modId": 1744642966993,
-      "question": "Lieblings YT Video Allgemein (link)",
-      "answer": "https://www.youtube.com/watch?v=vrL8L2GgQcM (das original davon was es leider nicht mehr gibt)",
+      "id": 1744666257679,
+      "modId": 1744666251681,
+      "question": "Chatter den ich gerne bannen würde 🚫",
+      "answer": "papaplatte",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1744666257680,
+      "modId": 1744666251681,
+      "question": "Lieblingssong (link)",
+      "answer": "https://open.spotify.com/track/4zK082ykqJzJGzC64NXjp1?si=97352b03d5894955",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744666257682,
+      "modId": 1744666251681,
+      "question": "Wie würdest du deine Mod Performance selber ranken? (0-10)",
+      "answer": "also wenn ich mal da bin solide 9",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1744666257683,
+      "modId": 1744666251681,
+      "question": "Lieblingsgame?",
+      "answer": "overwatch",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1744642967011,
-      "modId": 1744642966993,
-      "question": "Lieblings Twitch Clip (link)",
-      "answer": "SEHR LAUT // https://clips.twitch.tv/AuspiciousCarefulDurianNononoCat-qfghwIGCDO78Jyv1",
-      "design": 1,
+      "id": 1744666257684,
+      "modId": 1744666251681,
+      "question": "Ich wurde Mod",
+      "answer": "mal im chat war und hugo mich kannte und anscheinend dachte es wäre gut mich zu modden",
+      "design": 2,
       "isImage": false
+    },
+    {
+      "id": 1744666257685,
+      "modId": 1744666251681,
+      "question": "weil ich...🤡",
+      "answer": "https://7tv.app/emotes/01HB7DNZG80004CB92YXKWR9WT",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1744666257687,
+      "modId": 1744666251681,
+      "question": "Setup  (imgur)",
+      "answer": "hab mal in eine bar gekotzt",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1744666257689,
+      "modId": 1744666251681,
+      "question": "Wofür würdest du einen anderen Mod reporten?",
+      "answer": "https://imgur.com/pMQF270",
+      "design": 6,
+      "isImage": true
+    },
+    {
+      "id": 1744666257690,
+      "modId": 1744666251681,
+      "question": "Mod Spirit Animal (imgur)",
+      "answer": "fahrt mit dem nuttensohn https://imgur.com/ykP6T5K",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1744666257691,
+      "modId": 1744666251681,
+      "question": "Meine Nahtot Erfahrung",
+      "answer": "https://www.youtube.com/watch?v=1e3x8_dA2ec weil das coinsystem erstmal sehr gut konzipiert ist und super erklärt wurde",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1744666257692,
+      "modId": 1744666251681,
+      "question": "Lieblings YT Video von Hugo (link)",
+      "answer": "https://youtu.be/3ejxl6cItPE?si=2Jk_8Lbf2xzpQq0S",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1744666257693,
+      "modId": 1744666251681,
+      "question": "Lieblings YT Video Allgemein (link)",
+      "answer": "https://www.youtube.com/shorts/9sYlZzTgbPI",
+      "design": 5,
+      "isImage": true
     }
   ]
 }
