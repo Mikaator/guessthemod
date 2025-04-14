@@ -7,6 +7,7 @@ let wrongModsInRound = new Set(); // Speichert die IDs der falsch geratenen Mods
 let currentLayout = 'default'; // default, centered, circular, grid
 let currentModIndex = 0;
 let shuffledMods = []; // Globale Variable für die gemischte Mod-Liste
+let hintOrder = {}; // Globale Variable für die Reihenfolge der Tipps pro Mod
 
 // Layout-Optionen
 const layouts = {
@@ -71,6 +72,10 @@ function setupGame() {
         modButton.textContent = mod.name;
         modButton.onclick = () => checkGuess(mod.id);
         modsContainer.appendChild(modButton);
+        
+        // Erstelle eine zufällige Reihenfolge der Tipps für diesen Mod
+        const modHints = config.hints.filter(hint => hint.modId === mod.id);
+        hintOrder[mod.id] = [...modHints].sort(() => Math.random() - 0.5);
     });
     
     // Beginne immer mit dem ersten Mod in der zufälligen Reihenfolge
@@ -368,11 +373,11 @@ function updateHints() {
     const hintsContainer = document.getElementById('hintsContainer');
     hintsContainer.innerHTML = '';
     
-    // Hole alle Tipps für den aktuellen Mod
-    const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
+    // Hole die vordefinierte Reihenfolge der Tipps für den aktuellen Mod
+    const modHints = hintOrder[currentMod.id];
     
-    // Erstelle Tipp-Karten für jeden Tipp in der ursprünglichen Reihenfolge
-    const hintCards = modHints.map(hint => {
+    // Erstelle Tipp-Karten in der vordefinierten Reihenfolge
+    modHints.forEach(hint => {
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
@@ -420,14 +425,6 @@ function updateHints() {
             }
         });
         
-        return card;
-    });
-    
-    // Mische die Karten zufällig
-    const shuffledCards = [...hintCards].sort(() => Math.random() - 0.5);
-    
-    // Füge die gemischten Karten zum Container hinzu
-    shuffledCards.forEach(card => {
         hintsContainer.appendChild(card);
     });
     
