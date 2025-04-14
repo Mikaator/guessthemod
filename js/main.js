@@ -380,8 +380,15 @@ function updateHints() {
     // Hole alle Tipps für den aktuellen Mod
     const modHints = config.hints.filter(hint => hint.modId === currentMod.id);
     
-    // Erstelle Tipp-Karten in der vordefinierten Reihenfolge
-    modHints.forEach(hint => {
+    // Erstelle ein Array mit den Indizes der Tipps
+    const hintIndices = Array.from({length: modHints.length}, (_, i) => i);
+    
+    // Mische die Indizes zufällig
+    const shuffledIndices = [...hintIndices].sort(() => Math.random() - 0.5);
+    
+    // Erstelle Tipp-Karten in der zufälligen Reihenfolge
+    shuffledIndices.forEach(index => {
+        const hint = modHints[index];
         const card = document.createElement('div');
         card.className = `hint-card design-${hint.design}`;
         
