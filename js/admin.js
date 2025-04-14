@@ -278,49 +278,46 @@ window.handleCSVImport = function(event) {
 
 function processCSVData(csvText) {
     try {
+        console.log("CSV-Import gestartet");
+        
         // Config zurücksetzen
         config.mods = [];
         config.hints = [];
         
-        // CSV vorverarbeiten, um Zeilenumbrüche innerhalb von Anführungszeichen zu erhalten
-        const processedCSV = preprocessCSV(csvText);
-        
-        // Zeilen trennen
-        const lines = processedCSV.split('\n').filter(line => line.trim());
-        
+        // CSV in Zeilen aufteilen
+        let lines = csvText.split('\n');
         if (lines.length < 2) {
             showNotification("CSV-Datei enthält zu wenige Zeilen", "error");
             return;
         }
         
-        // Original-Header extrahieren (erste Zeile)
-        const headerLine = lines[0];
-        const headers = parseCSVLine(headerLine);
+        // Erste Zeile enthält die Header
+        const headers = parseCSVLine(lines[0]);
+        console.log(`${headers.length} Header gefunden`);
         
-        // Debug-Ausgabe
-        console.log("CSV-Import: " + headers.length + " Header gefunden");
-        console.log("Headers:", headers);
-        
-        // Basis-ID für die Mods
+        // Basis-ID für die Einträge
         const baseTime = Date.now();
         
-        // Alle Mod-Zeilen verarbeiten (ab der zweiten Zeile)
+        // CSV-Einträge verarbeiten
+        let currentModIndex = 0;
+        
+        // Alle Zeilen ab der zweiten durchgehen
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
             
-            // Diese Zeile ist ein neuer Mod
-            if (line.match(/^"20\d\d\/\d\d\/\d\d/)) {
+            // Nur Zeilen mit Datum am Anfang sind neue Mods
+            if (line.startsWith('"20') && line.includes('OEZ')) {
                 const fields = parseCSVLine(line);
                 
-                // Benutzer-Spalte (zweite Spalte) enthält den Mod-Namen
                 if (fields.length >= 2) {
                     const modName = fields[1].trim();
                     if (!modName) continue;
                     
-                    const modId = baseTime + i;
+                    const modId = baseTime + currentModIndex;
+                    currentModIndex++;
                     
-                    // Mod hinzufügen
+                    // Mod zum Array hinzufügen
                     config.mods.push({
                         id: modId,
                         name: modName
@@ -328,20 +325,18 @@ function processCSVData(csvText) {
                     
                     console.log(`Mod hinzugefügt: ${modName}`);
                     
-                    // Alle Felder nach dem Datum und Mod-Namen sind Tipps
-                    // Beginnend mit dem 3. Feld (index 2) und entsprechend dem Header
+                    // Alle Fragen und Antworten für diesen Mod hinzufügen
                     for (let j = 2; j < fields.length && j < headers.length; j++) {
                         const answer = fields[j];
-                        if (!answer || answer.trim() === '') continue;
+                        if (!answer || answer === '') continue;
                         
-                        // Frage ist der entsprechende Header
                         const question = headers[j];
-                        const hintId = baseTime + (i * 100) + j;
+                        const hintId = baseTime + (currentModIndex * 1000) + j;
                         
-                        // Bestimme, ob es sich um ein Bild handelt
+                        // Link erkennen
                         const isImage = answer.includes('http');
                         
-                        // Füge den Hint hinzu
+                        // Hint zum Array hinzufügen
                         config.hints.push({
                             id: hintId,
                             modId: modId,
@@ -350,6 +345,8 @@ function processCSVData(csvText) {
                             design: Math.floor(Math.random() * 6) + 1,
                             isImage: isImage
                         });
+                        
+                        console.log(`Tipp hinzugefügt: "${question.substring(0, 20)}..." für ${modName}`);
                     }
                 }
             }
@@ -364,34 +361,11 @@ function processCSVData(csvText) {
         
     } catch (error) {
         console.error("CSV-Import Fehler:", error);
-        showNotification("Fehler beim CSV-Import: " + error.message, "error");
+        showNotification("Fehler beim Import: " + error.message, "error");
     }
 }
 
-// Vorverarbeitet CSV, um Zeilenumbrüche in Anführungszeichen zu erhalten
-function preprocessCSV(csvText) {
-    // Ersetze alle Zeilenumbrüche innerhalb von Anführungszeichen durch Platzhalter
-    let processed = '';
-    let inQuotes = false;
-    
-    for (let i = 0; i < csvText.length; i++) {
-        const char = csvText[i];
-        
-        if (char === '"') {
-            inQuotes = !inQuotes;
-            processed += char;
-        } else if ((char === '\n' || char === '\r') && inQuotes) {
-            // Innerhalb von Anführungszeichen ersetzen wir Zeilenumbrüche durch tatsächliche Zeilenumbrüche
-            processed += '\n';
-        } else {
-            processed += char;
-        }
-    }
-    
-    return processed;
-}
-
-// Zerlegt eine CSV-Zeile korrekt in Felder
+// CSV-Zeile korrekt parsen unter Berücksichtigung von Anführungszeichen
 function parseCSVLine(line) {
     const result = [];
     let currentField = '';
@@ -402,28 +376,27 @@ function parseCSVLine(line) {
         
         if (char === '"') {
             if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
-                // Doppelte Anführungszeichen in einem Feld werden zu einem
+                // Doppelte Anführungszeichen im Text
                 currentField += '"';
-                i++; // Überspringe das nächste Anführungszeichen
+                i++;
             } else {
-                // Ein einzelnes Anführungszeichen schaltet den Zustand um
+                // Anführungszeichen wechseln den Status
                 inQuotes = !inQuotes;
             }
         } else if (char === ',' && !inQuotes) {
-            // Ein Komma außerhalb von Anführungszeichen ist ein Feldtrenner
-            result.push(currentField.replace(/^"|"$/g, '')); // Entferne umschließende Anführungszeichen
+            // Komma außerhalb von Anführungszeichen = neues Feld
+            result.push(currentField);
             currentField = '';
         } else {
-            // Normales Zeichen, zum aktuellen Feld hinzufügen
+            // Normales Zeichen
             currentField += char;
         }
     }
     
     // Letztes Feld hinzufügen
-    if (currentField) {
-        result.push(currentField.replace(/^"|"$/g, ''));
-    }
+    result.push(currentField);
     
-    return result;
+    // Anführungszeichen von allen Feldern entfernen
+    return result.map(field => field.replace(/^"|"$/g, ''));
 } 
 } 
