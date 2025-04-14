@@ -398,5 +398,4 @@ function parseCSVLine(line) {
     
     // Anführungszeichen von allen Feldern entfernen
     return result.map(field => field.replace(/^"|"$/g, ''));
-} 
-} 
+}
