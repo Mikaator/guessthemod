@@ -1,477 +1,929 @@
 {
   "mods": [
     {
-      "id": 1745617994294,
+      "id": 1745708361928,
+      "name": "vibewithcassy"
+    },
+    {
+      "id": 1745708361929,
+      "name": "lellolidk"
+    },
+    {
+      "id": 1745708361930,
       "name": "scToti"
     },
     {
-      "id": 1745617994295,
-      "name": "leon_w1109"
+      "id": 1745708361931,
+      "name": "lucliam123"
     },
     {
-      "id": 1745617994296,
-      "name": "BattlePig78"
+      "id": 1745708361932,
+      "name": "InkelDinkel"
     },
     {
-      "id": 1745617994297,
-      "name": "Socki 😵‍💫"
+      "id": 1745708361933,
+      "name": "Ueberleben__"
     },
     {
-      "id": 1745617994298,
-      "name": "vGregor"
+      "id": 1745708361934,
+      "name": "DerMaulwurf54"
     },
     {
-      "id": 1745617994299,
-      "name": "LetsAndrin14e"
+      "id": 1745708361935,
+      "name": "BattlePig78 🐷"
+    },
+    {
+      "id": 1745708361936,
+      "name": "HerrBerger"
+    },
+    {
+      "id": 1745708361937,
+      "name": "Andrin🦈"
+    },
+    {
+      "id": 1745708361938,
+      "name": "kerrysfrag"
     }
   ],
   "hints": [
     {
-      "id": 1745617994294,
-      "modId": 1745617994294,
-      "question": "meistgespieltes Game? ",
-      "answer": "Fortnite",
+      "id": 1745708361930,
+      "modId": 1745708361928,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "in zu vielen chats ",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1745617994296,
-      "modId": 1745617994294,
-      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
-      "answer": "Will ich keine Auskunft geben",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1745617994297,
-      "modId": 1745617994294,
-      "question": "Gruselige Story (DogLookingSussyAndCold)",
-      "answer": "Hab keine",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617994298,
-      "modId": 1745617994294,
-      "question": "Letztes Bild auf dem Handy (link)",
-      "answer": "Digga ich würde mich Face leaken wenn ich das mache",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617994299,
-      "modId": 1745617994294,
-      "question": "meme/bild das dich am besten beschreibt (link)",
-      "answer": "Keine Ahnung (zu faul um herrauszusuchen)",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1745617994300,
-      "modId": 1745617994294,
-      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "ich sag nur an wen (cassy) ",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617994301,
-      "modId": 1745617994294,
+      "id": 1745708361935,
+      "modId": 1745708361928,
       "question": "lieblingsemoji",
-      "answer": "😍",
-      "design": 1,
+      "answer": "🙂‍↕️",
+      "design": 4,
       "isImage": false
     },
     {
-      "id": 1745617994302,
-      "modId": 1745617994294,
-      "question": "zuletzt geclipter clip (link)",
-      "answer": "ein clip bei Gregor wenn du später gucken willst ( https://www.twitch.tv/vgregor/clip/TriumphantAuspiciousAardvarkSquadGoals-Ma0GGGc4uAYdV0Nv )",
-      "design": 1,
-      "isImage": true
-    },
-    {
-      "id": 1745617994303,
-      "modId": 1745617994294,
+      "id": 1745708361937,
+      "modId": 1745708361928,
       "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "6-9-12",
+      "answer": "10-12",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708361940,
+      "modId": 1745708361928,
+      "question": "hass Chatter",
+      "answer": "zu viele ",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708362928,
+      "modId": 1745708361929,
+      "question": "meistgespieltes Game? ",
+      "answer": "counter strike",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708362929,
+      "modId": 1745708361929,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "gta auto B)",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1745617994304,
-      "modId": 1745617994294,
-      "question": "Freaky Story 🤨",
-      "answer": "Ja keiner ist mit mir so freaky glaub ich oder mir fällt einfach keine ein",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617994305,
-      "modId": 1745617994294,
-      "question": "Lieblingschatter",
-      "answer": "Bin die Schweiz ich halte mich da raus FeelsOkayMan ",
+      "id": 1745708362930,
+      "modId": 1745708361929,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "hugo: 99+ / gtimetv",
       "design": 6,
       "isImage": false
     },
     {
-      "id": 1745617995294,
-      "modId": 1745617994295,
-      "question": "meistgespieltes Game? ",
-      "answer": "minecraft",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617995296,
-      "modId": 1745617994295,
-      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
-      "answer": "fast bei hugo... und bei paar hurensöhnen ",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1745617995297,
-      "modId": 1745617994295,
+      "id": 1745708362931,
+      "modId": 1745708361929,
       "question": "Gruselige Story (DogLookingSussyAndCold)",
-      "answer": "damals mit paul und einer anderen person bis 5 uhr nachts horrorfilme geguckt, dann ins bett gegangen und irgendwelche geräusche gehört",
-      "design": 4,
+      "answer": "hi",
+      "design": 3,
       "isImage": false
     },
     {
-      "id": 1745617995298,
-      "modId": 1745617994295,
+      "id": 1745708362932,
+      "modId": 1745708361929,
       "question": "Letztes Bild auf dem Handy (link)",
-      "answer": "lieber nicht ",
-      "design": 4,
+      "answer": "https://kappa.lol/DsWaOf",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1745708362933,
+      "modId": 1745708361929,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://kappa.lol/DsWaOf",
+      "design": 6,
+      "isImage": true
+    },
+    {
+      "id": 1745708362934,
+      "modId": 1745708361929,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "10€ auf payapl",
+      "design": 6,
       "isImage": false
     },
     {
-      "id": 1745617995300,
-      "modId": 1745617994295,
-      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "das emote Alright in eine gruppe",
+      "id": 1745708362935,
+      "modId": 1745708361929,
+      "question": "lieblingsemoji",
+      "answer": "👌",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1745617995301,
-      "modId": 1745617994295,
-      "question": "lieblingsemoji",
-      "answer": "🙏",
+      "id": 1745708362936,
+      "modId": 1745708361929,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/TemperedExuberantEggBatChest-vIrb-2X5qKI2uG-d",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1745708362937,
+      "modId": 1745708361929,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "4-6",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708362938,
+      "modId": 1745708361929,
+      "question": "Freaky Story 🤨",
+      "answer": "hatte noch nie",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708362939,
+      "modId": 1745708361929,
+      "question": "Setup bild (link)",
+      "answer": "leck meine eier",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1745617995303,
-      "modId": 1745617994295,
+      "id": 1745708362940,
+      "modId": 1745708361929,
+      "question": "hass Chatter",
+      "answer": "alle ",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708363928,
+      "modId": 1745708361930,
+      "question": "meistgespieltes Game? ",
+      "answer": "Fortnite ",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708363929,
+      "modId": 1745708361930,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "Enderperle damit ich mich irgendwo hin teleportieren kann",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708363931,
+      "modId": 1745708361930,
+      "question": "Gruselige Story (DogLookingSussyAndCold)",
+      "answer": "Hab keine ",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708363933,
+      "modId": 1745708361930,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://cdn.discordapp.com/attachments/1332787462736445531/1365476181742194738/IMG_3034.png?ex=680e1b0b&is=680cc98b&hm=b1547a23533a0bdd2785c32198396fe03fcf8ca01699fe424ceef08808ef5bbd&",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1745708363935,
+      "modId": 1745708361930,
+      "question": "lieblingsemoji",
+      "answer": "🤩",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708363937,
+      "modId": 1745708361930,
       "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "ferien 10 schule 6-3",
+      "answer": "9",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708363938,
+      "modId": 1745708361930,
+      "question": "Freaky Story 🤨",
+      "answer": "Hab keine weil keiner mit mir freaky ist glaube ich zumindest ",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1745617995305,
-      "modId": 1745617994295,
-      "question": "Lieblingschatter",
-      "answer": "mikaator, so ein unfassbar guter chatter und auch eine wundervolle person. absolut gerechtfertigt, dass er auch die supporter rolle im letshugotv discord bekommen hat",
-      "design": 2,
+      "id": 1745708363939,
+      "modId": 1745708361930,
+      "question": "Setup bild (link)",
+      "answer": "Nein",
+      "design": 3,
       "isImage": false
     },
     {
-      "id": 1745617996294,
-      "modId": 1745617994296,
+      "id": 1745708363940,
+      "modId": 1745708361930,
+      "question": "hass Chatter",
+      "answer": "Ich mag alle ",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708364928,
+      "modId": 1745708361931,
       "question": "meistgespieltes Game? ",
       "answer": "minecraft ",
       "design": 6,
       "isImage": false
     },
     {
-      "id": 1745617996295,
-      "modId": 1745617994296,
+      "id": 1745708364929,
+      "modId": 1745708361931,
       "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
-      "answer": "Elytra (aus minecraft)",
-      "design": 4,
+      "answer": "elytra ",
+      "design": 6,
       "isImage": false
     },
     {
-      "id": 1745617996299,
-      "modId": 1745617994296,
-      "question": "meme/bild das dich am besten beschreibt (link)",
-      "answer": "https://imgur.com/a/LnBlSox",
-      "design": 4,
-      "isImage": true
+      "id": 1745708364930,
+      "modId": 1745708361931,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "ne",
+      "design": 6,
+      "isImage": false
     },
     {
-      "id": 1745617996300,
-      "modId": 1745617994296,
+      "id": 1745708364934,
+      "modId": 1745708361931,
       "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "lol (an schnizelwolke)",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1745617996301,
-      "modId": 1745617994296,
-      "question": "lieblingsemoji",
-      "answer": "😭",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1745617996302,
-      "modId": 1745617994296,
-      "question": "zuletzt geclipter clip (link)",
-      "answer": "https://www.twitch.tv/letshugotv/clip/HumbleTriangularTitanKeyboardCat-H8Z1PRph_MJ6-6h8",
-      "design": 3,
-      "isImage": true
-    },
-    {
-      "id": 1745617996303,
-      "modId": 1745617994296,
-      "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "6h ",
+      "answer": "ok W",
       "design": 4,
       "isImage": false
     },
     {
-      "id": 1745617996305,
-      "modId": 1745617994296,
-      "question": "Lieblingschatter",
-      "answer": "sctoti",
+      "id": 1745708364935,
+      "modId": 1745708361931,
+      "question": "lieblingsemoji",
+      "answer": "hab keins",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708364936,
+      "modId": 1745708361931,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "https://www.twitch.tv/schnizelwolke/clip/HelplessAuspiciousSashimiRalpherZ-xMzT-p6MSYkHTZkw",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1745708364937,
+      "modId": 1745708361931,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "0-10",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1745617997296,
-      "modId": 1745617994297,
-      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
-      "answer": "Hugo... ",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1745617997297,
-      "modId": 1745617994297,
-      "question": "Gruselige Story (DogLookingSussyAndCold)",
-      "answer": "War mal im Wald laufen und dann war ein Mann hinter mir und dann schau ich nach hinten und der mann war weg ppPoof    ",
-      "design": 6,
-      "isImage": false
-    },
-    {
-      "id": 1745617997300,
-      "modId": 1745617994297,
-      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "WellWellWell",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1745617997301,
-      "modId": 1745617994297,
-      "question": "lieblingsemoji",
-      "answer": "😭",
-      "design": 5,
-      "isImage": false
-    },
-    {
-      "id": 1745617997302,
-      "modId": 1745617994297,
-      "question": "zuletzt geclipter clip (link)",
-      "answer": "https://www.twitch.tv/letshugotv/clip/AthleticFrigidGnatDancingBaby-IH1dx8KqAD42xhCN",
+      "id": 1745708364940,
+      "modId": 1745708361931,
+      "question": "hass Chatter",
+      "answer": "https://imgur.com/a/Jvn8Yxw",
       "design": 6,
       "isImage": true
     },
     {
-      "id": 1745617997303,
-      "modId": 1745617994297,
-      "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "6-9",
-      "design": 4,
-      "isImage": false
-    },
-    {
-      "id": 1745617997305,
-      "modId": 1745617994297,
-      "question": "Lieblingschatter",
-      "answer": "leon ",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1745617998294,
-      "modId": 1745617994298,
+      "id": 1745708365928,
+      "modId": 1745708361932,
       "question": "meistgespieltes Game? ",
       "answer": "Minecraft",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1745617998295,
-      "modId": 1745617994298,
+      "id": 1745708365929,
+      "modId": 1745708361932,
       "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
-      "answer": "Minigun aus fortnite um alles zu beenden",
-      "design": 5,
+      "answer": "Maze aus Minecraft(sehr op)",
+      "design": 1,
       "isImage": false
     },
     {
-      "id": 1745617998296,
-      "modId": 1745617994298,
+      "id": 1745708365930,
+      "modId": 1745708361932,
       "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
-      "answer": "halb twitch de (papaplatte, faister, nooreax, felikah usw.) ",
-      "design": 3,
+      "answer": "Papaplatte ich habe zu viel gespammt aber wieder unban",
+      "design": 4,
       "isImage": false
     },
     {
-      "id": 1745617998297,
-      "modId": 1745617994298,
+      "id": 1745708365931,
+      "modId": 1745708361932,
       "question": "Gruselige Story (DogLookingSussyAndCold)",
-      "answer": "Mein kok hihi",
-      "design": 1,
+      "answer": "Ich und meine Geschwister haben mal ne Puppe im Wald vergraben und nach einer Woche war die weg Scared",
+      "design": 3,
       "isImage": false
     },
     {
-      "id": 1745617998298,
-      "modId": 1745617994298,
+      "id": 1745708365932,
+      "modId": 1745708361932,
       "question": "Letztes Bild auf dem Handy (link)",
-      "answer": "https://prnt.sc/7-v2EV7ckJ_h",
-      "design": 3,
-      "isImage": true
-    },
-    {
-      "id": 1745617998299,
-      "modId": 1745617994298,
-      "question": "meme/bild das dich am besten beschreibt (link)",
-      "answer": "https://cdn.7tv.app/emote/01HTKMB7680004B0MV8TERR9A4/4x.avif",
-      "design": 3,
-      "isImage": true
-    },
-    {
-      "id": 1745617998300,
-      "modId": 1745617994298,
-      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "jemand hat gefragt wie der command geht https://prnt.sc/mfjmuRPSZ-Rq",
+      "answer": "https://prnt.sc/V1IH894IJvhB",
       "design": 2,
       "isImage": true
     },
     {
-      "id": 1745617998301,
-      "modId": 1745617994298,
-      "question": "lieblingsemoji",
-      "answer": "🥺",
+      "id": 1745708365933,
+      "modId": 1745708361932,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "find nichtz",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1745617998302,
-      "modId": 1745617994298,
-      "question": "zuletzt geclipter clip (link)",
-      "answer": "https://www.twitch.tv/letshugotv/clip/ImpartialEnchantingSpiderOMGScoots-DnP-oN-Ak49jqqwV",
-      "design": 3,
+      "id": 1745708365934,
+      "modId": 1745708361932,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "https://prnt.sc/yIev5JJYCGOD",
+      "design": 5,
       "isImage": true
     },
     {
-      "id": 1745617998303,
-      "modId": 1745617994298,
+      "id": 1745708365935,
+      "modId": 1745708361932,
+      "question": "lieblingsemoji",
+      "answer": "👙(gut zum goonen)",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708365936,
+      "modId": 1745708361932,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "keinen lol (bin kein opfer)",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708365937,
+      "modId": 1745708361932,
       "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "7h wegen ferien",
+      "answer": "2-6 ",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708365938,
+      "modId": 1745708361932,
+      "question": "Freaky Story 🤨",
+      "answer": "ich habe kein game🙏✌",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708365939,
+      "modId": 1745708361932,
+      "question": "Setup bild (link)",
+      "answer": "https://prnt.sc/p4k4wfHgLXX8",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1745708365940,
+      "modId": 1745708361932,
+      "question": "hass Chatter",
+      "answer": "vibewithcassy",
       "design": 3,
       "isImage": false
     },
     {
-      "id": 1745617998304,
-      "modId": 1745617994298,
-      "question": "Freaky Story 🤨",
-      "answer": "😉ich bin freaky",
-      "design": 2,
-      "isImage": false
-    },
-    {
-      "id": 1745617998305,
-      "modId": 1745617994298,
-      "question": "Lieblingschatter",
-      "answer": "alle sind gut (außer leon)",
-      "design": 1,
-      "isImage": false
-    },
-    {
-      "id": 1745617999294,
-      "modId": 1745617994299,
+      "id": 1745708366928,
+      "modId": 1745708361933,
       "question": "meistgespieltes Game? ",
-      "answer": "fortnite",
+      "answer": "Minecraft ca. 10k Stunden",
       "design": 2,
       "isImage": false
     },
     {
-      "id": 1745617999295,
-      "modId": 1745617994299,
+      "id": 1745708366929,
+      "modId": 1745708361933,
       "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
-      "answer": "chug jug",
+      "answer": "Enderperle P99 Boogiebombs ",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1745617999296,
-      "modId": 1745617994299,
+      "id": 1745708366930,
+      "modId": 1745708361933,
       "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
-      "answer": "Nooreax (unverdient)",
+      "answer": "Hugo PapaP Filow Merle / Kleine Rndms ",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708366931,
+      "modId": 1745708361933,
+      "question": "Gruselige Story (DogLookingSussyAndCold)",
+      "answer": "Wurde mal von einer Oma beobachtet am Bahnhof bis ich irgendwann gefragt habe ob alles okay ist da sie sich nicht bewegt hat und nur gestarrt hat, als ich vor Ihr stand hat sie eine Glasflasche fallen lassen und ihre Hand war voller Blut hab krankeswagen gerufen weil sie nicht reagiert hat und sie meinte nur \"Vergiss nicht mein Sohn, und gehe den richtigen Weg\" ",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1745617999298,
-      "modId": 1745617994299,
+      "id": 1745708366932,
+      "modId": 1745708361933,
       "question": "Letztes Bild auf dem Handy (link)",
-      "answer": "https://prnt.sc/ymDBRNHInvXF",
-      "design": 2,
-      "isImage": true
-    },
-    {
-      "id": 1745617999299,
-      "modId": 1745617994299,
-      "question": "meme/bild das dich am besten beschreibt (link)",
-      "answer": "https://prnt.sc/wLW63kVW4v_K",
-      "design": 5,
-      "isImage": true
-    },
-    {
-      "id": 1745617999300,
-      "modId": 1745617994299,
-      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
-      "answer": "Hs\" an inkeldinkel",
-      "design": 5,
+      "answer": "Von einer 12V Batterie ",
+      "design": 6,
       "isImage": false
     },
     {
-      "id": 1745617999301,
-      "modId": 1745617994299,
+      "id": 1745708366933,
+      "modId": 1745708361933,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://cdn.acidcow.com/pics/20111026/hilarious_drunk_and_wasted_people_14.jpg",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1745708366934,
+      "modId": 1745708361933,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "Muah. i love you\" Sticker ",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708366935,
+      "modId": 1745708361933,
       "question": "lieblingsemoji",
-      "answer": "🦈",
+      "answer": "🙄",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708366936,
+      "modId": 1745708361933,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "irgendwas von Hugo ",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708366937,
+      "modId": 1745708361933,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "5-7",
       "design": 1,
       "isImage": false
     },
     {
-      "id": 1745617999302,
-      "modId": 1745617994299,
+      "id": 1745708366938,
+      "modId": 1745708361933,
+      "question": "Freaky Story 🤨",
+      "answer": "Im Schwimmbad hat mich eine frau in die Frauendusche gelockt, dann standen 3 Frauen auf einer großen abgeschlossenen Toilette vor (langsam ausgezogen) den Rest könnt ihr euch irgendwie ausdenken ",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708366939,
+      "modId": 1745708361933,
+      "question": "Setup bild (link)",
+      "answer": "bin Pc.",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708366940,
+      "modId": 1745708361933,
+      "question": "hass Chatter",
+      "answer": "Ente",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708367928,
+      "modId": 1745708361934,
+      "question": "meistgespieltes Game? ",
+      "answer": "Mc/ Val",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708367929,
+      "modId": 1745708361934,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "ein massiven mc stick den ich mir rektal einführen kann ",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708367930,
+      "modId": 1745708361934,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "Bei paul aus #spaß",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708367931,
+      "modId": 1745708361934,
+      "question": "Gruselige Story (DogLookingSussyAndCold)",
+      "answer": "hab latenightsnack geholt und dann hat katze so sounds gemacht und ist dann vom schrank in meine fette fresse gesprungen hab herinfakt bekommen",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708367932,
+      "modId": 1745708361934,
+      "question": "Letztes Bild auf dem Handy (link)",
+      "answer": "https://imgur.com/a/s2eOabr Tasty",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1745708367934,
+      "modId": 1745708361934,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "Du verfickter hurensohn (an bro, der bastard kommt nicht on)",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708367935,
+      "modId": 1745708361934,
+      "question": "lieblingsemoji",
+      "answer": "💀 ",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708367936,
+      "modId": 1745708361934,
       "question": "zuletzt geclipter clip (link)",
-      "answer": "https://www.twitch.tv/letshugotv/clip/GracefulSnappySlothPeanutButterJellyTime-pOJv_FlekH2JK8J_",
+      "answer": "tot",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708367937,
+      "modId": 1745708361934,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "3",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708367938,
+      "modId": 1745708361934,
+      "question": "Freaky Story 🤨",
+      "answer": "...",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708367939,
+      "modId": 1745708361934,
+      "question": "Setup bild (link)",
+      "answer": "https://imgur.com/a/bVwxZgU (reicher mann)",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1745708367940,
+      "modId": 1745708361934,
+      "question": "hass Chatter",
+      "answer": "TomatenT0m der hs",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708368928,
+      "modId": 1745708361935,
+      "question": "meistgespieltes Game? ",
+      "answer": "minecraft",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708368929,
+      "modId": 1745708361935,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "mace (aus minecraft)",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708368934,
+      "modId": 1745708361935,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "Sadge (an zAlpakaTV)",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708368935,
+      "modId": 1745708361935,
+      "question": "lieblingsemoji",
+      "answer": "😭",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708368937,
+      "modId": 1745708361935,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "6 - 7",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708368940,
+      "modId": 1745708361935,
+      "question": "hass Chatter",
+      "answer": "KerryFrag ",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708369928,
+      "modId": 1745708361936,
+      "question": "meistgespieltes Game? ",
+      "answer": "Mc (mit abstand, safe 10k stunden)",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708369929,
+      "modId": 1745708361936,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "Elytra ",
+      "design": 4,
+      "isImage": false
+    },
+    {
+      "id": 1745708369930,
+      "modId": 1745708361936,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "Clueless nene",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708369931,
+      "modId": 1745708361936,
+      "question": "Gruselige Story (DogLookingSussyAndCold)",
+      "answer": "Hab keine fantasy fick dich",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708369933,
+      "modId": 1745708361936,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://prnt.sc/w_l5XTpB0iy1",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1745708369934,
+      "modId": 1745708361936,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "https://prnt.sc/Y359omaehHit",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1745708369935,
+      "modId": 1745708361936,
+      "question": "lieblingsemoji",
+      "answer": "ZAMN",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708369937,
+      "modId": 1745708361936,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "4-6",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708369939,
+      "modId": 1745708361936,
+      "question": "Setup bild (link)",
+      "answer": "https://prnt.sc/NmNgmGQq49Ll",
       "design": 6,
       "isImage": true
     },
     {
-      "id": 1745617999303,
-      "modId": 1745617994299,
+      "id": 1745708369940,
+      "modId": 1745708361936,
+      "question": "hass Chatter",
+      "answer": "knopers__ dieser dumme bastard",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708370928,
+      "modId": 1745708361937,
+      "question": "meistgespieltes Game? ",
+      "answer": "minecraft",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708370929,
+      "modId": 1745708361937,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "scar",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708370930,
+      "modId": 1745708361937,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "in vielen...",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708370933,
+      "modId": 1745708361937,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://prnt.sc/5-hOK0xFrQwg",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1745708370935,
+      "modId": 1745708361937,
+      "question": "lieblingsemoji",
+      "answer": "🥶",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708370936,
+      "modId": 1745708361937,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/AgileSpunkyKimchiWTRuck-mXkPKLPeL1uVrzhA",
+      "design": 5,
+      "isImage": true
+    },
+    {
+      "id": 1745708370937,
+      "modId": 1745708361937,
       "question": "Stunden Schlaf pro Nacht (in Stunden)",
-      "answer": "5",
+      "answer": "5.5",
+      "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708370938,
+      "modId": 1745708361937,
+      "question": "Freaky Story 🤨",
+      "answer": "ich bin dauer freaky",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708370940,
+      "modId": 1745708361937,
+      "question": "hass Chatter",
+      "answer": "TomatenT0m",
+      "design": 6,
+      "isImage": false
+    },
+    {
+      "id": 1745708371928,
+      "modId": 1745708361938,
+      "question": "meistgespieltes Game? ",
+      "answer": "minecraft",
       "design": 5,
       "isImage": false
     },
     {
-      "id": 1745617999305,
-      "modId": 1745617994299,
-      "question": "Lieblingschatter",
-      "answer": "xArda____,",
+      "id": 1745708371929,
+      "modId": 1745708361938,
+      "question": "ein Item aus einem Spiel im echten Leben haben – welches?",
+      "answer": "command block",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708371930,
+      "modId": 1745708361938,
+      "question": "Schon mal gebannt worden in einem Chat? 😏 (in welchem)",
+      "answer": "Ja, LetsHugo",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708371931,
+      "modId": 1745708361938,
+      "question": "Gruselige Story (DogLookingSussyAndCold)",
+      "answer": "Essen war leer",
+      "design": 1,
+      "isImage": false
+    },
+    {
+      "id": 1745708371932,
+      "modId": 1745708361938,
+      "question": "Letztes Bild auf dem Handy (link)",
+      "answer": "https://imgur.com/a/v0dzYUu",
+      "design": 2,
+      "isImage": true
+    },
+    {
+      "id": 1745708371933,
+      "modId": 1745708361938,
+      "question": "meme/bild das dich am besten beschreibt (link)",
+      "answer": "https://imgur.com/a/xeNdCYC",
+      "design": 1,
+      "isImage": true
+    },
+    {
+      "id": 1745708371934,
+      "modId": 1745708361938,
+      "question": "Letzte versendete Dc Naricht (optional an wen) (link)",
+      "answer": "An DerMinusDude \"tamam",
+      "design": 2,
+      "isImage": false
+    },
+    {
+      "id": 1745708371935,
+      "modId": 1745708361938,
+      "question": "lieblingsemoji",
+      "answer": "🤝",
       "design": 3,
+      "isImage": false
+    },
+    {
+      "id": 1745708371936,
+      "modId": 1745708361938,
+      "question": "zuletzt geclipter clip (link)",
+      "answer": "https://www.twitch.tv/letshugotv/clip/SavoryVenomousSquirrelImGlitch-zmk8o7P3U4WoP_jZ",
+      "design": 3,
+      "isImage": true
+    },
+    {
+      "id": 1745708371937,
+      "modId": 1745708361938,
+      "question": "Stunden Schlaf pro Nacht (in Stunden)",
+      "answer": "4-6",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708371938,
+      "modId": 1745708361938,
+      "question": "Freaky Story 🤨",
+      "answer": "Wurde auf klassenfahrt von einem Medschn gejagt stand dann an der wand und weil die mich schlagen wollte habe ich meine hände zum schutz so hingehalten und sie ist dann mit ihren titten gegen meine hand gekommen. sie hat mich dann geschlagen als wäre es meine schuld (wollte rt nur nicht geschlagen werden)",
+      "design": 5,
+      "isImage": false
+    },
+    {
+      "id": 1745708371939,
+      "modId": 1745708361938,
+      "question": "Setup bild (link)",
+      "answer": "https://imgur.com/a/9R0Ds1q",
+      "design": 4,
+      "isImage": true
+    },
+    {
+      "id": 1745708371940,
+      "modId": 1745708361938,
+      "question": "hass Chatter",
+      "answer": "peepoHappyNox;zalpaka;freddihd23",
+      "design": 5,
       "isImage": false
     }
   ]
